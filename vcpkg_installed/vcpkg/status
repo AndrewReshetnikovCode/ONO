@@ -1,0 +1,137 @@
+Package: vcpkg-cmake-config
+Version: 2024-05-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: b1d76dea1f6a3bdd5b36c8ed711cc1f0a6ac9c14926c1e929fd8bdfc15826b78
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2024-04-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: e79fa76841b70d89ca58c35c2a14f367f146b1c56bf64989681ea3743eb690a8
+Status: install ok installed
+
+Package: libjpeg-turbo
+Version: 3.1.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 86146df56f250b2af3438d9b219a319b5b197440e89e008c3c0f4f1eebb3d9d8
+Description: libjpeg-turbo is a JPEG image codec that uses SIMD instructions (MMX, SSE2, NEON, AltiVec) to accelerate baseline JPEG compression and decompression on x86, x86-64, ARM, and PowerPC systems.
+Status: install ok installed
+
+Package: libogg
+Version: 1.3.5
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 848295c12850398e6e9e3ac98c304db36e5f51197fc861881766ca65d0bafc7e
+Description: Ogg is a multimedia container format, and the native file and stream format for the Xiph.org multimedia codecs.
+Status: install ok installed
+
+Package: zlib
+Version: 1.3.1
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 49e2be0d9d5e3c1c7c4d1bc56865f2ed7bd51ae149c95271a8bf5c7394e66edb
+Description: A compression library
+Status: install ok installed
+
+Package: yasm
+Version: 1.3.0
+Port-Version: 7
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: b2a23f0f8de04eb24a2118dd0f11257423376d4e86038d5c9a61c02e63483d4c
+Description: Yasm is a complete rewrite of the NASM assembler under the new BSD License.
+Default-Features: tools
+Status: install ok installed
+
+Package: yasm
+Feature: tools
+Architecture: x64-windows
+Multi-Arch: same
+Description: Build yasm tools
+Status: install ok installed
+
+Package: mpg123
+Version: 1.32.9
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config, yasm
+Architecture: x64-windows
+Multi-Arch: same
+Abi: bb7cd5fc7d36effcdf377582d836eb792fc1199d5a3fe3d4bfc63b6679ed1d61
+Description: mpg123 is a real time MPEG 1.0/2.0/2.5 audio player/decoder for layers 1, 2 and 3 (MPEG 1.0 layer 3 also known as MP3).
+Status: install ok installed
+
+Package: libvorbis
+Version: 1.3.7
+Port-Version: 4
+Depends: libogg, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: a631fce0ae4779e4e14ddd5f13c9411d3be0b71f12f35d19e7cdd7f55748d7f1
+Description: Ogg Vorbis is a fully open, non-proprietary, patent-and-royalty-free, general-purpose compressed audio format
+Status: install ok installed
+
+Package: libopenmpt
+Version: 0.7.13
+Depends: libogg, libvorbis, mpg123, vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 89a89b19829a28cd325720410be1d7b71b4b4d9c27ae5befb1f62b1432f3a042
+Description: A cross-platform C++ and C library to decode tracked music files (modules) into a raw PCM audio stream.
+Status: install ok installed
+
+Package: libpng
+Version: 1.6.47
+Depends: vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: ad152a35416d3ad67c913c8333a225985f83ca33ddbd919215a01ce3b50137a6
+Description: libpng is a library implementing an interface for reading and writing PNG (Portable Network Graphics) format files
+Status: install ok installed
+
+Package: sdl2
+Version: 2.32.8
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: c3eec16934f5ef77b2b9e7ffdd4b5efd5733923bb6a717508d5ab3b9ceca8007
+Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
+Status: install ok installed
+
+Package: wavpack
+Version: 5.8.1
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: c3bfac7daf0d475e7c3a4c4c251aa6fdbbacad6edb4e6756bc4870bf1abb4e30
+Description: WavPack encode/decode library, command-line programs, and several plugins
+Status: install ok installed
+
+Package: sdl2-mixer
+Version: 2.8.1
+Port-Version: 1
+Depends: libvorbis, sdl2, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 920655276baf32ef5c9be1c228ffc7edd44667123962510dae677b5c26980ea8
+Description: Multi-channel audio mixer library for SDL.
+Default-Features: wavpack
+Status: install ok installed
+
+Package: sdl2-mixer
+Feature: wavpack
+Depends: wavpack
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable WavPack music.
+Status: install ok installed
+
