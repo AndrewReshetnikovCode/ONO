@@ -2,12 +2,11 @@
 
 #include "DataSync.h"
 #include "PlayerInfo.h"
+#include "ISaveProvider.h"
 #include "../LawnCommon.h"
 #include "../Widget/ChallengeScreen.h"
 #include "../../Sexy.TodLib/TodDebug.h"
 #include "../../Sexy.TodLib/TodCommon.h"
-#include "misc/Buffer.h"
-#include "../../SexyAppFramework/SexyAppBase.h"
 
 static int gUserVersion = 12;
 
@@ -141,19 +140,18 @@ void PlayerInfo::SyncDetails(DataSync& theSync)
 }
 
 //0x469400
-void PlayerInfo::LoadDetails()
+void PlayerInfo::LoadDetails(ISaveProvider& theSaveProvider)
 {
 	try
 	{
-		Buffer aBuffer;
-		std::string aFileName = GetAppDataPath(StrFormat("userdata/user%d.dat", mId));
-		if (!gSexyAppBase->ReadBufferFromFile(aFileName, &aBuffer, false))
+		std::vector<uint8_t> aData;
+		if (!theSaveProvider.ReadData(StrFormat("userdata/user%d.dat", mId), aData))
 		{
 			return;
 		}
 
 		DataReader aReader;
-		aReader.OpenMemory(aBuffer.GetDataPtr(), aBuffer.GetDataLen(), false);
+		aReader.OpenMemory(aData.data(), static_cast<uint32_t>(aData.size()), false);
 		DataSync aSync(aReader);
 		SyncDetails(aSync);
 	}
@@ -166,30 +164,26 @@ void PlayerInfo::LoadDetails()
 
 //0x4695F0
 // GOTY @Patoke: 0x46D750
-void PlayerInfo::SaveDetails()
+void PlayerInfo::SaveDetails(ISaveProvider& theSaveProvider)
 {
 	DataWriter aWriter;
 	aWriter.OpenMemory();
 	DataSync aSync(aWriter);
 	SyncDetails(aSync);
 
-	MkDir(GetAppDataPath("userdata"));
-	std::string aFileName = GetAppDataPath(StrFormat("userdata/user%d.dat", mId));
-	gSexyAppBase->WriteBytesToFile(aFileName, aWriter.GetDataPtr(), aWriter.GetDataLen());
+	theSaveProvider.EnsureDirectory("userdata");
+	theSaveProvider.WriteData(StrFormat("userdata/user%d.dat", mId), aWriter.GetDataPtr(), aWriter.GetDataLen());
 }
 
 //0x469810
-void PlayerInfo::DeleteUserFiles()
+void PlayerInfo::DeleteUserFiles(ISaveProvider& theSaveProvider)
 {
-	std::string aFilename = GetAppDataPath(StrFormat("userdata/user%d.dat", mId));
-	gSexyAppBase->EraseFile(aFilename);
+	theSaveProvider.DeleteData(StrFormat("userdata/user%d.dat", mId));
 
 	for (int i = 0; i < static_cast<int>(GameMode::NUM_GAME_MODES); i++)
 	{
-		std::string aFileName = GetSavedGameName((GameMode)i, mId);
-		gSexyAppBase->EraseFile(aFileName);
-		std::string aLegacyFileName = GetLegacySavedGameName((GameMode)i, mId);
-		gSexyAppBase->EraseFile(aLegacyFileName);
+		theSaveProvider.DeleteData(StrFormat("userdata/game%d_%d.v4", mId, i));
+		theSaveProvider.DeleteData(StrFormat("userdata/game%d_%d.dat", mId, i));
 	}
 }
 

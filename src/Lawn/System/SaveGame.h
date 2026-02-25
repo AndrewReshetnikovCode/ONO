@@ -4,8 +4,9 @@
 #include <string>
 
 class Board;
+class ISaveProvider;
 
-bool				LawnLoadGame(Board* theBoard, const std::string& theFilePath);
-bool				LawnSaveGame(Board* theBoard, const std::string& theFilePath);
+bool				LawnLoadGame(Board* theBoard, const std::string& theFilePath, ISaveProvider& theSaveProvider);
+bool				LawnSaveGame(Board* theBoard, const std::string& theFilePath, ISaveProvider& theSaveProvider);
 
 #endif

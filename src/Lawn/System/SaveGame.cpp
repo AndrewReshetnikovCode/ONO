@@ -1,5 +1,6 @@
 #include "Music.h"
 #include "SaveGame.h"
+#include "ISaveProvider.h"
 #include "../Board.h"
 #include "../Challenge.h"
 #include "../SeedPacket.h"
@@ -2552,16 +2553,16 @@ static void FixBoardAfterLoad(Board* theBoard)
 	theBoard->mApp->mMusic->mMusicInterface = theBoard->mApp->mMusicInterface;
 }
 
-static bool LawnLoadGameV4(Board* theBoard, const std::string& theFilePath)
+static bool LawnLoadGameV4(Board* theBoard, const std::string& theFilePath, ISaveProvider& theSaveProvider)
 {
-	Buffer aBuffer;
-	if (!gSexyAppBase->ReadBufferFromFile(theFilePath, &aBuffer, false))
+	std::vector<uint8_t> aRawData;
+	if (!theSaveProvider.ReadData(theFilePath, aRawData))
 		return false;
-	if (static_cast<unsigned int>(aBuffer.GetDataLen()) < sizeof(SaveFileHeaderV4))
+	if (aRawData.size() < sizeof(SaveFileHeaderV4))
 		return false;
 
 	SaveFileHeaderV4 aHeader;
-	memcpy(&aHeader, aBuffer.GetDataPtr(), sizeof(aHeader));
+	memcpy(&aHeader, aRawData.data(), sizeof(aHeader));
 	aHeader.mVersion = FromLE32(aHeader.mVersion);
 	aHeader.mPayloadSize = FromLE32(aHeader.mPayloadSize);
 	aHeader.mPayloadCrc = FromLE32(aHeader.mPayloadCrc);
@@ -2569,10 +2570,10 @@ static bool LawnLoadGameV4(Board* theBoard, const std::string& theFilePath)
 		return false;
 	if (aHeader.mVersion != SAVE_FILE_V4_VERSION)
 		return false;
-	if (aHeader.mPayloadSize + sizeof(SaveFileHeaderV4) > static_cast<unsigned int>(aBuffer.GetDataLen()))
+	if (aHeader.mPayloadSize + sizeof(SaveFileHeaderV4) > static_cast<unsigned int>(aRawData.size()))
 		return false;
 
-	unsigned char* aPayload = (unsigned char*)aBuffer.GetDataPtr() + sizeof(SaveFileHeaderV4);
+	unsigned char* aPayload = aRawData.data() + sizeof(SaveFileHeaderV4);
 	unsigned int aCrc = crc32(0, (Bytef*)aPayload, aHeader.mPayloadSize);
 	if (aCrc != aHeader.mPayloadCrc)
 		return false;
@@ -3032,21 +3033,24 @@ static void SyncBoard(SaveGameContext& theContext, Board* theBoard)
 
 //0x481FE0
 // GOTY @Patoke: 0x48CBC0
-bool LawnLoadGame(Board* theBoard, const std::string& theFilePath)
+bool LawnLoadGame(Board* theBoard, const std::string& theFilePath, ISaveProvider& theSaveProvider)
 {
-	if (LawnLoadGameV4(theBoard, theFilePath))
+	if (LawnLoadGameV4(theBoard, theFilePath, theSaveProvider))
 	{
 		TodTrace("Loaded save game (v4)");
 		return true;
 	}
 
-	SaveGameContext aContext;
-	aContext.mFailed = false;
-	aContext.mReading = true;
-	if (!gSexyAppBase->ReadBufferFromFile(theFilePath, &aContext.mBuffer, false))
+	std::vector<uint8_t> aRawData;
+	if (!theSaveProvider.ReadData(theFilePath, aRawData))
 	{
 		return false;
 	}
+
+	SaveGameContext aContext;
+	aContext.mFailed = false;
+	aContext.mReading = true;
+	aContext.mBuffer.SetData(aRawData.data(), static_cast<int>(aRawData.size()));
 
 	SaveFileHeader aHeader;
 	aContext.SyncBytes(&aHeader, sizeof(aHeader));
@@ -3068,7 +3072,7 @@ bool LawnLoadGame(Board* theBoard, const std::string& theFilePath)
 }
 
 //0x4820D0
-bool LawnSaveGame(Board* theBoard, const std::string& theFilePath)
+bool LawnSaveGame(Board* theBoard, const std::string& theFilePath, ISaveProvider& theSaveProvider)
 {
 	std::vector<unsigned char> aPayload;
 	if (!WriteChunkV4(aPayload, SAVE4_CHUNK_BOARD_BASE, theBoard)) return false;
@@ -3103,5 +3107,5 @@ bool LawnSaveGame(Board* theBoard, const std::string& theFilePath)
 	memcpy(aOutBuffer.data(), &aHeader, sizeof(aHeader));
 	memcpy(aOutBuffer.data() + sizeof(aHeader), aPayload.data(), aPayload.size());
 
-	return gSexyAppBase->WriteBytesToFile(theFilePath, aOutBuffer.data(), static_cast<int>(aOutBuffer.size()));
+	return theSaveProvider.WriteData(theFilePath, aOutBuffer.data(), static_cast<uint32_t>(aOutBuffer.size()));
 }

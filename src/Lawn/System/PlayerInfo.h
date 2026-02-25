@@ -43,6 +43,7 @@ public:
 };
 
 class DataSync;
+class ISaveProvider;
 class PlayerInfo
 {
 public:
@@ -91,9 +92,9 @@ public:
     /*inline*/ void     AddCoins(int theAmount);
     void                SyncSummary(DataSync& theSync);
     void                SyncDetails(DataSync& theSync);
-    void                DeleteUserFiles();
-    void                LoadDetails();
-    void                SaveDetails();
+    void                DeleteUserFiles(ISaveProvider& theSaveProvider);
+    void                LoadDetails(ISaveProvider& theSaveProvider);
+    void                SaveDetails(ISaveProvider& theSaveProvider);
     inline int          GetLevel() const { return mLevel; }
     inline void         SetLevel(int theLevel) { mLevel = theLevel; }
     /*inline*/ void     ResetChallengeRecord(GameMode theGameMode);

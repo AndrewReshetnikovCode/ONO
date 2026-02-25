@@ -20,6 +20,7 @@ class TodParticleSystem;
 class Reanimation;
 class ReanimatorCache;
 class ProfileMgr;
+class ISaveProvider;
 class PlayerInfo;
 class Music;
 class TitleScreen;
@@ -83,6 +84,7 @@ public:
 	ZenGarden*						mZenGarden;										//+0x81C
 	EffectSystem*					mEffectSystem;									//+0x820
 	ReanimatorCache*				mReanimatorCache;								//+0x824
+	ISaveProvider*					mSaveProvider;
 	ProfileMgr*						mProfileMgr;									//+0x828
 	PlayerInfo*						mPlayerInfo;									//+0x82C
 	LevelStats*						mLastLevelStats;								//+0x830

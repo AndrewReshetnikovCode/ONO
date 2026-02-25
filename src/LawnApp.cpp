@@ -21,6 +21,8 @@
 #include "Lawn/System/PlayerInfo.h"
 #include "Lawn/System/PoolEffect.h"
 #include "Lawn/System/ProfileMgr.h"
+#include "Lawn/System/ISaveProvider.h"
+#include "Lawn/System/FileSaveProvider.h"
 #include "Lawn/Widget/GameButton.h"
 #include "Sexy.TodLib/Reanimator.h"
 #include "Lawn/Widget/UserDialog.h"
@@ -134,7 +136,8 @@ LawnApp::LawnApp()
 	mMaxPlays = 0;
 	mMaxTime = 0;
 	mCompletedLoadingThreadTasks = 0;
-	mProfileMgr = new ProfileMgr();
+	mSaveProvider = new FileSaveProvider();
+	mProfileMgr = new ProfileMgr(mSaveProvider);
 	mRegisterResourcesLoaded = false;
 	mTodCheatKeys = false;
 	mCrazyDaveReanimID = ReanimationID::REANIMATIONID_NULL;
@@ -239,6 +242,7 @@ LawnApp::~LawnApp()
 	}
 
 	delete mProfileMgr;
+	delete mSaveProvider;
 	delete mLastLevelStats;
 
 	mResourceManager->DeleteResources("");
@@ -388,7 +392,7 @@ void LawnApp::WriteToRegistry()
 	if (mPlayerInfo)
 	{
 		RegistryWriteString("CurUser", mPlayerInfo->mName);
-		mPlayerInfo->SaveDetails();
+		mPlayerInfo->SaveDetails(*mSaveProvider);
 	}
 
 	SexyAppBase::WriteToRegistry();
@@ -405,7 +409,7 @@ void LawnApp::ReadFromRegistry()
 bool LawnApp::WriteCurrentUserConfig()
 {
 	if (mPlayerInfo)
-		mPlayerInfo->SaveDetails();
+		mPlayerInfo->SaveDetails(*mSaveProvider);
 
 	return true;
 }
@@ -488,7 +492,7 @@ bool LawnApp::TryLoadGame()
 		MakeNewBoard();
 		if (mBoard->LoadGame(aLegacySaveName))
 		{
-			if (LawnSaveGame(mBoard, aSaveName))
+			if (LawnSaveGame(mBoard, aSaveName, *mSaveProvider))
 			{
 				EraseFile(aLegacySaveName);
 			}

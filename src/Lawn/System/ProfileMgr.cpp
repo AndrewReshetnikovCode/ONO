@@ -1,7 +1,7 @@
 #include "DataSync.h"
 #include "ProfileMgr.h"
 #include "PlayerInfo.h"
-#include "../../SexyAppFramework/SexyAppBase.h"
+#include "ISaveProvider.h"
 
 using namespace Sexy;
 static int gProfileVersion = 14;
@@ -14,7 +14,7 @@ PlayerInfo* ProfileMgr::GetAnyProfile()
         return nullptr;
 
     PlayerInfo* aPlayerInfo = &mProfileMap.begin()->second;
-    aPlayerInfo->LoadDetails();
+    aPlayerInfo->LoadDetails(*mSaveProvider);
     aPlayerInfo->mUseSeq = mNextProfileUseSeq++;
     return aPlayerInfo;
 }
@@ -73,15 +73,13 @@ void ProfileMgr::SyncState(DataSync& theSync)
 //0x46ABC0
 void ProfileMgr::Load()
 {
-    Buffer aBuffer;
-    std::string aFileName = GetAppDataPath("userdata/users.dat");
-
     try
     {
-        if (gSexyAppBase->ReadBufferFromFile(aFileName, &aBuffer, false))
+        std::vector<uint8_t> aData;
+        if (mSaveProvider->ReadData("userdata/users.dat", aData))
         {
             DataReader aReader;
-            aReader.OpenMemory(aBuffer.GetDataPtr(), aBuffer.GetDataLen(), false);
+            aReader.OpenMemory(aData.data(), static_cast<uint32_t>(aData.size()), false);
             DataSync aSync(aReader);
             SyncState(aSync);
         }
@@ -100,14 +98,13 @@ void ProfileMgr::Save()
     DataSync aSync(aWriter);
     SyncState(aSync);
 
-    MkDir(GetAppDataPath("userdata"));
-    std::string aFileName = GetAppDataPath("userdata/users.dat");
-    gSexyAppBase->WriteBytesToFile(aFileName, aWriter.GetDataPtr(), aWriter.GetDataLen());
+    mSaveProvider->EnsureDirectory("userdata");
+    mSaveProvider->WriteData("userdata/users.dat", aWriter.GetDataPtr(), aWriter.GetDataLen());
 }
 
 void ProfileMgr::DeleteProfile(ProfileMap::iterator theProfile)
 {
-    theProfile->second.DeleteUserFiles();
+    theProfile->second.DeleteUserFiles(*mSaveProvider);
     mProfileMap.erase(theProfile);
 }
 
@@ -175,7 +172,7 @@ PlayerInfo* ProfileMgr::GetProfile(const std::string& theName)
     if (anItr != mProfileMap.end())
     {
         PlayerInfo* aProfile = &anItr->second;
-        aProfile->LoadDetails();
+        aProfile->LoadDetails(*mSaveProvider);
         aProfile->mUseSeq = mNextProfileUseSeq++;
         return aProfile;
     }

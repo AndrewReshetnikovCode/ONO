@@ -5,6 +5,7 @@
 #include "BoardInclude.h"
 #include "System/Music.h"
 #include "System/SaveGame.h"
+#include "System/ISaveProvider.h"
 #include "Widget/LawnDialog.h"
 #include "System/PlayerInfo.h"
 #include "System/PoolEffect.h"
@@ -335,9 +336,9 @@ void Board::TryToSaveGame()
 			return;
 		}
 
-		MkDir(GetAppDataPath("userdata"));
+		mApp->mSaveProvider->EnsureDirectory("userdata");
 		mApp->mMusic->GameMusicPause(true);
-		LawnSaveGame(this, aFileName);
+		LawnSaveGame(this, aFileName, *mApp->mSaveProvider);
 		mApp->ClearUpdateBacklog();
 		SurvivalSaveScore();
 	}
@@ -357,7 +358,7 @@ bool Board::NeedSaveGame()
 
 void Board::SaveGame(const std::string& theFileName)
 { 
-	LawnSaveGame(this, theFileName);
+	LawnSaveGame(this, theFileName, *mApp->mSaveProvider);
 }
 
 // GOTY @Patoke: 0x40B739
@@ -374,7 +375,7 @@ void Board::ResetFPSStats()
 // GOTY @Patoke: 0x40B710
 bool Board::LoadGame(const std::string& theFileName)
 {
-	if (!LawnLoadGame(this, theFileName))
+	if (!LawnLoadGame(this, theFileName, *mApp->mSaveProvider))
 		return false;
 
 	LoadBackgroundImages();

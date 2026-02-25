@@ -11,6 +11,7 @@
 #include "../System/SaveGame.h"
 #include "../../GameConstants.h"
 #include "../System/PlayerInfo.h"
+#include "../System/ISaveProvider.h"
 #include "../System/ProfileMgr.h"
 #include "../System/TypingCheck.h"
 #include "../../Sexy.TodLib/TodFoley.h"
@@ -1387,7 +1388,7 @@ void GameSelector::AddPreviewProfiles()
 	if (aProfile)
 	{
 		aProfile->mLevel = 11;
-		aProfile->SaveDetails();
+		aProfile->SaveDetails(*mApp->mSaveProvider);
 	}
 
 	aProfile = mApp->mProfileMgr->AddProfile("3 Pool");
@@ -1397,7 +1398,7 @@ void GameSelector::AddPreviewProfiles()
 		aProfile->mHasUnlockedMinigames = 1;
 		aProfile->mCoins = 400;
 		aProfile->mPurchases[StoreItem::STORE_ITEM_PACKET_UPGRADE] = 1;
-		aProfile->SaveDetails();
+		aProfile->SaveDetails(*mApp->mSaveProvider);
 	}
 
 	aProfile = mApp->mProfileMgr->AddProfile("4 Fog");
@@ -1409,7 +1410,7 @@ void GameSelector::AddPreviewProfiles()
 		aProfile->mPurchases[StoreItem::STORE_ITEM_PACKET_UPGRADE] = 2;
 		aProfile->mPurchases[StoreItem::STORE_ITEM_POOL_CLEANER] = 1;
 		aProfile->mCoins = 400;
-		aProfile->SaveDetails();
+		aProfile->SaveDetails(*mApp->mSaveProvider);
 	}
 
 	aProfile = mApp->mProfileMgr->AddProfile("5 Roof");
@@ -1422,7 +1423,7 @@ void GameSelector::AddPreviewProfiles()
 		aProfile->mPurchases[StoreItem::STORE_ITEM_PACKET_UPGRADE] = 2;
 		aProfile->mPurchases[StoreItem::STORE_ITEM_POOL_CLEANER] = 1;
 		aProfile->mCoins = 500;
-		aProfile->SaveDetails();
+		aProfile->SaveDetails(*mApp->mSaveProvider);
 	}
 
 	aProfile = mApp->mProfileMgr->AddProfile("Complete");
@@ -1437,7 +1438,7 @@ void GameSelector::AddPreviewProfiles()
 		aProfile->mPurchases[StoreItem::STORE_ITEM_POOL_CLEANER] = 1;
 		aProfile->mPurchases[StoreItem::STORE_ITEM_ROOF_CLEANER] = 1;
 		aProfile->mCoins = 1000;
-		aProfile->SaveDetails();
+		aProfile->SaveDetails(*mApp->mSaveProvider);
 	}
 
 	aProfile = mApp->mProfileMgr->AddProfile("Full Unlock");
@@ -1477,7 +1478,7 @@ void GameSelector::AddPreviewProfiles()
 				i != static_cast<int>(GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_ENDLESS) && i != static_cast<int>(GameMode::GAMEMODE_SURVIVAL_ENDLESS_STAGE_3))
 				mApp->mPlayerInfo->mChallengeRecords[i - 1] = 20;
 
-		aProfile->SaveDetails();
+		aProfile->SaveDetails(*mApp->mSaveProvider);
 	}
 }
 

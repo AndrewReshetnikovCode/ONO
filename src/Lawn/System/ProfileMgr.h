@@ -7,12 +7,14 @@
 
 class DataSync;
 class PlayerInfo;
+class ISaveProvider;
 typedef std::pair<std::string, PlayerInfo> ProfilePair;
 typedef std::map<std::string, PlayerInfo, Sexy::StringLessNoCase> ProfileMap;
 
 class ProfileMgr
 {
 protected:
+	ISaveProvider*		mSaveProvider;			// injected storage backend
 	ProfileMap			mProfileMap;			//+0x4
 	unsigned long		mNextProfileId;			//+0x10
 	unsigned long		mNextProfileUseSeq;		//+0x14
@@ -29,7 +31,7 @@ protected:
 	/*inline*/ void		DeleteProfile(ProfileMap::iterator theProfile);
 
 public:
-	ProfileMgr() { Clear(); }  //0x46A6E0
+	explicit ProfileMgr(ISaveProvider* theSaveProvider) : mSaveProvider(theSaveProvider) { Clear(); }
 	virtual ~ProfileMgr() { ; }  //0x46A780
 
 	/*inline*/ void		Clear();
