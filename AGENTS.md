@@ -20,9 +20,15 @@ cmake --build build-web
 - Emscripten ports (zlib, libpng, libjpeg, SDL2) are fetched automatically; no system dev libraries needed for the web build.
 - The Emscripten build does **not** use SDL-Mixer-X (uses WebAudio instead), so the `_Mix_Chunk` workaround is not needed.
 
-### Running
+### Game Assets
 
-The game requires legally-purchased PvZ GOTY game assets (`main.pak` and `properties/` directory). For the web build, these must be served alongside the WASM files. Without them, the WASM module initializes but reports missing resource files — this is expected.
+The game requires legally-purchased PvZ GOTY game assets. These are **gitignored** (`.gitignore` lists `main.pak` and `build-*/`) and must be provided separately:
+
+- `main.pak` — place in `build-web/`
+- `properties/resources.xml` — place in `build-web/properties/`
+- `Properties/LawnStrings.txt` — place in `build-web/Properties/` (optional)
+
+The WASM module fetches these via HTTP at runtime (see `src/emscripten_fetch.cpp`). Without them, the module initializes successfully but reports missing resource files.
 
 ### Native Build (optional, not primary)
 
