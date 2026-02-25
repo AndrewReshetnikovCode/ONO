@@ -22,13 +22,16 @@ cmake --build build-web
 
 ### Game Assets
 
-The game requires legally-purchased PvZ GOTY game assets. These are **gitignored** (`.gitignore` lists `main.pak` and `build-*/`) and must be provided separately:
+Game assets live in `GOTY_Res/` (committed for local educational use only). Before serving, copy them into `build-web/`:
 
-- `main.pak` — place in `build-web/`
-- `properties/resources.xml` — place in `build-web/properties/`
-- `Properties/LawnStrings.txt` — place in `build-web/Properties/` (optional)
+```bash
+cp GOTY_Res/main.pak build-web/
+cp -r GOTY_Res/properties/* build-web/properties/
+mkdir -p build-web/Properties
+cp GOTY_Res/properties/LawnStrings.txt build-web/Properties/LawnStrings.txt
+```
 
-The WASM module fetches these via HTTP at runtime (see `src/emscripten_fetch.cpp`). Without them, the module initializes successfully but reports missing resource files.
+The WASM module fetches `main.pak` and `properties/resources.xml` via HTTP at runtime (see `src/emscripten_fetch.cpp`).
 
 ### Native Build (optional, not primary)
 
