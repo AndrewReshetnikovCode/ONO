@@ -64,6 +64,32 @@ EM_JS(void, pvz_fetch_resources_and_run, (), {
 void EMSCRIPTEN_KEEPALIVE pvz_run_game()
 {
 	run_game();
+
+	// Signal Yandex Games that loading is complete
+	EM_ASM({
+		if (typeof window !== 'undefined' && window.YG && window.YG.signalReady)
+			window.YG.signalReady();
+	});
+}
+
+void EMSCRIPTEN_KEEPALIVE pvz_yg_on_ad_open()
+{
+	if (gLawnApp) gLawnApp->Mute(true);
+}
+
+void EMSCRIPTEN_KEEPALIVE pvz_yg_on_ad_close()
+{
+	if (gLawnApp) gLawnApp->Mute(false);
+}
+
+void EMSCRIPTEN_KEEPALIVE pvz_yg_on_visibility_hidden()
+{
+	if (gLawnApp) gLawnApp->Mute(true);
+}
+
+void EMSCRIPTEN_KEEPALIVE pvz_yg_on_visibility_visible()
+{
+	if (gLawnApp) gLawnApp->Mute(false);
 }
 
 } // extern "C"

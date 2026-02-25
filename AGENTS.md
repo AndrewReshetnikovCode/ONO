@@ -44,6 +44,21 @@ cmake --build build
 - The `-D_Mix_Chunk=Mix_Chunk` preprocessor flag works around a type mismatch in `src/Sexy.TodLib/TodFoley.h`.
 - Requires system dev libraries: `ninja-build libsdl2-dev libjpeg-turbo8-dev libogg-dev libvorbis-dev libopenmpt-dev libmpg123-dev`.
 
+### Yandex Games Build
+
+```bash
+source /opt/emsdk/emsdk_env.sh
+emcmake cmake -G Ninja -B build-yg -DCMAKE_BUILD_TYPE=Release -DYANDEX_GAMES=ON
+cmake --build build-yg
+```
+
+- Uses custom HTML shell (`yandex_shell.html`) with YG SDK `v2` script, loading screen, and JS bridge.
+- `YandexSaveProvider` syncs save data to YG cloud via `player.setData()`/`player.getData()` (base64-encoded).
+- Audio auto-mutes on `visibilitychange` and during ads (YG requirement).
+- Calls `ysdk.features.LoadingAPI.ready()` after game finishes loading.
+- Degrades gracefully on localhost (SDK errors are caught, game runs normally).
+- Copy game assets to `build-yg/` the same way as `build-web/`.
+
 ### Lint / Tests
 
 There is no linter configuration or automated test suite in this codebase. Verification is done by building successfully and running the application.

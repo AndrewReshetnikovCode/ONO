@@ -128,6 +128,7 @@ option(PVZ_DEBUG "Enable _PVZ_DEBUG macro to enable cheats, hidden features, etc
 option(LIMBO_PAGE "Enable limbo page to access hidden levels" ON)
 option(CONSOLE "Show console on Windows" ${WIN_CONSOLE_DEFAULT})
 option(DO_FIX_BUGS "Define DO_FIX_BUGS macro (Community fixes for original game bugs of 1.2.0.1073 GOTY Edition)" OFF)
+option(YANDEX_GAMES "Build for Yandex Games platform" OFF)
 
 if(NOT EMSCRIPTEN)
 find_package(ZLIB REQUIRED)
@@ -164,6 +165,7 @@ target_compile_definitions(pvz-portable PRIVATE
 	$<$<BOOL:${PVZ_DEBUG}>:_PVZ_DEBUG>
 	$<$<BOOL:${LIMBO_PAGE}>:_PVZ_LIMBO_PAGE>
 	$<$<BOOL:${DO_FIX_BUGS}>:DO_FIX_BUGS>
+	$<$<BOOL:${YANDEX_GAMES}>:YANDEX_GAMES>
 )
 target_compile_features(pvz-portable PRIVATE cxx_std_20)
 
@@ -194,6 +196,12 @@ if(EMSCRIPTEN)
 		"SHELL:-s STACK_SIZE=8388608"
 		"SHELL:-s ASYNCIFY_STACK_SIZE=5242880"
 	)
+	if(YANDEX_GAMES)
+		target_link_options(pvz-portable PRIVATE
+			"SHELL:--shell-file ${CMAKE_SOURCE_DIR}/yandex_shell.html"
+			"SHELL:-s EXPORTED_FUNCTIONS=_main,_malloc,_free,_pvz_run_game,_pvz_yg_on_ad_open,_pvz_yg_on_ad_close,_pvz_yg_on_visibility_hidden,_pvz_yg_on_visibility_visible"
+		)
+	endif()
 else()
 	target_link_libraries(pvz-portable PRIVATE
 		SDL2_mixer_ext_Static

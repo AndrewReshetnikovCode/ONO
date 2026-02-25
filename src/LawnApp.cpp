@@ -23,6 +23,9 @@
 #include "Lawn/System/ProfileMgr.h"
 #include "Lawn/System/ISaveProvider.h"
 #include "Lawn/System/FileSaveProvider.h"
+#if defined(__EMSCRIPTEN__) && defined(YANDEX_GAMES)
+#include "Lawn/System/YandexSaveProvider.h"
+#endif
 #include "Lawn/Widget/GameButton.h"
 #include "Sexy.TodLib/Reanimator.h"
 #include "Lawn/Widget/UserDialog.h"
@@ -136,7 +139,11 @@ LawnApp::LawnApp()
 	mMaxPlays = 0;
 	mMaxTime = 0;
 	mCompletedLoadingThreadTasks = 0;
+#if defined(__EMSCRIPTEN__) && defined(YANDEX_GAMES)
+	mSaveProvider = new YandexSaveProvider();
+#else
 	mSaveProvider = new FileSaveProvider();
+#endif
 	mProfileMgr = new ProfileMgr(mSaveProvider);
 	mRegisterResourcesLoaded = false;
 	mTodCheatKeys = false;
