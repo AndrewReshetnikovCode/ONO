@@ -129,6 +129,7 @@ option(LIMBO_PAGE "Enable limbo page to access hidden levels" ON)
 option(CONSOLE "Show console on Windows" ${WIN_CONSOLE_DEFAULT})
 option(DO_FIX_BUGS "Define DO_FIX_BUGS macro (Community fixes for original game bugs of 1.2.0.1073 GOTY Edition)" OFF)
 option(YANDEX_GAMES "Build for Yandex Games platform" OFF)
+option(YANDEX_GAMES_STUB "Use local stubs instead of real YG SDK (for offline testing)" OFF)
 
 if(NOT EMSCRIPTEN)
 find_package(ZLIB REQUIRED)
@@ -197,8 +198,13 @@ if(EMSCRIPTEN)
 		"SHELL:-s ASYNCIFY_STACK_SIZE=5242880"
 	)
 	if(YANDEX_GAMES)
+		if(YANDEX_GAMES_STUB)
+			set(YG_SHELL_FILE "${CMAKE_SOURCE_DIR}/yandex_shell_stub.html")
+		else()
+			set(YG_SHELL_FILE "${CMAKE_SOURCE_DIR}/yandex_shell.html")
+		endif()
 		target_link_options(pvz-portable PRIVATE
-			"SHELL:--shell-file ${CMAKE_SOURCE_DIR}/yandex_shell.html"
+			"SHELL:--shell-file ${YG_SHELL_FILE}"
 			"SHELL:-s EXPORTED_FUNCTIONS=_main,_malloc,_free,_pvz_run_game,_pvz_yg_on_ad_open,_pvz_yg_on_ad_close,_pvz_yg_on_visibility_hidden,_pvz_yg_on_visibility_visible"
 		)
 	endif()

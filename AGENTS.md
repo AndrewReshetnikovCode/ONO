@@ -44,20 +44,28 @@ cmake --build build
 - The `-D_Mix_Chunk=Mix_Chunk` preprocessor flag works around a type mismatch in `src/Sexy.TodLib/TodFoley.h`.
 - Requires system dev libraries: `ninja-build libsdl2-dev libjpeg-turbo8-dev libogg-dev libvorbis-dev libopenmpt-dev libmpg123-dev`.
 
-### Yandex Games Build
+### Yandex Games Builds
 
+Two variants, same `-DYANDEX_GAMES=ON` flag, differ by `-DYANDEX_GAMES_STUB`:
+
+**Stub (local testing, no SDK network calls):**
 ```bash
 source /opt/emsdk/emsdk_env.sh
+emcmake cmake -G Ninja -B build-yg-stub -DCMAKE_BUILD_TYPE=Release -DYANDEX_GAMES=ON -DYANDEX_GAMES_STUB=ON
+cmake --build build-yg-stub
+```
+- Shell: `yandex_shell_stub.html` — no real SDK loaded, `window.YG` stubs use `localStorage`.
+- Console shows `[YG Stub]` messages instead of SDK errors. Clean for development.
+
+**Platform (real YG SDK for deployment):**
+```bash
 emcmake cmake -G Ninja -B build-yg -DCMAKE_BUILD_TYPE=Release -DYANDEX_GAMES=ON
 cmake --build build-yg
 ```
-
-- Uses custom HTML shell (`yandex_shell.html`) with YG SDK `v2` script, loading screen, and JS bridge.
-- `YandexSaveProvider` syncs save data to YG cloud via `player.setData()`/`player.getData()` (base64-encoded).
-- Audio auto-mutes on `visibilitychange` and during ads (YG requirement).
-- Calls `ysdk.features.LoadingAPI.ready()` after game finishes loading.
-- Degrades gracefully on localhost (SDK errors are caught, game runs normally).
-- Copy game assets to `build-yg/` the same way as `build-web/`.
+- Shell: `yandex_shell.html` — loads `yandex.ru/games/sdk/v2`, calls `YaGames.init()`, `LoadingAPI.ready()`.
+- `YandexSaveProvider` syncs saves to YG cloud via `player.setData()`/`player.getData()`.
+- Audio auto-mutes on `visibilitychange` and during ads.
+- Copy game assets to the build directory the same way as `build-web/`.
 
 ### Lint / Tests
 

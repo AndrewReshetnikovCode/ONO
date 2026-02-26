@@ -3,14 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>PvZ Portable</title>
 <style>
-html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000; }
+html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000;
+  touch-action:none; -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }
 #canvas { display:block; width:100%; height:100%; }
 #loading { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  color:#fff; font:20px sans-serif; text-align:center; }
-#loading .bar { width:300px; height:20px; border:2px solid #555; margin:10px auto; }
-#loading .fill { height:100%; background:#4a0; width:0%; transition:width .2s; }
+  color:#fff; font:20px sans-serif; text-align:center; z-index:10; }
+#loading .bar { width:300px; height:20px; border:2px solid #555; margin:10px auto; border-radius:4px; }
+#loading .fill { height:100%; background:#4a0; width:0%; transition:width .2s; border-radius:4px; }
 </style>
 <script src="https://yandex.ru/games/sdk/v2"></script>
 </head>
@@ -39,12 +42,7 @@ window.YG = {
       return sdk.getPlayer({ scopes: false }).then(function(p) {
         ygPlayer = p;
         window.YG.player = p;
-      }).catch(function() {
-        console.warn('YG: player init failed, continuing without cloud saves');
-      });
-    }).catch(function(e) {
-      console.error('YG SDK init failed:', e);
-      document.getElementById('status').textContent = 'SDK unavailable, loading game...';
+      }).catch(function() {});
     });
   },
 
@@ -61,27 +59,46 @@ window.YG = {
     if (!ysdk) return;
     ysdk.adv.showFullscreenAdv({ callbacks: {
       onOpen: function() { if (Module._pvz_yg_on_ad_open) Module._pvz_yg_on_ad_open(); },
-      onClose: function() { if (Module._pvz_yg_on_ad_close) Module._pvz_yg_on_ad_close(); }
+      onClose: function() { if (Module._pvz_yg_on_ad_close) Module._pvz_yg_on_ad_close(); },
+      onError: function() { if (Module._pvz_yg_on_ad_close) Module._pvz_yg_on_ad_close(); }
+    }});
+  },
+
+  showRewarded: function(onReward) {
+    if (!ysdk) return;
+    ysdk.adv.showRewardedVideo({ callbacks: {
+      onOpen: function() { if (Module._pvz_yg_on_ad_open) Module._pvz_yg_on_ad_open(); },
+      onRewarded: function() { if (onReward) onReward(); },
+      onClose: function() { if (Module._pvz_yg_on_ad_close) Module._pvz_yg_on_ad_close(); },
+      onError: function() { if (Module._pvz_yg_on_ad_close) Module._pvz_yg_on_ad_close(); }
     }});
   },
 
   saveData: function(key, base64data) {
-    if (!ygPlayer) return Promise.resolve(false);
+    if (!ygPlayer) {
+      try { localStorage.setItem('yg_save_' + key, base64data); } catch(e){}
+      return Promise.resolve(true);
+    }
     var obj = {};
     obj[key] = base64data;
     return ygPlayer.setData(obj, true).then(function() { return true; })
-      .catch(function(e) { console.error('YG save failed:', e); return false; });
+      .catch(function() { return false; });
   },
 
   loadData: function(key) {
-    if (!ygPlayer) return Promise.resolve(null);
+    if (!ygPlayer) {
+      return Promise.resolve(localStorage.getItem('yg_save_' + key));
+    }
     return ygPlayer.getData([key]).then(function(data) {
       return data[key] || null;
-    }).catch(function(e) { console.error('YG load failed:', e); return null; });
+    }).catch(function() { return null; });
   },
 
   deleteData: function(key) {
-    if (!ygPlayer) return Promise.resolve(false);
+    if (!ygPlayer) {
+      localStorage.removeItem('yg_save_' + key);
+      return Promise.resolve(true);
+    }
     var obj = {};
     obj[key] = undefined;
     return ygPlayer.setData(obj, true).then(function() { return true; })
@@ -98,6 +115,8 @@ document.addEventListener('visibilitychange', function() {
       Module._pvz_yg_on_visibility_visible();
   }
 });
+
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 
 var Module = {
   canvas: (function() { return document.getElementById('canvas'); })(),
@@ -117,9 +136,7 @@ var Module = {
 };
 window.onerror = function(e) { Module.setStatus('Error: ' + e); };
 
-window.YG.init().then(function() {
-  // Emscripten inserts the game script here
-});
+window.YG.init().then(function() {});
 </script>
 {{{ SCRIPT }}}
 </body>
