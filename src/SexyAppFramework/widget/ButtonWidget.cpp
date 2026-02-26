@@ -251,9 +251,10 @@ void ButtonWidget::MouseDown(int theX, int theY, int theBtnNum, int theClickCoun
 
 void ButtonWidget::MouseUp(int theX, int theY, int theBtnNum, int theClickCount)
 {	
+	bool wasDown = mIsDown;
 	Widget::MouseUp(theX, theY, theBtnNum, theClickCount);
 
-	if (mIsOver && mWidgetManager->mHasFocus)
+	if ((mIsOver || wasDown) && mWidgetManager->mHasFocus)
 		mButtonListener->ButtonDepress(mId);
 	
 	MarkDirty();

@@ -46,11 +46,13 @@ bool SexyAppBase::ProcessDeferredMessages(bool singleMessage)
 						mWidgetManager->Resize(mScreenBounds, mGLInterface->mPresentationRect);
 						break;
 
-					case SDL_WINDOWEVENT_FOCUS_GAINED:
-					case SDL_WINDOWEVENT_FOCUS_LOST:
-						mActive = event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED;
-						RehupFocus();
-						break;
+				case SDL_WINDOWEVENT_FOCUS_GAINED:
+				case SDL_WINDOWEVENT_FOCUS_LOST:
+#ifndef __EMSCRIPTEN__
+					mActive = event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED;
+					RehupFocus();
+#endif
+					break;
 				}
 				break;
 
