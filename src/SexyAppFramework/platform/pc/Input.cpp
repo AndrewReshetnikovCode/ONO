@@ -41,10 +41,13 @@ bool SexyAppBase::ProcessDeferredMessages(bool singleMessage)
 						CloseRequestAsync();
 						break;
 
-					case SDL_WINDOWEVENT_RESIZED:
-						mGLInterface->UpdateViewport();
-						mWidgetManager->Resize(mScreenBounds, mGLInterface->mPresentationRect);
-						break;
+				case SDL_WINDOWEVENT_RESIZED:
+#if defined(__EMSCRIPTEN__) && (defined(CANVAS_WIDTH) || defined(CANVAS_HEIGHT))
+					break;
+#endif
+					mGLInterface->UpdateViewport();
+					mWidgetManager->Resize(mScreenBounds, mGLInterface->mPresentationRect);
+					break;
 
 				case SDL_WINDOWEVENT_FOCUS_GAINED:
 				case SDL_WINDOWEVENT_FOCUS_LOST:

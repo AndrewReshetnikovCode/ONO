@@ -114,16 +114,8 @@ LawnApp::LawnApp()
 	mWidth = CANVAS_WIDTH;
 	mHeight = CANVAS_HEIGHT;
 #else
-#ifdef CANVAS_WIDTH
-	mWidth = CANVAS_WIDTH;
-#else
 	mWidth = BOARD_WIDTH/IMG_DOWNSCALE;
-#endif
-#ifdef CANVAS_HEIGHT
-	mHeight = CANVAS_HEIGHT;
-#else
 	mHeight = BOARD_HEIGHT/IMG_DOWNSCALE;
-#endif
 #endif
 	mFullscreenBits = 32;
 	mAppCounter = 0;
