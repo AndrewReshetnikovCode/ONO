@@ -110,8 +110,21 @@ LawnApp::LawnApp()
 	mEffectSystem = nullptr;
 	mReanimatorCache = nullptr;
 	mCloseRequest = false;
+#if defined(CANVAS_WIDTH) && defined(CANVAS_HEIGHT)
+	mWidth = CANVAS_WIDTH;
+	mHeight = CANVAS_HEIGHT;
+#else
+#ifdef CANVAS_WIDTH
+	mWidth = CANVAS_WIDTH;
+#else
 	mWidth = BOARD_WIDTH/IMG_DOWNSCALE;
+#endif
+#ifdef CANVAS_HEIGHT
+	mHeight = CANVAS_HEIGHT;
+#else
 	mHeight = BOARD_HEIGHT/IMG_DOWNSCALE;
+#endif
+#endif
 	mFullscreenBits = 32;
 	mAppCounter = 0;
 	mAppRandSeed = time(0);

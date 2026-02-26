@@ -1,4 +1,8 @@
 #include <SDL.h>
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#include <emscripten/html5.h>
+#endif
 
 #include "SexyAppBase.h"
 #include "graphics/GLInterface.h"
@@ -25,7 +29,10 @@ void SexyAppBase::MakeWindow()
 
 		SDL_Init(SDL_INIT_VIDEO);
 
-		Uint32 winFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
+		Uint32 winFlags = SDL_WINDOW_OPENGL
+#if !defined(__EMSCRIPTEN__) || (!defined(CANVAS_WIDTH) && !defined(CANVAS_HEIGHT))
+			| SDL_WINDOW_RESIZABLE
+#endif
 			| (!mIsWindowed ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
 
 		// Try OpenGL ES 2.0 first (Linux, most Windows drivers, ANGLE, etc.)
@@ -70,6 +77,17 @@ void SexyAppBase::MakeWindow()
 		}
 
 		SDL_GL_SetSwapInterval(1);
+
+#if defined(__EMSCRIPTEN__) && (defined(CANVAS_WIDTH) || defined(CANVAS_HEIGHT))
+		int cw = mWidth * IMG_DOWNSCALE;
+		int ch = mHeight * IMG_DOWNSCALE;
+		emscripten_set_canvas_element_size("#canvas", cw, ch);
+		EM_ASM({
+			var c = document.getElementById('canvas');
+			c.style.width = $0 + 'px';
+			c.style.height = $1 + 'px';
+		}, cw, ch);
+#endif
 	}
 
 	if (mGLInterface == nullptr)
