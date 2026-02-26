@@ -10,7 +10,10 @@ static void apply_canvas_css()
 #if defined(CANVAS_WIDTH) && defined(CANVAS_HEIGHT)
 	EM_ASM({
 		var c = document.getElementById('canvas');
-		if (c) { c.style.width = $0 + 'px'; c.style.height = $1 + 'px'; }
+		if (c) {
+			c.style.setProperty('width', $0 + 'px', 'important');
+			c.style.setProperty('height', $1 + 'px', 'important');
+		}
 	}, CANVAS_WIDTH, CANVAS_HEIGHT);
 #endif
 }

@@ -42,9 +42,6 @@ bool SexyAppBase::ProcessDeferredMessages(bool singleMessage)
 						break;
 
 				case SDL_WINDOWEVENT_RESIZED:
-#if defined(__EMSCRIPTEN__) && (defined(CANVAS_WIDTH) || defined(CANVAS_HEIGHT))
-					break;
-#endif
 					mGLInterface->UpdateViewport();
 					mWidgetManager->Resize(mScreenBounds, mGLInterface->mPresentationRect);
 					break;
