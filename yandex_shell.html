@@ -36,6 +36,9 @@ window.addEventListener('resize', fitCanvas);
 var ysdk = null;
 var ygPlayer = null;
 
+var ygPlayerReady = null;
+var ygPlayerPromise = new Promise(function(resolve) { ygPlayerReady = resolve; });
+
 window.YG = {
   sdk: null,
   player: null,
@@ -48,8 +51,8 @@ window.YG = {
       return sdk.getPlayer({ scopes: false }).then(function(p) {
         ygPlayer = p;
         window.YG.player = p;
-      }).catch(function() {});
-    });
+      }).catch(function() {}).then(function() { ygPlayerReady(); });
+    }).catch(function() { ygPlayerReady(); });
   },
 
   signalReady: function() {
@@ -79,34 +82,40 @@ window.YG = {
   },
 
   saveData: function(key, base64data) {
-    if (!ygPlayer) {
-      try { localStorage.setItem('yg_save_' + key, base64data); } catch(e){}
-      return Promise.resolve(true);
-    }
-    var obj = {};
-    obj[key] = base64data;
-    return ygPlayer.setData(obj, true).then(function() { return true; })
-      .catch(function() { return false; });
+    return ygPlayerPromise.then(function() {
+      if (!ygPlayer) {
+        try { localStorage.setItem('yg_save_' + key, base64data); } catch(e){}
+        return true;
+      }
+      var obj = {};
+      obj[key] = base64data;
+      return ygPlayer.setData(obj, true).then(function() { return true; })
+        .catch(function() { return false; });
+    });
   },
 
   loadData: function(key) {
-    if (!ygPlayer) {
-      return Promise.resolve(localStorage.getItem('yg_save_' + key));
-    }
-    return ygPlayer.getData([key]).then(function(data) {
-      return data[key] || null;
-    }).catch(function() { return null; });
+    return ygPlayerPromise.then(function() {
+      if (!ygPlayer) {
+        return localStorage.getItem('yg_save_' + key);
+      }
+      return ygPlayer.getData([key]).then(function(data) {
+        return data[key] || null;
+      }).catch(function() { return null; });
+    });
   },
 
   deleteData: function(key) {
-    if (!ygPlayer) {
-      localStorage.removeItem('yg_save_' + key);
-      return Promise.resolve(true);
-    }
-    var obj = {};
-    obj[key] = undefined;
-    return ygPlayer.setData(obj, true).then(function() { return true; })
-      .catch(function() { return false; });
+    return ygPlayerPromise.then(function() {
+      if (!ygPlayer) {
+        localStorage.removeItem('yg_save_' + key);
+        return true;
+      }
+      var obj = {};
+      obj[key] = undefined;
+      return ygPlayer.setData(obj, true).then(function() { return true; })
+        .catch(function() { return false; });
+    });
   }
 };
 
