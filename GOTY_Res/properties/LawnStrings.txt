@@ -1,3049 +1,3166 @@
 [PEASHOOTER]
-Peashooter
+Горохострел
 
 [PEASHOOTER_TOOLTIP]
-Shoots peas at the enemy
+Стреляет горохом во врагов
 
 [SUNFLOWER]
-Sunflower
+Подсолнух
 
 [SUNFLOWER_TOOLTIP]
-Gives you additional sun
+Даёт вам дополнительное солнце
 
 [CHERRY_BOMB]
-Cherry Bomb
+Вишнёвая бомба
 
 [CHERRY_BOMB_TOOLTIP]
-Blows up all zombies in an area
+Взрывает всех зомби в области
 
 [WALL_NUT]
-Wall-nut
+Орех
 
 [WALL_NUT_TOOLTIP]
-Blocks off zombies and protects your other plants
+Блокирует зомби и защищает ваши другие растения
 
 [REPEATER]
-Repeater
+Скорострел
 
 [REPEATER_TOOLTIP]
-Fires two peas at a time
+Стреляет двумя горошинами за раз
 
 [POTATO_MINE]
-Potato Mine
+Картофельная мина
 
 [POTATO_MINE_TOOLTIP]
-Explodes on contact, but takes time to arm itself
+Взрывается при контакте, но требуется время для активации
 
 [SNOW_PEA]
-Snow Pea
+Снежный горох
 
 [SNOW_PEA_TOOLTIP]
-Shoots frozen peas that damage and slow the enemy
+Стреляет замороженным горохом, который повреждает и замедляет врагов
 
 [CHOMPER]
-Chomper
+Зубастик
 
 [CHOMPER_TOOLTIP]
-Devours a zombie whole, but is vulnerable while chewing
+Пожирает зомби целиком, но уязвим, пока жуёт
 
 [PUFF_SHROOM]
-Puff-shroom
+Дым-гриб
 
 [PUFF_SHROOM_TOOLTIP]
-Shoots short-ranged spores at the enemy
+Стреляет спорами на короткое расстояние
 
 [SUN_SHROOM]
-Sun-shroom
+Солнечный гриб
 
 [SUN_SHROOM_TOOLTIP]
-Gives small sun at first and normal sun later
+Сначала даёт маленькое солнце, потом обычное
 
 [FUME_SHROOM]
-Fume-shroom
+Дымо-гриб
 
 [FUME_SHROOM_TOOLTIP]
-Shoots fumes that can pass through screen doors
+Выпускает дым, который проходит сквозь двери
 
 [GRAVE_BUSTER]
-Grave Buster
+Могилоед
 
 [GRAVE_BUSTER_TOOLTIP]
-Plant it on a grave to remove the grave
+Посадите его на могилу, чтобы убрать её
 
 [HYPNO_SHROOM]
-Hypno-shroom
+Гипно-гриб
 
 [HYPNO_SHROOM_TOOLTIP]
-Makes a zombie fight for you
+Заставляет зомби сражаться на вашей стороне
 
 [SCAREDY_SHROOM]
-Scaredy-shroom
+Бояка-гриб
 
 [SCAREDY_SHROOM_TOOLTIP]
-Long-ranged shooter that hides when enemies get near it
+Стреляет далеко, но прячется, когда враги подходят близко
 
 [ICE_SHROOM]
-Ice-shroom
+Ледяной гриб
 
 [ICE_SHROOM_TOOLTIP]
-Temporarily immobilizes all zombies on the screen
+Временно обездвиживает всех зомби на экране
 
 [DOOM_SHROOM]
-Doom-shroom
+Гриб Судьбы
 
 [DOOM_SHROOM_TOOLTIP]
-Destroys a large area, leaving a crater in its wake
+Уничтожает большую область, оставляя кратер
 
 [LILY_PAD]
-Lily Pad
+Кувшинка
 
 [LILY_PAD_TOOLTIP]
-Lets you plant non-aquatic plants on top of it
+Позволяет сажать наземные растения на воде
 
 [SQUASH]
-Squash
+Кабачок
 
 [SQUASH_TOOLTIP]
-Squashes zombies
+Давит зомби
 
 [THREEPEATER]
-Threepeater
+Тройной горохострел
 
 [THREEPEATER_TOOLTIP]
-Shoots peas in three lanes
+Стреляет горохом по трём линиям
 
 [TANGLE_KELP]
-Tangle Kelp
+Водоросли
 
 [TANGLE_KELP_TOOLTIP]
-Aquatic plant that pulls a zombie underwater
+Водное растение, которое утягивает зомби под воду
 
 [JALAPENO]
-Jalapeno
+Халапеньо
 
 [JALAPENO_TOOLTIP]
-Destroys an entire lane of zombies
+Уничтожает всех зомби на линии
 
 [SPIKEWEED]
-Spikeweed
+Колючка
 
 [SPIKEWEED_TOOLTIP]
-Pops tires and hurts zombies that step on it
+Прокалывает шины и ранит зомби, которые на неё наступают
 
 [TORCHWOOD]
-Torchwood
+Факел
 
 [TORCHWOOD_TOOLTIP]
-Peas that pass through it turn into fireballs
+Горошины, проходя через него, превращаются в огненные шары
 
 [TALL_NUT]
-Tall-nut
+Высокий орех
 
 [TALL_NUT_TOOLTIP]
-Heavy-duty wall that can't be vaulted over
+Мощная стена, через которую нельзя перепрыгнуть
 
 [SEA_SHROOM]
-Sea-shroom
+Морской гриб
 
 [SEA_SHROOM_TOOLTIP]
-Aquatic plant that shoots short-ranged spores
+Водное растение, стреляющее спорами на короткое расстояние
 
 [PLANTERN]
-Plantern
+Фонарь
 
 [PLANTERN_TOOLTIP]
-Lights up an area, letting you see through fog
+Освещает область, позволяя видеть сквозь туман
 
 [CACTUS]
-Cactus
+Кактус
 
 [CACTUS_TOOLTIP]
-Shoots spikes that can pop balloons
+Стреляет шипами, которые могут лопать воздушные шарики
 
 [BLOVER]
-Blover
+Ветродуй
 
 [BLOVER_TOOLTIP]
-Blows away all balloon zombies and fog
+Сдувает всех зомби на воздушных шариках и туман
 
 [SPLIT_PEA]
-Split Pea
+Расщеплённый горох
 
 [SPLIT_PEA_TOOLTIP]
-Shoots peas forward and backwards
+Стреляет горохом вперёд и назад
 
 [STARFRUIT]
-Starfruit
+Карамбола
 
 [STARFRUIT_TOOLTIP]
-Shoots stars in 5 directions
+Стреляет звёздами в 5 направлениях
 
 [PUMPKIN]
-Pumpkin
+Тыква
 
 [PUMPKIN_TOOLTIP]
-Protects plants that are within its shell
+Защищает растения внутри своей оболочки
 
 [MAGNET_SHROOM]
-Magnet-shroom
+Магнит-гриб
 
 [MAGNET_SHROOM_TOOLTIP]
-Removes helmets and other metal objects from zombies
+Снимает шлемы и другие металлические предметы с зомби
 
 [CABBAGE_PULT]
-Cabbage-pult
+Капустапульта
 
 [CABBAGE_PULT_TOOLTIP]
-Hurls cabbages at the enemy
+Швыряет капусту во врагов
 
 [FLOWER_POT]
-Flower Pot
+Цветочный горшок
 
 [FLOWER_POT_TOOLTIP]
-Lets you plant on the roof
+Позволяет сажать растения на крыше
 
 [KERNEL_PULT]
-Kernel-pult
+Кукурузапульта
 
 [KERNEL_PULT_TOOLTIP]
-Flings corn kernels and butter at zombies
+Бросает зёрна кукурузы и масло в зомби
 
 [GARLIC]
-Garlic
+Чеснок
 
 [GARLIC_TOOLTIP]
-Diverts zombies into other lanes
+Перенаправляет зомби на другие линии
 
 [UMBRELLA_LEAF]
-Umbrella Leaf
+Зонтик-лист
 
 [UMBRELLA_LEAF_TOOLTIP]
-Protects nearby plants from bungees and catapults
+Защищает ближайшие растения от банджи и катапульт
 
 [MARIGOLD]
-Marigold
+Ноготки
 
 [MARIGOLD_TOOLTIP]
-Gives you silver and gold coins
+Даёт серебряные и золотые монеты
 
 [MELON_PULT]
-Melon-pult
+Арбузапульта
 
 [MELON_PULT_TOOLTIP]
-Does heavy damage to groups of zombies
+Наносит тяжёлый урон группам зомби
 
 [GATLING_PEA]
-Gatling Pea
+Гатлинг-горох
 
 [GATLING_PEA_TOOLTIP]
-Shoots four peas at a time
-(requires repeater)
+Стреляет четырьмя горошинами за раз
+(требуется скорострел)
 
 [TWIN_SUNFLOWER]
-Twin Sunflower
+Двойной подсолнух
 
 [TWIN_SUNFLOWER_TOOLTIP]
-Gives twice as much sun as a sunflower
-(requires sunflower)
+Даёт вдвое больше солнца, чем подсолнух
+(требуется подсолнух)
 
 [GLOOM_SHROOM]
-Gloom-shroom
+Мрачный гриб
 
 [GLOOM_SHROOM_TOOLTIP]
-Releases heavy fumes in an area around itself
-(requires fume-shroom)
+Выпускает тяжёлые испарения вокруг себя
+(требуется дымо-гриб)
 
 [CATTAIL]
-Cattail
+Рогоз
 
 [CATTAIL_TOOLTIP]
-Attacks any lane and shoots down balloon zombies
-(requires lily pad)
+Атакует любую линию и сбивает зомби на воздушных шариках
+(требуется кувшинка)
 
 [WINTER_MELON]
-Winter Melon
+Зимний арбуз
 
 [WINTER_MELON_TOOLTIP]
-Does heavy damage and slows groups of zombies
-(requires melon-pult)
+Наносит тяжёлый урон и замедляет группы зомби
+(требуется арбузапульта)
 
 [GOLD_MAGNET]
-Gold Magnet
+Золотой магнит
 
 [GOLD_MAGNET_TOOLTIP]
-Collects coins and diamonds for you
-(requires magnet-shroom)
+Собирает монеты и алмазы за вас
+(требуется магнит-гриб)
 
 [SPIKEROCK]
-Spikerock
+Шипокамень
 
 [SPIKEROCK_TOOLTIP]
-Pops multiple tires and damages zombies that walk over it
-(requires spikeweed)
+Прокалывает множество шин и ранит зомби, которые по нему ходят
+(требуется колючка)
 
 [COB_CANNON]
-Cob Cannon
+Кукурузная пушка
 
 [COB_CANNON_TOOLTIP]
-Click to launch deadly cobs of corn
-(requires 2 kernel-pults)
+Нажмите, чтобы запустить смертоносные початки кукурузы
+(требуется 2 кукурузапульты)
 
 [IMITATER]
-Imitater
+Подражатель
 
 [IMITATER_TOOLTIP]
-Lets you have two of the same plant
+Позволяет иметь два одинаковых растения
 
 [COFFEE_BEAN]
-Coffee Bean
+Кофейный боб
 
 [COFFEE_BEAN_TOOLTIP]
-Plant it on a mushroom to wake it up
+Посадите его на гриб, чтобы разбудить его
 
 [EXPLODE_O_NUT]
-Explode-o-nut
+Взрыво-орех
 
 [EXPLODE_O_NUT_TOOLTIP]
-Explodes on contact
+Взрывается при контакте
 
 [GIANT_WALLNUT]
-Giant Wall-nut
+Гигантский орех
 
 [SPROUT]
-Sprout
+Росток
 
 [MARIGOLD_SPROUT]
-Marigold Sprout
+Росток ноготков
 
 [ZOMBIE]
-Zombie
+Зомби
 
 [FLAG_ZOMBIE]
-Flag Zombie
+Зомби-знаменосец
 
 [CONEHEAD_ZOMBIE]
-Conehead Zombie
+Зомби с конусом
 
 [BUCKETHEAD_ZOMBIE]
-Buckethead Zombie
+Зомби с ведром
 
 [POLE_VAULTING_ZOMBIE]
-Pole Vaulting Zombie
+Зомби с шестом
 
 [NEWSPAPER_ZOMBIE]
-Newspaper Zombie
+Зомби с газетой
 
 [SCREEN_DOOR_ZOMBIE]
-Screen Door Zombie
+Зомби с дверью
 
 [FOOTBALL_ZOMBIE]
-Football Zombie
+Зомби-футболист
 
 [DANCING_ZOMBIE]
-Dancing Zombie
+Танцующий зомби
 
 [BACKUP_DANCER]
-Backup Dancer
+Танцор на подтанцовке
 
 [DUCKY_TUBE_ZOMBIE]
-Ducky Tube Zombie
+Зомби с уточкой
 
 [SNORKEL_ZOMBIE]
-Snorkel Zombie
+Зомби с трубкой
 
 [ZOMBONI]
-Zomboni
+Зомбони
 
 [ZOMBIE_BOBSLED_TEAM]
-Zombie Bobsled Team
+Зомби-бобслеисты
 
 [DOLPHIN_RIDER_ZOMBIE]
-Dolphin Rider Zombie
+Зомби на дельфине
 
 [JACK_IN_THE_BOX_ZOMBIE]
-Jack-in-the-Box Zombie
+Зомби с чёртиком из коробки
 
 [BALLOON_ZOMBIE]
-Balloon Zombie
+Зомби с воздушным шариком
 
 [DIGGER_ZOMBIE]
-Digger Zombie
+Зомби-землекоп
 
 [POGO_ZOMBIE]
-Pogo Zombie
+Зомби на пого-палке
 
 [ZOMBIE_YETI]
-Zombie Yeti
+Зомби-Йети
 
 [BUNGEE_ZOMBIE]
-Bungee Zombie
+Зомби-банджи
 
 [LADDER_ZOMBIE]
-Ladder Zombie
+Зомби с лестницей
 
 [CATAPULT_ZOMBIE]
-Catapult Zombie
+Зомби-катапульта
 
 [GARGANTUAR]
-Gargantuar
+Гаргантюа
 
 [REDEYED_GARGANTUAR]
-Giga-gargantuar
+Гига-Гаргантюа
 
 [IMP]
-Imp
+Бесёнок
 
 [BOSS]
-Dr. Zomboss
+Доктор Зомбосс
 
 [DOG_WALKING_ZOMBIE]
-Dog Walking Zombie
+Зомби с собакой
 
 [DOG_ZOMBIE]
-Dog Zombie
+Собака-зомби
 
 [PROPELLER_ZOMBIE]
-Propeller Zombie
+Зомби с пропеллером
 
 [PEASHOOTER_DESCRIPTION]
-Peashooters are your first line of defense. They shoot peas at attacking zombies.
+Горохострелы — ваша первая линия обороны. Они стреляют горохом по атакующим зомби.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
+{KEYWORD}Урон:{STAT} обычный
 {SHORTLINE}
-{FLAVOR}How can a single plant grow and shoot so many peas so quickly? Peashooter says, 
-"Hard work, commitment, and a healthy, well-balanced breakfast of sunlight and high-fiber 
-carbon dioxide make it all possible."
+{FLAVOR}Как одно растение может выращивать и стрелять таким количеством горошин так быстро? Горохострел говорит: 
+«Усердный труд, целеустремлённость и здоровый, сбалансированный завтрак из солнечного света и богатого 
+клетчаткой углекислого газа делают это возможным.»
 
 [SUNFLOWER_DESCRIPTION]
-Sunflowers are essential for you to produce extra sun. Try planting as many as you can!
+Подсолнухи необходимы для производства дополнительного солнца. Старайтесь посадить как можно больше!
 {SHORTLINE}
-{KEYWORD}Sun production:{STAT} normal
+{KEYWORD}Производство солнца:{STAT} обычное
 {SHORTLINE}
-{FLAVOR}Sunflower can't resist bouncing to the beat. Which beat is that? Why, the 
-life-giving jazzy rhythm of the Earth itself, thumping at a frequency only Sunflower can hear.
+{FLAVOR}Подсолнух не может удержаться от танца в ритме. В каком ритме? В живительном джазовом ритме 
+самой Земли, пульсирующем на частоте, которую слышит только Подсолнух.
 
 [WALL_NUT_DESCRIPTION]
-Wall-nuts have hard shells which you can use to protect your other plants.
+У орехов крепкая скорлупа, которую вы можете использовать для защиты других растений.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} high
+{KEYWORD}Прочность:{STAT} высокая
 {SHORTLINE}
-{FLAVOR}"People wonder how I feel about getting constantly chewed on by zombies," says Wall-nut. 
-"What they don't realize is that with my limited senses all I can feel is a kind of tingling, like a relaxing back rub."
+{FLAVOR}«Люди интересуются, что я чувствую, когда зомби постоянно меня грызут,» — говорит Орех. 
+«Они не понимают, что при моих ограниченных чувствах я ощущаю лишь лёгкое покалывание, как расслабляющий массаж спины.»
 
 [CHERRY_BOMB_DESCRIPTION]
-Cherry Bombs can blow up all zombies in an area. They have a short fuse so plant them near zombies.
+Вишнёвые бомбы могут взорвать всех зомби в определённой области. У них короткий фитиль, так что сажайте их рядом с зомби.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Range:{STAT} all zombies in a medium area
-{KEYWORD}Usage:{STAT} single use, instant
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Радиус:{STAT} все зомби в средней области
+{KEYWORD}Использование:{STAT} одноразовое, мгновенное
 {SHORTLINE}
-{FLAVOR}"I wanna explode," says Cherry #1. "No, let's detonate instead!" says 
-his brother, Cherry #2. After intense consultation they agree to explodonate.
+{FLAVOR}«Я хочу взорваться,» — говорит Вишня №1. «Нет, давай лучше детонируем!» — говорит 
+его брат, Вишня №2. После напряжённых консультаций они соглашаются взрывонировать.
 
 [POTATO_MINE_DESCRIPTION]
-Potato Mines pack a powerful punch, but they need a while to arm themselves. You should plant them ahead of zombies. They will explode on contact.
+Картофельные мины обладают мощной силой, но им нужно время для активации. Сажайте их заранее перед зомби. Они взорвутся при контакте.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Range:{STAT} all zombies in a small area
-{KEYWORD}Usage:{STAT} single use, delayed activation
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Радиус:{STAT} все зомби в маленькой области
+{KEYWORD}Использование:{STAT} одноразовое, с задержкой активации
 {SHORTLINE}
-{FLAVOR}Some folks say Potato Mine is lazy, that he leaves everything to the last 
-minute. Potato Mine says nothing. He's too busy thinking about his investment strategy.
+{FLAVOR}Кто-то говорит, что Картофельная мина ленива, что она откладывает всё на последний 
+момент. Картофельная мина молчит. Она слишком занята обдумыванием своей инвестиционной стратегии.
 
 [REPEATER_DESCRIPTION]
-Repeaters fire two peas at a time.
+Скорострелы стреляют двумя горошинами за раз.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal (for each pea)
-{KEYWORD}Firing speed:{STAT} 2x
+{KEYWORD}Урон:{STAT} обычный (за каждую горошину)
+{KEYWORD}Скорость стрельбы:{STAT} 2x
 {SHORTLINE}
-{FLAVOR}Repeater is fierce. He's from the streets. He doesn't take attitude from anybody, 
-plant or zombie, and he shoots peas to keep people at a distance. Secretly, though, Repeater yearns for love.
+{FLAVOR}Скорострел суров. Он с улицы. Он не терпит неуважения ни от кого, будь то растение 
+или зомби, и стреляет горохом, чтобы держать всех на расстоянии. Но втайне Скорострел жаждет любви.
 
 [SNOW_PEA_DESCRIPTION]
-Snow Peas shoot frozen peas that damage and slow the enemy.
+Снежный горох стреляет замороженными горошинами, которые повреждают и замедляют врагов.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal, slows zombies
+{KEYWORD}Урон:{STAT} обычный, замедляет зомби
 {SHORTLINE}
-{FLAVOR}Folks often tell Snow Pea how "cool" he is, or exhort him to "chill out." They 
-tell him to "stay frosty." Snow Pea just rolls his eyes. He's heard 'em all.
+{FLAVOR}Люди часто говорят Снежному гороху, какой он «крутой», или призывают его «остыть». Они 
+говорят ему «не замерзай». Снежный горох лишь закатывает глаза. Он всё это уже слышал.
 
 [CHOMPER_DESCRIPTION]
-Chompers can devour a zombie whole, but they are vulnerable while chewing.
+Зубастики могут проглотить зомби целиком, но они уязвимы, пока жуют.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Range:{STAT} very short
-{KEYWORD}Special:{STAT} long delay between chomps
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Дальность:{STAT} очень короткая
+{KEYWORD}Особенность:{STAT} долгая пауза между укусами
 {SHORTLINE}
-{FLAVOR}Chomper almost got a gig doing stunts for The Little Shop of Horrors but it fell 
-through when his agent demanded too much on the front end. Chomper's not resentful, 
-though. He says it's just part of the business.
+{FLAVOR}Зубастик чуть не получил роль каскадёра в «Маленьком магазинчике ужасов», но дело 
+сорвалось, когда его агент запросил слишком много. Зубастик не в обиде, 
+он говорит, что это просто часть бизнеса.
 
 [PUFF_SHROOM_DESCRIPTION]
-Puff-shrooms are cheap, but can only fire a short distance.
+Дым-грибы дёшевы, но стреляют только на короткое расстояние.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} short
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} короткая
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}"I only recently became aware of the existence of zombies," says Puff-shroom. "Like many fungi, 
-I'd just assumed they were fairy tales or movie monsters. This whole experience has been a huge eye-opener for me."
+{FLAVOR}«Я лишь недавно узнал о существовании зомби,» — говорит Дым-гриб. «Как и многие грибы, 
+я просто считал их сказками или киномонстрами. Этот опыт открыл мне глаза.»
 
 [SUN_SHROOM_DESCRIPTION]
-Sun-shrooms give small sun at first and normal sun later.
+Солнечные грибы сначала дают маленькое солнце, а потом обычное.
 {SHORTLINE}
-{KEYWORD}Sun production:{STAT} low, then normal
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Производство солнца:{STAT} низкое, затем обычное
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}Sun-shroom hates sun. He hates it so much that when it builds up in his system, 
-he spits it out as fast as he can. He just won't abide it. To him, sun is crass.
+{FLAVOR}Солнечный гриб ненавидит солнце. Он ненавидит его настолько, что когда оно накапливается 
+в его организме, он выплёвывает его как можно быстрее. Он его просто не выносит. Для него солнце — это пошлость.
 
 [FUME_SHROOM_DESCRIPTION]
-Fume-shrooms shoot fumes that can pass through screen doors.
+Дымо-грибы выпускают дым, который проходит сквозь двери.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal, penetrates screen doors
-{KEYWORD}Range:{STAT} all zombies in the fume cloud
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Урон:{STAT} обычный, проникает сквозь двери
+{KEYWORD}Дальность:{STAT} все зомби в облаке дыма
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}"I was in a dead-end job producing yeast spores for a bakery," says Fume-shroom. 
-"Then Puff-shroom, bless 'im, told me about this great opportunity blasting zombies. Now I really feel like I'm making a difference."
+{FLAVOR}«Я работал на тупиковой работе, производя дрожжевые споры для пекарни,» — рассказывает Дымо-гриб. 
+«А потом Дым-гриб, благослови его, рассказал мне об этой прекрасной возможности взрывать зомби. Теперь я чувствую, что приношу пользу.»
 
 [GRAVE_BUSTER_DESCRIPTION]
-Plant Grave Busters on graves to remove the graves.
+Сажайте Могилоедов на могилы, чтобы убрать их.
 {SHORTLINE}
-{KEYWORD}Usage:{STAT} single use, must be planted on graves
-{KEYWORD}Special:{STAT} removes graves
+{KEYWORD}Использование:{STAT} одноразовое, сажать на могилы
+{KEYWORD}Особенность:{STAT} уничтожает могилы
 {SHORTLINE}
-{FLAVOR}Despite Grave Buster's fearsome appearance, he wants everyone to know that he loves 
-kittens and spends his off hours volunteering at a local zombie rehabilitation center. "It's just the right thing to do," he says.
+{FLAVOR}Несмотря на свой грозный вид, Могилоед хочет, чтобы все знали: он любит 
+котят и проводит свободное время, работая волонтёром в местном центре реабилитации зомби. «Это просто правильно,» — говорит он.
 
 [HYPNO_SHROOM_DESCRIPTION]
-When eaten, Hypno-shrooms will make a zombie turn around and fight for you.
+Когда зомби съедает Гипно-гриб, он разворачивается и начинает сражаться на вашей стороне.
 {SHORTLINE}
-{KEYWORD}Usage:{STAT} single use, on contact
-{KEYWORD}Special:{STAT} makes a zombie fight for you
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Использование:{STAT} одноразовое, при контакте
+{KEYWORD}Особенность:{STAT} заставляет зомби сражаться за вас
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}"Zombies are our friends," asserts Hypno-shroom. "They're badly misunderstood creatures 
-who play a valuable role in our ecology. We can and should do more to bring them round to our way of thinking."
+{FLAVOR}«Зомби — наши друзья,» — утверждает Гипно-гриб. «Их сильно не понимают. Это ценные создания, 
+играющие важную роль в нашей экологии. Мы можем и должны делать больше, чтобы привести их к нашему образу мышления.»
 
 [SCAREDY_SHROOM_DESCRIPTION]
-Scaredy-shrooms are long-ranged shooters that hide when enemies get near them.
+Бояка-грибы стреляют далеко, но прячутся, когда враги подходят близко.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Special:{STAT} stops shooting when enemy is close
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Особенность:{STAT} перестаёт стрелять, когда враг близко
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}"Who's there?" whispers Scaredy-shroom, voice barely audible. "Go away. I don't want to see anybody. Unless it's the man from the circus."
+{FLAVOR}«Кто там?» — шепчет Бояка-гриб едва слышным голосом. «Уходите. Я не хочу никого видеть. Разве что человека из цирка.»
 
 [ICE_SHROOM_DESCRIPTION]
-Ice-shrooms temporarily immobilize all zombies on the screen.
+Ледяные грибы временно обездвиживают всех зомби на экране.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} very light, immobilizes zombies
-{KEYWORD}Range:{STAT} all zombies on the screen
-{KEYWORD}Usage:{STAT} single use, instant
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Урон:{STAT} очень слабый, обездвиживает зомби
+{KEYWORD}Дальность:{STAT} все зомби на экране
+{KEYWORD}Использование:{STAT} одноразовое, мгновенное
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}Ice-shroom frowns, not because he's unhappy or because he disapproves, but because of a childhood injury that left his facial nerves paralyzed.
+{FLAVOR}Ледяной гриб хмурится — не потому что он несчастен или чем-то недоволен, а из-за детской травмы, которая парализовала его лицевые нервы.
 
 [DOOM_SHROOM_DESCRIPTION]
-Doom-shrooms destroy everything in a large area and leave a crater that can't be planted on.
+Грибы Судьбы уничтожают всё в большой области и оставляют кратер, на котором нельзя сажать.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Range:{STAT} all zombies in a huge area
-{KEYWORD}Usage:{STAT} single use, instant
-{KEYWORD}Special:{STAT} leaves a crater
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Дальность:{STAT} все зомби в огромной области
+{KEYWORD}Использование:{STAT} одноразовое, мгновенное
+{KEYWORD}Особенность:{STAT} оставляет кратер
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}"You're lucky I'm on your side," says Doom-shroom. "I could destroy everything you hold dear. It wouldn't be hard."
+{FLAVOR}«Вам повезло, что я на вашей стороне,» — говорит Гриб Судьбы. «Я мог бы уничтожить всё, что вам дорого. Это было бы нетрудно.»
 
 [LILY_PAD_DESCRIPTION]
-Lily pads let you plant non-aquatic plants on top of them.
+Кувшинки позволяют сажать наземные растения на воде.
 {SHORTLINE}
-{KEYWORD}Special:{STAT} non-aquatic plants can be planted on top of it
-{AQUATIC}Must be planted in water
+{KEYWORD}Особенность:{STAT} наземные растения можно сажать поверх неё
+{AQUATIC}Сажать в воду
 {SHORTLINE}
-{FLAVOR}Lily Pad never complains. Lily Pad never wants to know what's going on. Put a plant on top of Lily Pad, 
-he won't say a thing. Does he have startling opinions or shocking secrets? Nobody knows. Lily Pad keeps it all inside.
+{FLAVOR}Кувшинка никогда не жалуется. Кувшинка никогда не хочет знать, что происходит. Поставьте растение на Кувшинку, 
+она не скажет ни слова. Есть ли у неё поразительные мнения или шокирующие секреты? Никто не знает. Кувшинка держит всё в себе.
 
 [SQUASH_DESCRIPTION]
-Squashes will smash the first zombie that gets close to it.
+Кабачок раздавит первого зомби, который к нему приблизится.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Range:{STAT} short range, hits all zombies that it lands on
-{KEYWORD}Usage:{STAT} single use
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Дальность:{STAT} короткая, поражает всех зомби при приземлении
+{KEYWORD}Использование:{STAT} одноразовое
 {SHORTLINE}
-{FLAVOR}"I'm ready!" yells Squash. "Let's do it! Put me in! There's nobody better! I'm your guy! C'mon! Whaddya waiting for? I need this!"
+{FLAVOR}«Я готов!» — кричит Кабачок. «Давайте! Выпустите меня! Лучше никого нет! Я ваш парень! Ну же! Чего ждёте? Мне это нужно!»
 
 [THREEPEATER_DESCRIPTION]
-Threepeaters shoot peas in three lanes.
+Тройные горохострелы стреляют горохом по трём линиям.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal (for each pea)
-{KEYWORD}Range:{STAT} three lanes
+{KEYWORD}Урон:{STAT} обычный (за каждую горошину)
+{KEYWORD}Дальность:{STAT} три линии
 {SHORTLINE}
-{FLAVOR}Threepeater likes reading, backgammon and long periods of immobility in the park. Threepeater enjoys 
-going to shows, particularly modern jazz. "I'm just looking for that special someone," he says. Threepeater's favorite number is 5.
+{FLAVOR}Тройной горохострел любит чтение, нарды и долгое неподвижное сидение в парке. Он любит 
+ходить на шоу, особенно на современный джаз. «Я просто ищу ту самую,» — говорит он. Любимое число Тройного горохострела — 5.
 
 [TANGLE_KELP_DESCRIPTION]
-Tangle Kelp are aquatic plants that pull the first zombie that nears them underwater.
+Водоросли — это водные растения, которые утягивают под воду первого приблизившегося зомби.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Usage:{STAT} single use, on contact
-{AQUATIC}Must be planted in water
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Использование:{STAT} одноразовое, при контакте
+{AQUATIC}Сажать в воду
 {SHORTLINE}
-{FLAVOR}"I'm totally invisible," Tangle Kelp thinks to himself. "I'll hide here just below the surface and 
-nobody will see me." His friends tell him they can see him perfectly well, but he'll never change.
+{FLAVOR}«Я абсолютно невидимы,» — думают про себя Водоросли. «Я спрячусь тут, прямо под поверхностью, 
+и никто меня не увидит.» Друзья говорят, что прекрасно их видят, но они никогда не изменятся.
 
 [JALAPENO_DESCRIPTION]
-Jalapenos destroy an entire lane of zombies.
+Халапеньо уничтожает всех зомби на линии.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} massive
-{KEYWORD}Range:{STAT} all zombies in a lane
-{KEYWORD}Usage:{STAT} single use, instant
+{KEYWORD}Урон:{STAT} огромный
+{KEYWORD}Дальность:{STAT} все зомби на линии
+{KEYWORD}Использование:{STAT} одноразовое, мгновенное
 {SHORTLINE}
-{FLAVOR}"NNNNNGGGGGG!!!!!!!!" Jalapeno says. He's not going to explode, not this time. But soon. Oh, so soon. 
-It's close. He knows it, he can feel it, his whole life's been leading up to this moment.
+{FLAVOR}«НННННГГГГГГ!!!!!!!» — говорит Халапеньо. Он не собирается взрываться, не в этот раз. Но скоро. О, очень скоро. 
+Это близко. Он знает это, он чувствует это, вся его жизнь вела к этому моменту.
 
 [SPIKEWEED_DESCRIPTION]
-Spikeweeds pop tires and hurt any zombies that step on them.
+Колючки прокалывают шины и ранят всех зомби, которые на них наступают.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} all zombies that walk over it
-{KEYWORD}Special:{STAT} can't be eaten by zombies
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} все зомби, которые по ней ходят
+{KEYWORD}Особенность:{STAT} зомби не могут её съесть
 {SHORTLINE}
-{FLAVOR}Hockey is Spikeweed's obsession. He's got box seat season tickets. He keeps close track of his favorite 
-players. And he consistently cleans up in the office hockey pool. Just one problem: he's terrified of pucks.
+{FLAVOR}Хоккей — страсть Колючки. У неё абонемент на ложу. Она следит за любимыми 
+игроками. И стабильно выигрывает в офисном хоккейном тотализаторе. Одна проблема: она боится шайб.
 
 [TORCHWOOD_DESCRIPTION]
-Torchwoods turn peas that pass through them into fireballs that deal twice as much damage.
+Факелы превращают горошины, проходящие через них, в огненные шары, наносящие двойной урон.
 {SHORTLINE}
-{KEYWORD}Special:{STAT} doubles the damage of peas that pass through it.  Fireballs deal damage to nearby zombies on impact
+{KEYWORD}Особенность:{STAT} удваивает урон горошин, проходящих через него.  Огненные шары наносят урон ближайшим зомби при попадании
 {SHORTLINE}
-{FLAVOR}Everybody likes and respects Torchwood. They like him for his integrity, for his steadfast friendship, 
-for his ability to greatly maximize pea damage. But Torchwood has a secret: he can't read.
+{FLAVOR}Все любят и уважают Факел. Его любят за честность, за верную дружбу, 
+за способность значительно увеличивать урон горошин. Но у Факела есть секрет: он не умеет читать.
 
 [TALL_NUT_DESCRIPTION]
-Tall-nuts are heavy-duty wall plants that can't be vaulted over.
+Высокие орехи — это мощные стены, через которые нельзя перепрыгнуть.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} very high
-{KEYWORD}Special:{STAT} can't be vaulted or jumped over
+{KEYWORD}Прочность:{STAT} очень высокая
+{KEYWORD}Особенность:{STAT} нельзя перепрыгнуть
 {SHORTLINE}
-{FLAVOR}People wonder if there's a rivalry between Wall-nut and Tall-nut. Tall-nut laughs a rich, baritone 
-laugh. "How could there be anything between us? We are brothers. If you knew what Wall-nut has done for me..." 
-Tall-nut's voice trails off and he smiles knowingly.
+{FLAVOR}Люди задаются вопросом, есть ли соперничество между Орехом и Высоким орехом. Высокий орех смеётся богатым, баритональным 
+смехом. «Какое может быть соперничество? Мы братья. Если бы вы знали, что Орех для меня сделал...» 
+Голос Высокого ореха замолкает, и он многозначительно улыбается.
 
 [SEA_SHROOM_DESCRIPTION]
-Sea-shrooms are aquatic plants that shoot short ranged spores.
+Морские грибы — это водные растения, стреляющие спорами на короткое расстояние.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} short
-{AQUATIC}Must be planted in water
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} короткая
+{AQUATIC}Сажать в воду
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}Sea-shroom has never seen the sea. It's in his name, he's heard loads about it, but he's just never found the time. One day, though, it'll go down.
+{FLAVOR}Морской гриб никогда не видел моря. Это есть в его имени, он много о нём слышал, но никак не может найти время. Но однажды это случится.
 
 [PLANTERN_DESCRIPTION]
-Planterns light up an area, letting you see through fog.
+Фонари освещают область, позволяя видеть сквозь туман.
 {SHORTLINE}
-{KEYWORD}Range:{STAT} one lane
-{KEYWORD}Special:{STAT} lets you see through fog
+{KEYWORD}Дальность:{STAT} одна линия
+{KEYWORD}Особенность:{STAT} позволяет видеть сквозь туман
 {SHORTLINE}
-{FLAVOR}Plantern defies science. He just does. Other plants eat light and excrete oxygen; Plantern eats 
-darkness and excretes light. Plantern's cagey about how he does it. "I'm not gonna say 'sorcery,' I 
-wouldn't use the term 'dark forces,' I just... I think I've said enough."
+{FLAVOR}Фонарь бросает вызов науке. Просто бросает. Другие растения поглощают свет и выделяют кислород; Фонарь 
+поглощает темноту и выделяет свет. Фонарь уклончив в объяснениях. «Я не скажу "колдовство", я бы не 
+использовал термин "тёмные силы", я просто... Думаю, я уже сказал достаточно.»
 
 [CACTUS_DESCRIPTION]
-Cactuses shoot spikes that can hit both ground and air targets.
+Кактусы стреляют шипами, поражая наземные и воздушные цели.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} ground and air
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} наземная и воздушная
 {SHORTLINE}
-{FLAVOR}She's prickly, sure, but Cactus's spikes belie a spongy heart filled with love and goodwill. 
-She just wants to hug and be hugged. Most folks can't hang with that, but Cactus doesn't mind. She's 
-been seeing an armadillo for a while and it really seems to be working out.
+{FLAVOR}Она колючая, конечно, но за шипами Кактуса скрывается мягкое сердце, полное любви и доброты. 
+Она просто хочет обнимать и быть обнятой. Большинство не выдерживают, но Кактус не унывает. Она уже 
+какое-то время встречается с броненосцем, и у них, кажется, всё складывается.
 
 [BLOVER_DESCRIPTION]
-Blovers blow away all balloon zombies and fog.
+Ветродуи сдувают всех зомби на воздушных шариках и туман.
 {SHORTLINE}
-{KEYWORD}Usage:{STAT} single use, instant
-{KEYWORD}Special:{STAT} blows away all balloon zombies
+{KEYWORD}Использование:{STAT} одноразовое, мгновенное
+{KEYWORD}Особенность:{STAT} сдувает всех зомби на воздушных шариках
 {SHORTLINE}
-{FLAVOR}When Blover was five he got a shiny new birthday cake. Blover made his wish, huffed and puffed, 
-but was able to extinguish only 60% of the candles. Instead of giving up, though, he's used that early 
-defeat as a catalyst to push himself harder ever since.
+{FLAVOR}Когда Ветродую было пять, он получил красивый новый именинный торт. Ветродуй загадал желание, дул и пыхтел, 
+но смог погасить лишь 60% свечей. Но вместо того чтобы сдаться, он использовал это раннее 
+поражение как стимул работать усерднее.
 
 [SPLIT_PEA_DESCRIPTION]
-Split Peas shoot peas forward and backwards.
+Расщеплённый горох стреляет горохом вперёд и назад.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} forward and backwards
-{KEYWORD}Firing Speed:{STAT} 1x forward, 2x backwards
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} вперёд и назад
+{KEYWORD}Скорость стрельбы:{STAT} 1x вперёд, 2x назад
 {SHORTLINE}
-{FLAVOR}"Yeah, I'm a Gemini," says Split Pea. "I know, big surprise. But having two heads --or really, 
-one head with a large head-like growth on the back-- pays off big in my line of work."
+{FLAVOR}«Да, я Близнецы,» — говорит Расщеплённый горох. «Знаю, большой сюрприз. Но иметь две головы — а точнее, 
+одну голову с большим головоподобным наростом сзади — очень помогает в моей работе.»
 
 [STARFRUIT_DESCRIPTION]
-Starfruits shoot stars in 5 directions.
+Карамбола стреляет звёздами в 5 направлениях.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} 5 directions
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} 5 направлений
 {SHORTLINE}
-{FLAVOR}"Aw, man," says Starfruit. "I went to the dentist the other day and he said I have four cavities. 
-I've got --count it-- ONE tooth! Four cavities in one tooth? How does this happen?"
+{FLAVOR}«Эх,» — говорит Карамбола. «Был я вчера у стоматолога, и он сказал, что у меня четыре кариеса. 
+У меня — сосчитай — ОДИН зуб! Четыре кариеса в одном зубе? Как такое вообще бывает?»
 
 [PUMPKIN_DESCRIPTION]
-Pumpkins protect plants that are within their shells.
+Тыквы защищают растения внутри своей оболочки.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} high
-{KEYWORD}Special:{STAT} can be planted over another plant
+{KEYWORD}Прочность:{STAT} высокая
+{KEYWORD}Особенность:{STAT} можно посадить поверх другого растения
 {SHORTLINE}
-{FLAVOR}Pumpkin hasn't heard from his cousin Renfield lately. Apparently Renfield's a big star, some kind 
-of... what was it... sports hero? Peggle Master? Pumpkin doesn't really get it. He just does his job.
+{FLAVOR}Тыква давно не получала вестей от своего кузена Ренфилда. Говорят, Ренфилд стал большой звездой, 
+каким-то... как это... спортивным героем? Мастером Пегла? Тыква не совсем понимает. Он просто делает свою работу.
 
 [MAGNET_SHROOM_DESCRIPTION]
-Magnet-shrooms remove helmets and other metal objects from zombies.
+Магнит-грибы снимают шлемы и другие металлические предметы с зомби.
 {SHORTLINE}
-{KEYWORD}Range:{STAT} nearby zombies
-{KEYWORD}Special:{STAT} removes metal objects from zombies
-{NOCTURNAL}Sleeps during the day
+{KEYWORD}Дальность:{STAT} ближайшие зомби
+{KEYWORD}Особенность:{STAT} снимает металлические предметы с зомби
+{NOCTURNAL}Засыпает днём
 {SHORTLINE}
-{FLAVOR}Magnetism is a powerful force. Very powerful. Sometimes it scares Magnet-shroom a little. He's 
-not sure if he can handle that kind of responsibility.
+{FLAVOR}Магнетизм — мощная сила. Очень мощная. Иногда это немного пугает Магнит-гриб. Он 
+не уверен, что справится с такой ответственностью.
 
 [CABBAGE_PULT_DESCRIPTION]
-Cabbage-pults hurl cabbages at the enemy.
+Капустапульты швыряют капусту во врагов.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal
-{KEYWORD}Range:{STAT} lobbed
+{KEYWORD}Урон:{STAT} обычный
+{KEYWORD}Дальность:{STAT} навесная
 {SHORTLINE}
-{FLAVOR}Cabbage-pult is okay with launching cabbages at zombies. It's what he's paid for, after all, and 
-he's good at it. He just doesn't understand how the zombies get up on the roof in the first place.
+{FLAVOR}Капустапульта не против бросать капусту в зомби. Ему за это платят, в конце концов, 
+и он делает это хорошо. Он просто не понимает, как зомби вообще забираются на крышу.
 
 [FLOWER_POT_DESCRIPTION]
-Flower Pots let you plant on the roof.
+Цветочные горшки позволяют сажать растения на крыше.
 {SHORTLINE}
-{KEYWORD}Special:{STAT} allows you to plant on the roof
+{KEYWORD}Особенность:{STAT} позволяет сажать на крыше
 {SHORTLINE}
-{FLAVOR}"I'm a pot for planting. Yet I'm also a plant. HAS YOUR MIND EXPLODED YET?"
+{FLAVOR}«Я горшок для посадки. Но я ещё и растение. ВАШ РАЗУМ УЖЕ ВЗОРВАЛСЯ?»
 
 [KERNEL_PULT_DESCRIPTION]
-Kernel-pults fling corn kernels and butter at zombies.
+Кукурузапульты бросают зёрна кукурузы и масло в зомби.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} light (kernel), normal (butter)
-{KEYWORD}Range:{STAT} lobbed
-{KEYWORD}Special:{STAT} butter immobilizes zombies
+{KEYWORD}Урон:{STAT} слабый (зерно), обычный (масло)
+{KEYWORD}Дальность:{STAT} навесная
+{KEYWORD}Особенность:{STAT} масло обездвиживает зомби
 {SHORTLINE}
-{FLAVOR}Kernel-Pult is the eldest of the Pult brothers. Of the three of them, Kernel is the only one 
-who consistently remembers the others' birthdays. He bugs them about it a little, too.
+{FLAVOR}Кукурузапульта — старший из братьев-пульт. Из троих он единственный, 
+кто стабильно помнит дни рождения остальных. И он немного их этим достаёт.
 
 [COFFEE_BEAN_DESCRIPTION]
-Use Coffee Beans to wake up sleeping mushrooms.
+Используйте Кофейный боб, чтобы разбудить спящие грибы.
 {SHORTLINE}
-{KEYWORD}Usage:{STAT} single use, instant
-{KEYWORD}Special:{STAT} can be planted over another plant, wakes up mushrooms
+{KEYWORD}Использование:{STAT} одноразовое, мгновенное
+{KEYWORD}Особенность:{STAT} можно посадить поверх другого растения, будит грибы
 {SHORTLINE}
-{FLAVOR}"Hey, guys, hey!" says Coffee Bean. "Hey! What's up? Who's that? Hey! Didja see that thing? 
-What thing? Whoa! Lions!" Yep, Coffee Bean sure does get excited.
+{FLAVOR}«Эй, ребята, эй!» — говорит Кофейный боб. «Эй! Как дела? Кто это? Эй! Видали вон ту штуку? 
+Какую штуку? Ого! Львы!» Да уж, Кофейный боб точно легко возбуждается.
 
 [GARLIC_DESCRIPTION]
-Garlic diverts zombies into other lanes.
+Чеснок перенаправляет зомби на другие линии.
 {SHORTLINE}
-{KEYWORD}Usage:{STAT} on contact
-{KEYWORD}Special:{STAT} diverts zombies into other lanes
+{KEYWORD}Использование:{STAT} при контакте
+{KEYWORD}Особенность:{STAT} перенаправляет зомби на другие линии
 {SHORTLINE}
-{FLAVOR}Lane-diversion isn't just Garlic's profession. It's his passion. He carries an advanced Doctorate 
-in Redirection from the Brussels University. He'll talk all day about lane vectors and repulse arrays. 
-He even pushes things into alternate avenues at home. Somehow his wife puts up with it.
+{FLAVOR}Перенаправление — не просто профессия Чеснока. Это его страсть. У него докторская степень 
+по перенаправлению из Брюссельского университета. Он может часами говорить о векторах линий и массивах отталкивания. 
+Он даже дома перекладывает вещи в другие проходы. Каким-то образом его жена это терпит.
 
 [UMBRELLA_LEAF_DESCRIPTION]
-Umbrella Leaves protect nearby plants from bungees and catapults.
+Зонтик-листья защищают ближайшие растения от банджи и катапульт.
 {SHORTLINE}
-{KEYWORD}Special:{STAT} protects adjacent plants from bungees and catapults
+{KEYWORD}Особенность:{STAT} защищает соседние растения от банджи и катапульт
 {SHORTLINE}
-{FLAVOR}"SPROING!" says Umbrella Leaf. "Didja like that? I can do it again. SPROING! Woo! That's me 
-popping up to protect stuff around me. Yeah. Just like that. EXACTLY like that. Believe it."
+{FLAVOR}«ПРУЖИНЬ!» — говорит Зонтик-лист. «Понравилось? Я могу повторить. ПРУЖИНЬ! Ого! Это я 
+выскакиваю, чтобы защитить всё вокруг. Ага. Именно так. ТОЧНО так. Верьте.»
 
 [MARIGOLD_DESCRIPTION]
-Marigolds give you silver and gold coins.
+Ноготки дают серебряные и золотые монеты.
 {SHORTLINE}
-{KEYWORD}Special:{STAT} gives coins
+{KEYWORD}Особенность:{STAT} даёт монеты
 {SHORTLINE}
-{FLAVOR}Marigold spends a lot of time deciding whether to spit out a silver coin or a gold one. She 
-thinks about it, weighs the angles. She does solid research and keeps up with current publications. 
-That's how winners stay ahead.
+{FLAVOR}Ноготки тратят много времени, решая, выплюнуть серебряную или золотую монету. Она 
+обдумывает это, взвешивает все аргументы. Она проводит серьёзные исследования и следит за актуальными публикациями. 
+Вот так победители остаются впереди.
 
 [MELON_PULT_DESCRIPTION]
-Melon-pults do heavy damage to groups of zombies.
+Арбузапульты наносят тяжёлый урон группам зомби.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} heavy
-{KEYWORD}Range:{STAT} lobbed
-{KEYWORD}Special:{STAT} melons damage nearby enemies on impact
+{KEYWORD}Урон:{STAT} тяжёлый
+{KEYWORD}Дальность:{STAT} навесная
+{KEYWORD}Особенность:{STAT} арбузы наносят урон ближайшим врагам при попадании
 {SHORTLINE}
-{FLAVOR}There's no false modesty with Melon-pult. "Sun-for-damage, I deliver the biggest punch on 
-the lawn," he says. "I'm not bragging. Run the numbers. You'll see."
+{FLAVOR}У Арбузапульты нет ложной скромности. «По соотношению солнца к урону я наношу самый мощный удар 
+на лужайке,» — говорит он. «Я не хвастаюсь. Посчитайте. Сами убедитесь.»
 
 [GATLING_PEA_DESCRIPTION]
-Gatling Peas shoot four peas at a time.
+Гатлинг-горох стреляет четырьмя горошинами за раз.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} normal (for each pea)
-{KEYWORD}Firing Speed:{STAT} 4x
-{KEYWORD}Must be planted on repeaters
+{KEYWORD}Урон:{STAT} обычный (за каждую горошину)
+{KEYWORD}Скорость стрельбы:{STAT} 4x
+{KEYWORD}Сажать на скорострелы
 {SHORTLINE}
-{FLAVOR}Gatling Pea's parents were concerned when he announced his intention to join the military. 
-"But honey, it's so dangerous!" they said in unison. Gatling Pea refused to budge. "Life is dangerous," 
-he replied, eyes glinting with steely conviction.
+{FLAVOR}Родители Гатлинг-гороха волновались, когда он объявил о намерении вступить в армию. 
+«Но, дорогой, это же так опасно!» — сказали они хором. Гатлинг-горох не отступил. «Жизнь опасна,» — 
+ответил он, глаза блестели стальной решимостью.
 
 [TWIN_SUNFLOWER_DESCRIPTION]
-Twin Sunflowers give twice as much sun as a normal sunflower.
+Двойные подсолнухи дают вдвое больше солнца, чем обычный подсолнух.
 {SHORTLINE}
-{KEYWORD}Sun production:{STAT} double
-{KEYWORD}Must be planted on sunflowers
+{KEYWORD}Производство солнца:{STAT} двойное
+{KEYWORD}Сажать на подсолнухи
 {SHORTLINE}
-{FLAVOR}It was a crazed night of forbidden science that brought Twin Sunflower into existence. Thunder 
-crashed overhead, strange lights flickered, even the very roaring wind seemed to hiss its angry denial. 
-But to no avail. Twin Sunflower was alive, ALIVE!
+{FLAVOR}Это была безумная ночь запретной науки, которая породила Двойной подсолнух. Гром гремел 
+над головой, мерцали странные огни, даже сам ревущий ветер, казалось, шипел в гневном отрицании. 
+Но всё тщетно. Двойной подсолнух был жив, ЖИВ!
 
 [GLOOM_SHROOM_DESCRIPTION]
-Gloom-shrooms release heavy fumes in an area around themselves.
+Мрачные грибы выпускают тяжёлые испарения вокруг себя.
 {SHORTLINE}
-{KEYWORD}Must be planted on fume-shrooms
+{KEYWORD}Сажать на дымо-грибы
 {SHORTLINE}
-{FLAVOR}"I've always enjoyed releasing heavy fumes," says Gloom Shroom. "I know a lot of people aren't 
-cool with that. They say it's rude or that it smells bad. All I can say is, would you rather have your 
-brain eaten by zombies?"
+{FLAVOR}«Мне всегда нравилось выпускать тяжёлые испарения,» — говорит Мрачный гриб. «Я знаю, многим 
+это не по душе. Они говорят, это грубо или плохо пахнет. Могу сказать лишь одно: 
+вы предпочтёте, чтобы зомби съели ваш мозг?»
 
 [CATTAIL_DESCRIPTION]
-Cattails can attack any lane and shoot down balloon zombies too.
+Рогоз может атаковать любую линию и сбивать зомби на воздушных шариках.
 {SHORTLINE}
-{KEYWORD}Must be planted on lily pads
+{KEYWORD}Сажать на кувшинки
 {SHORTLINE}
-{FLAVOR}"Woof!" says Cattail. "Woof woof woof! Does this confuse you? Do you expect me to say 'Meow' 
-like a cat just because the word 'cat' is in my name and I also look like a cat? That's not how things 
-work around here. I refuse to be pigeonholed."
+{FLAVOR}«Гав!» — говорит Рогоз. «Гав-гав-гав! Это вас удивляет? Вы ждали, что я скажу "Мяу" 
+как кошка, только потому что в моём имени есть слово "кот" и я ещё похож на кошку? Здесь так не работает. 
+Я отказываюсь быть загнанным в рамки.»
 
 [WINTER_MELON_DESCRIPTION]
-Winter Melons do heavy damage and slow groups of zombies.
+Зимние арбузы наносят тяжёлый урон и замедляют группы зомби.
 {SHORTLINE}
-{KEYWORD}Damage:{STAT} very heavy
-{KEYWORD}Range:{STAT} lobbed
-{KEYWORD}Firing Speed:{STAT} 1/2x
-{KEYWORD}Special:{STAT} melons damage and freeze nearby enemies on impact
-{KEYWORD}Must be planted on melon-pults
+{KEYWORD}Урон:{STAT} очень тяжёлый
+{KEYWORD}Дальность:{STAT} навесная
+{KEYWORD}Скорость стрельбы:{STAT} 1/2x
+{KEYWORD}Особенность:{STAT} арбузы наносят урон и замораживают ближайших врагов при попадании
+{KEYWORD}Сажать на арбузапульты
 {SHORTLINE}
-{FLAVOR}Winter Melon tries to calm his nerves. He hears the zombies approach. Will he make it? Will anyone make it?
+{FLAVOR}Зимний арбуз пытается успокоить нервы. Он слышит приближение зомби. Выживет ли он? Выживет ли хоть кто-нибудь?
 
 [GOLD_MAGNET_DESCRIPTION]
-Gold Magnets collect coins and diamonds for you.
+Золотые магниты собирают монеты и алмазы за вас.
 {SHORTLINE}
-{KEYWORD}Must be planted on magnet-shrooms
+{KEYWORD}Сажать на магнит-грибы
 {SHORTLINE}
-{FLAVOR}"How did I end up here?" asks Gold Magnet. "I was on the fast track --corner office, full 
-benefits, stock options. I was gonna be Vice President of Midwestern Operations. Now I'm here, on this 
-lawn, in serious danger of being eaten to death. Ooh! A coin!"
+{FLAVOR}«Как я здесь оказался?» — спрашивает Золотой магнит. «Я был на быстром пути — угловой офис, полный 
+соцпакет, опционы на акции. Я собирался стать вице-президентом по региональным операциям. А теперь я здесь, на этой 
+лужайке, под серьёзной угрозой быть съеденным насмерть. О! Монетка!»
 
 [COB_CANNON_DESCRIPTION]
-Click on the Cob Cannon to launch deadly cobs of corn.
+Нажмите на Кукурузную пушку, чтобы запустить смертоносные початки кукурузы.
 {SHORTLINE}
-{KEYWORD}Must be planted on 2 side-by-side kernel-pults
+{KEYWORD}Сажать на 2 соседние кукурузапульты
 {SHORTLINE}
-{FLAVOR}What's the deal with Cob Cannon, anyway?  He went to Harvard. He practices law in a prestigious 
-New York firm. He can explode whole areas of zombies with a single corn-launch. All this is common knowledge. 
-But deep inside, what really makes him tick?
+{FLAVOR}Что вообще за история с Кукурузной пушкой? Она окончила Гарвард. Она практикует право в престижной 
+нью-йоркской фирме. Она может уничтожить целые области зомби одним кукурузным залпом. Всё это общеизвестно. 
+Но что на самом деле ею движет изнутри?
 
 [IMITATER_DESCRIPTION]
-Imitaters let you use two of the same plant during a level!
+Подражатели позволяют использовать два одинаковых растения на уровне!
 {SHORTLINE}
-{FLAVOR}"I remember the Zombie Wars back in '76," says Imitater in a raspy, old-man's voice. "Back then, 
-we didn't have all these fancy peashooters and jalapenos. All we had was guts. Guts and a spoon."
+{FLAVOR}«Помню Зомби-войны семьдесят шестого,» — говорит Подражатель хриплым старческим голосом. «Тогда 
+у нас не было всех этих модных горохострелов и халапеньо. У нас были только мужество. Мужество и ложка.»
 
 [SPIKEROCK_DESCRIPTION]
-Spikerocks pop multiple tires and damage zombies that walk over it.
+Шипокамни прокалывают множество шин и наносят урон зомби, которые по ним ходят.
 {SHORTLINE}
-{KEYWORD}Must be planted on spikeweeds
+{KEYWORD}Сажать на колючки
 {SHORTLINE}
-{FLAVOR}Spikerock just got back from a trip to Europe. He had a great time, met some wonderful people, 
-really broadened his horizons. He never knew they made museums so big, or put so many paintings in them. 
-That was a big surprise for him.
+{FLAVOR}Шипокамень только что вернулся из поездки по Европе. Он отлично провёл время, познакомился с замечательными 
+людьми и действительно расширил свой кругозор. Он и не знал, что музеи бывают такими большими и что в них 
+столько картин. Для него это стало большим сюрпризом.
 
 [ZOMBIE_DESCRIPTION]
-Regular Garden-variety Zombie
+Обычный садовый зомби
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
+{KEYWORD}Прочность:{STAT} низкая {270}
 {SHORTLINE}
-{FLAVOR}This zombie loves brains. Can't get enough. Brains, brains, brains, day in and night out. 
-Old and stinky brains? Rotten brains? Brains clearly past their prime? Doesn't matter. Regular zombie wants 'em. 
+{FLAVOR}Этот зомби обожает мозги. Ему их всегда мало. Мозги, мозги, мозги, днём и ночью. 
+Старые и вонючие мозги? Гнилые мозги? Мозги, явно не первой свежести? Неважно. Обычный зомби их хочет. 
 
 [FLAG_ZOMBIE_DESCRIPTION]
-Flag Zombie marks the arrival of a huge pile or "wave" of zombies.
+Зомби-знаменосец отмечает прибытие огромной кучи или «волны» зомби.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
+{KEYWORD}Прочность:{STAT} низкая {270}
 {SHORTLINE}
-{FLAVOR}Make no mistake, Flag Zombie loves brains. But somewhere down the line he also picked 
-up a fascination with flags. Maybe it's because the flags always have brains on them. Hard to say.
+{FLAVOR}Не сомневайтесь, Зомби-знаменосец любит мозги. Но где-то по пути он также 
+увлёкся флагами. Может, потому что на флагах всегда нарисованы мозги. Сложно сказать.
 
 [CONEHEAD_ZOMBIE_DESCRIPTION]
-His traffic cone headpiece makes him twice as tough as normal zombies.
+Конус на его голове делает его вдвое прочнее обычных зомби.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {640}
+{KEYWORD}Прочность:{STAT} средняя {640}
 {SHORTLINE}
-{FLAVOR}Conehead Zombie shuffled mindlessly forward like every other zombie.
-But something made him stop, made him pick up a traffic cone and stick it on his head. Oh yeah. He likes to party.
+{FLAVOR}Зомби с конусом бездумно брёл вперёд, как и любой другой зомби.
+Но что-то заставило его остановиться, поднять дорожный конус и нахлобучить его себе на голову. О да. Он любит повеселиться.
 
 [BUCKETHEAD_ZOMBIE_DESCRIPTION]
-His bucket hat makes him extremely resistant to damage.
+Его шлем-ведро делает его чрезвычайно устойчивым к повреждениям.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} high {1370}
-{KEYMETAL}Weakness:{METAL} magnet-shroom
+{KEYWORD}Прочность:{STAT} высокая {1370}
+{KEYMETAL}Слабость:{METAL} магнит-гриб
 {SHORTLINE}
-{FLAVOR}Buckethead Zombie always wore a bucket. Part of it was to assert his uniqueness 
-in an uncaring world. Mostly he just forgot it was there in the first place.
+{FLAVOR}Зомби с ведром всегда носил ведро. Отчасти это было утверждение своей уникальности 
+в безразличном мире. В основном он просто забыл, что оно там.
 
 [POLE_VAULTING_ZOMBIE_DESCRIPTION]
-Pole Vaulting Zombie vaults with a pole.
+Зомби с шестом прыгает с помощью шеста.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {500}
-{KEYWORD}Speed:{STAT} fast, then normal (after jump)
-{KEYWORD}Special:{STAT} jumps the first plant he runs into
+{KEYWORD}Прочность:{STAT} средняя {500}
+{KEYWORD}Скорость:{STAT} быстрая, затем обычная (после прыжка)
+{KEYWORD}Особенность:{STAT} перепрыгивает первое растение на пути
 {SHORTLINE}
-{FLAVOR}Some zombies take it further, aspire more, push themselves beyond the 
-normal into greatness. That's Pole Vaulting Zombie right there. That is so him.
+{FLAVOR}Некоторые зомби идут дальше, стремятся к большему, выходят за рамки 
+обычного в величие. Это Зомби с шестом. Это точно про него.
 
 [NEWSPAPER_ZOMBIE_DESCRIPTION]
-His newspaper provides limited defense.
+Его газета обеспечивает ограниченную защиту.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
-{KEYWORD}Newspaper Toughness:{STAT} low {150}
-{KEYWORD}Speed:{STAT} normal, then fast (after losing newspaper)
+{KEYWORD}Прочность:{STAT} низкая {270}
+{KEYWORD}Прочность газеты:{STAT} низкая {150}
+{KEYWORD}Скорость:{STAT} обычная, затем быстрая (после потери газеты)
 {SHORTLINE}
-{FLAVOR}Newspaper Zombie was *this* close to finishing his sudoku puzzle. No wonder he's freaking out.
+{FLAVOR}Зомби с газетой был *настолько* близок к решению своего судоку. Неудивительно, что он в бешенстве.
 
 [SCREEN_DOOR_ZOMBIE_DESCRIPTION]
-His screen door is an effective shield.
+Его дверь — эффективный щит.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
-{KEYWORD}Screen Door Toughness:{STAT} high {1100}
-{KEYWORD}Weakness:{STAT} fume-shroom{METAL} and magnet-shroom{KEYWORD}
+{KEYWORD}Прочность:{STAT} низкая {270}
+{KEYWORD}Прочность двери:{STAT} высокая {1100}
+{KEYWORD}Слабость:{STAT} дымо-гриб{METAL} и магнит-гриб{KEYWORD}
 {SHORTLINE}
-{FLAVOR}He got his screen door from the last inexpertly defended home he visited, after he ATE THE HOMEOWNER'S BRAINS.
+{FLAVOR}Он взял эту дверь из последнего неумело защищённого дома, который посетил, после того как СЪЕЛ МОЗГИ ХОЗЯИНА.
 
 [FOOTBALL_ZOMBIE_DESCRIPTION]
-Football Zombie makes the big plays.
+Зомби-футболист делает крупные прорывы.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} very high {1670}
-{KEYWORD}Speed:{STAT} fast
-{KEYMETAL}Weakness:{METAL} magnet-shroom
+{KEYWORD}Прочность:{STAT} очень высокая {1670}
+{KEYWORD}Скорость:{STAT} быстрая
+{KEYMETAL}Слабость:{METAL} магнит-гриб
 {SHORTLINE}
-{FLAVOR}Football Zombie gives 110 percent whenever he's on the field. He's a team player 
-who delivers both offensively and defensively. He has no idea what a football is.
+{FLAVOR}Зомби-футболист выкладывается на 110 процентов на поле. Он командный игрок, 
+работающий как в нападении, так и в защите. Он понятия не имеет, что такое футбол.
 
 [DANCING_ZOMBIE_DESCRIPTION]
-Any resemblance between Dancing Zombie and persons living or dead is purely coincidental.
+Любое сходство между Танцующим зомби и реальными людьми, живыми или мёртвыми, является чистым совпадением.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {500}
-{KEYWORD}Special:{STAT} summons back-up dancers
+{KEYWORD}Прочность:{STAT} средняя {500}
+{KEYWORD}Особенность:{STAT} вызывает танцоров на подтанцовке
 {SHORTLINE}
-{FLAVOR}Dancing Zombie's latest album, "GrarrBRAINSarblarbl," is already rocketing up the undead charts.
+{FLAVOR}Последний альбом Танцующего зомби, «ГрррМОЗГИаррблабрл», уже стремительно поднимается в чартах нежити.
 
 [BACKUP_DANCER_DESCRIPTION]
-These zombies appear in sets of four whenever Dancing Zombie rocks out.
+Эти зомби появляются группами по четыре, когда Танцующий зомби зажигает.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
+{KEYWORD}Прочность:{STAT} низкая {270}
 {SHORTLINE}
-{FLAVOR}Backup Dancer Zombie spent six years perfecting his art at the Chewliard 
-Performing Arts School in Zombie New York City.
+{FLAVOR}Танцор-зомби шесть лет совершенствовал своё искусство в Школе 
+исполнительских искусств Жевлиард в Зомби-Нью-Йорке.
 
 [DUCKY_TUBE_ZOMBIE_DESCRIPTION]
-The ducky tube allows this zombie to float on water.
+Уточка позволяет этому зомби плавать по воде.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
-{AQUATIC}Only appears in the pool
+{KEYWORD}Прочность:{STAT} низкая {270}
+{AQUATIC}Появляется только в бассейне
 {SHORTLINE}
-{FLAVOR}It takes a certain kind of zombie to be a Ducky Tuber. Not every zombie can handle it. 
-Some crack. They can't take it. They walk away and give up on brains forever.
+{FLAVOR}Нужен особый тип зомби, чтобы быть зомби с уточкой. Не каждый зомби это выдержит. 
+Некоторые ломаются. Они не справляются. Они уходят и навсегда отказываются от мозгов.
 
 [SNORKEL_ZOMBIE_DESCRIPTION]
-Snorkel zombies can swim underwater.
+Зомби с трубкой могут плавать под водой.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
-{KEYWORD}Special:{STAT} submerges to avoid attacks
-{AQUATIC}Only appears in the pool
+{KEYWORD}Прочность:{STAT} низкая {270}
+{KEYWORD}Особенность:{STAT} погружается, чтобы избежать атак
+{AQUATIC}Появляется только в бассейне
 {SHORTLINE}
-{FLAVOR}Zombies don't breathe. They don't need air. So why does Snorkel Zombie need a snorkel to swim underwater?{KEYWORD}
-{FLAVOR}Answer: peer pressure.
+{FLAVOR}Зомби не дышат. Им не нужен воздух. Так зачем Зомби с трубкой нужна трубка, чтобы плавать под водой?{KEYWORD}
+{FLAVOR}Ответ: давление сверстников.
 
 [ZOMBONI_DESCRIPTION]
-{KEYWORD}Toughness:{STAT} high {1350}
-{KEYWORD}Special:{STAT} crushes plants, leaves an ice trail
-{FLAVOR}Not to be mistaken for a Zamboni� brand ice resurfacing machine. Zamboni� and the image of the ice-resurfacing
-machine are registered trademarks of Frank J. Zamboni & Co., Inc., and "Zomboni" is used with permission. For all
-your non-zombie related ice resurfacing needs, visit www.zamboni.com!
+{KEYWORD}Прочность:{STAT} высокая {1350}
+{KEYWORD}Особенность:{STAT} давит растения, оставляет ледовый след
+{FLAVOR}Не путать с ледозаливочной машиной Zamboni®. Zamboni® и изображение ледозаливочной
+машины являются зарегистрированными товарными знаками Frank J. Zamboni & Co., Inc., а "Зомбони" используется с разрешения. По всем
+вопросам, не связанным с зомби, по заливке льда посетите www.zamboni.com!
 
 [ZOMBIE_BOBSLED_TEAM_DESCRIPTION]
-These zombies appear in teams of four.
+Эти зомби появляются командами по четыре.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low (each zombie) {270}
-{KEYWORD}Bobsled Toughness:{STAT} low {300}
-{KEYWORD}Special:{STAT} only appears on ice
+{KEYWORD}Прочность:{STAT} низкая (каждый зомби) {270}
+{KEYWORD}Прочность бобслея:{STAT} низкая {300}
+{KEYWORD}Особенность:{STAT} появляется только на льду
 {SHORTLINE}
-{FLAVOR}Zombie Bobsled Team worked hard to get where they are. They live together, eat brains 
-together and train together to become a cohesive zombie unit.
+{FLAVOR}Зомби-бобслеисты усердно работали, чтобы добраться до вершины. Они живут вместе, едят мозги 
+вместе и тренируются вместе, чтобы стать сплочённым зомби-отрядом.
 
 [DOLPHIN_RIDER_ZOMBIE_DESCRIPTION]
-Dolphin Rider Zombies use dolphins to exploit weaknesses in your pool defense.
+Зомби на дельфине используют дельфинов, чтобы находить слабые места в вашей защите бассейна.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {500}
-{KEYWORD}Speed:{STAT} fast, then slow (after jump)
-{KEYWORD}Special:{STAT} jumps over the first plant he runs into
-{AQUATIC}Only appears in the pool
+{KEYWORD}Прочность:{STAT} средняя {500}
+{KEYWORD}Скорость:{STAT} быстрая, затем медленная (после прыжка)
+{KEYWORD}Особенность:{STAT} перепрыгивает первое растение на пути
+{AQUATIC}Появляется только в бассейне
 {SHORTLINE}
-{FLAVOR}The dolphin is also a zombie.
+{FLAVOR}Дельфин тоже зомби.
 
 [ZOMBIE_YETI_DESCRIPTION]
-A rare and curious creature.
+Редкое и любопытное создание.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} high {1350}
-{KEYWORD}Special:{STAT} runs away after a short while
+{KEYWORD}Прочность:{STAT} высокая {1350}
+{KEYWORD}Особенность:{STAT} убегает через некоторое время
 {SHORTLINE}
-{FLAVOR}Little is known about the Zombie Yeti other than his name, birth date, social security number, 
-educational history, past work experience and sandwich preference (roast beef and Swiss).
+{FLAVOR}О Зомби-Йети известно немного, помимо его имени, даты рождения, номера социального страхования, 
+образования, опыта работы и предпочтений в бутербродах (ростбиф и швейцарский сыр).
 
 [JACK_IN_THE_BOX_ZOMBIE_DESCRIPTION]
-This zombie carries an explosive surprise.
+Этот зомби несёт взрывной сюрприз.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {500}
-{KEYWORD}Speed:{STAT} fast
-{KEYWORD}Special:{STAT} jack-in-the-box explodes
-{KEYMETAL}Weakness:{METAL} magnet-shroom
+{KEYWORD}Прочность:{STAT} средняя {500}
+{KEYWORD}Скорость:{STAT} быстрая
+{KEYWORD}Особенность:{STAT} коробка взрывается
+{KEYMETAL}Слабость:{METAL} магнит-гриб
 {SHORTLINE}
-{FLAVOR}This zombie shivers, not because he's cold but because he's crazy.
+{FLAVOR}Этот зомби дрожит — не потому что ему холодно, а потому что он безумен.
 
 [BALLOON_ZOMBIE_DESCRIPTION]
-Balloon Zombie floats above the fray, immune to most attacks.
+Зомби с воздушным шариком летает над битвой, неуязвимый для большинства атак.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
-{KEYWORD}Special:{STAT} flying
-{KEYWORD}Weakness:{STAT} cactus and blover
+{KEYWORD}Прочность:{STAT} низкая {270}
+{KEYWORD}Особенность:{STAT} летает
+{KEYWORD}Слабость:{STAT} кактус и ветродуй
 {SHORTLINE}
-{FLAVOR}Balloon Zombie really lucked out. The balloon thing really works and 
-none of the other zombies have picked up on it.
+{FLAVOR}Зомби с воздушным шариком очень повезло. Трюк с шариком реально работает, 
+и никто из других зомби этого не раскусил.
 
 [DIGGER_ZOMBIE_DESCRIPTION]
-This zombie digs to bypass your defenses.
+Этот зомби копает, чтобы обойти вашу оборону.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {370}
-{KEYWORD}Speed:{STAT} fast, then slow
-{KEYWORD}Special:{STAT} tunnels underground and appears on the left side of the lawn
-{KEYWORD}Weakness:{STAT} split pea{METAL} and magnet-shroom{KEYWORD}
+{KEYWORD}Прочность:{STAT} средняя {370}
+{KEYWORD}Скорость:{STAT} быстрая, затем медленная
+{KEYWORD}Особенность:{STAT} прокапывает тоннель и появляется слева от лужайки
+{KEYWORD}Слабость:{STAT} расщеплённый горох{METAL} и магнит-гриб{KEYWORD}
 {SHORTLINE}
-{FLAVOR}Digger Zombie spends three days a week getting his excavation permits in order.
+{FLAVOR}Зомби-землекоп три дня в неделю тратит на оформление разрешений на раскопки.
 
 [POGO_ZOMBIE_DESCRIPTION]
-Pogo Zombie hops to bypass your defenses.
+Зомби на пого-палке прыгает, обходя вашу оборону.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {500}
-{KEYWORD}Special:{STAT} hops over plants
-{KEYMETAL}Weakness:{METAL} magnet-shroom
+{KEYWORD}Прочность:{STAT} средняя {500}
+{KEYWORD}Особенность:{STAT} перепрыгивает через растения
+{KEYMETAL}Слабость:{METAL} магнит-гриб
 {SHORTLINE}
-{FLAVOR}Sproing! Sproing! Sproing! That's the sound of a powerful and effective zombie doing what he does best.
+{FLAVOR}Прыг! Прыг! Прыг! Это звук мощного и эффективного зомби, делающего то, что он умеет лучше всего.
 
 [BUNGEE_ZOMBIE_DESCRIPTION]
-Bungee Zombie attacks from above.
+Зомби-банджи атакует сверху.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {400}
-{KEYWORD}Special:{STAT} descends from the sky and steals a plant
+{KEYWORD}Прочность:{STAT} средняя {400}
+{KEYWORD}Особенность:{STAT} спускается с неба и крадёт растение
 {SHORTLINE}
-{FLAVOR}Bungee Zombie loves to take risks. After all, what's the point of being dead if you don't live a little?
+{FLAVOR}Зомби-банджи любит рисковать. В конце концов, какой смысл быть мёртвым, если не жить немного?
 
 [LADDER_ZOMBIE_DESCRIPTION]
-Ladder Zombie climbs over obstacles.
+Зомби с лестницей перелезает через препятствия.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {500}
-{KEYWORD}Ladder Toughness:{STAT} medium {500}
-{KEYWORD}Speed:{STAT} fast, then slow (after placing ladder)
-{KEYWORD}Weakness:{STAT} fume-shroom{METAL} and magnet-shroom{KEYWORD}
+{KEYWORD}Прочность:{STAT} средняя {500}
+{KEYWORD}Прочность лестницы:{STAT} средняя {500}
+{KEYWORD}Скорость:{STAT} быстрая, затем медленная (после установки лестницы)
+{KEYWORD}Слабость:{STAT} дымо-гриб{METAL} и магнит-гриб{KEYWORD}
 {SHORTLINE}
-{FLAVOR}He picked the ladder up for $8.99.
+{FLAVOR}Он купил лестницу за $8.99.
 
 [CATAPULT_ZOMBIE_DESCRIPTION]
-Catapult Zombie operates heavy machinery.
+Зомби-катапульта управляет тяжёлой техникой.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} medium {850}
-{KEYWORD}Special:{STAT} lobs basketballs at your plants
+{KEYWORD}Прочность:{STAT} средняя {850}
+{KEYWORD}Особенность:{STAT} бросает баскетбольные мячи в ваши растения
 {SHORTLINE}
-{FLAVOR}Of all the things Catapult Zombie could launch with his catapult, basketballs seemed 
-like the best and most obvious choice.
+{FLAVOR}Из всего, что Зомби-катапульта мог запускать своей катапультой, баскетбольные мячи показались 
+лучшим и самым очевидным выбором.
 
 [GARGANTUAR_DESCRIPTION]
-Gargantuar is a gigantic zombie.
+Гаргантюа — это гигантский зомби.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} extremely high {3000}
+{KEYWORD}Прочность:{STAT} чрезвычайно высокая {3000}
 {SHORTLINE}
-{FLAVOR}When Gargantuar walks, the earth trembles. When he moans, other zombies fall silent.
-He is the zombie other zombies dream they could be. But he still can't find a girlfriend. 
+{FLAVOR}Когда Гаргантюа идёт, земля содрогается. Когда он стонет, другие зомби замолкают.
+Он тот зомби, которым другие зомби мечтают стать. Но он всё ещё не может найти девушку. 
 
 [IMP_DESCRIPTION]
-Imps are tiny zombies hurled by Gargantuar deep into your defenses.
+Бесёнки — это крошечные зомби, которых Гаргантюа забрасывает вглубь вашей обороны.
 {SHORTLINE}
-{KEYWORD}Toughness:{STAT} low {270}
+{KEYWORD}Прочность:{STAT} низкая {270}
 {SHORTLINE}
-{FLAVOR}Imp may be small, but he's wiry. He's proficient in zombie judo, zombie karate 
-and zombie bare-knuckle brawling. He also plays the melodica.
+{FLAVOR}Бесёнок мал, но жилист. Он владеет зомби-дзюдо, зомби-карате 
+и зомби-кулачным боем. Он также играет на мелодике.
 
 [BOSS_DESCRIPTION]
-Dr. Zomboss rules them all.
+Доктор Зомбосс правит ими всеми.
 {SHORTLINE}
-{KEYWORD}Toughness (in Zombot shell):{STAT} extreme
+{KEYWORD}Прочность (в корпусе Зомбота):{STAT} экстремальная
 {SHORTLINE}
-{FLAVOR}Edgar George Zomboss achieved his Doctorate in Thanatology in only two years. Quickly mastering 
-thanatological technology, he built his fearsome Zombot and set about establishing absolute dominance of his local subdivision.
+{FLAVOR}Эдгар Джордж Зомбосс получил докторскую степень по танатологии всего за два года. Быстро освоив 
+танатологические технологии, он построил свой грозный Зомбот и начал устанавливать абсолютное господство в своём районе.
 
 [DOG_WALKING_ZOMBIE_DESCRIPTION]
-Dog Walking Zombie description
+Описание Зомби с собакой
 
 [DOG_ZOMBIE_DESCRIPTION]
-Dog Zombie description
+Описание Собаки-зомби
 
 [PROPELLER_ZOMBIE_DESCRIPTION]
-Propeller Zombie description
+Описание Зомби с пропеллером
 
 [CRAZY_DAVE_201]
-Evening, {PLAYER_NAME}.
+Добрый вечер, {PLAYER_NAME}.
+
 [CRAZY_DAVE_202]
-Those zombies just won't let up, will they?
+Эти зомби никак не унимаются, а?
+
 [CRAZY_DAVE_203]
-You'll notice that fighting zombies at night is different than in the day.
+Ты заметишь, что борьба с зомби ночью отличается от дневной.
+
 [CRAZY_DAVE_204]
-For one, you won't get any sun falling from the sky.
+Во-первых, с неба не будет падать солнце.
+
 [CRAZY_DAVE_205]
-You can still get sun from sunflowers, though.
+Но ты всё ещё можешь получать солнце от подсолнухов.
+
 [CRAZY_DAVE_206]
-And lucky for you, you got yourself some puff-shrooms.
+И тебе повезло, что у тебя есть дым-грибы.
+
 [CRAZY_DAVE_207]
-Plant as many of those as you can and you'll be A-O-GOOD.
+Сажай их побольше, и всё будет ХОРОШО.
 
 [CRAZY_DAVE_301]
-Hey, you found my car key!
+Эй, ты нашёл мой ключ от машины!
+
 [CRAZY_DAVE_302]
-You know what that means...
+Ты знаешь, что это значит...
+
 [CRAZY_DAVE_303]
-Crazy Dave's Twiddydinkies is open for business! {MOUTH_SMALL_SMILE}
+Лавка Безумного Дэйва открыта для бизнеса! {MOUTH_SMALL_SMILE}
+
 [CRAZY_DAVE_304]
-Have a look! See if you can't find something you like! {MOUTH_SMALL_SMILE}
+Посмотри! Может, найдёшь что-нибудь по вкусу! {MOUTH_SMALL_SMILE}
 
 [CRAZY_DAVE_401]
-Ever play a game called Whack-a-Zombie?
+Ты когда-нибудь играл в игру «Стукни-зомби»?
+
 [CRAZY_DAVE_402]
-It's just like huntin' squirbos.
+Это прямо как охота на белкобурундуков.
+
 [CRAZY_DAVE_403]
-You know, those furry little rodents that dig holes in your lawn?
+Знаешь, такие мохнатые грызуны, которые роют ямы на твоём газоне?
+
 [CRAZY_DAVE_404]
-Yeah, just like that, but instead of squirbos, it's zombies.
+Да, прямо как это, но вместо белкобурундуков — зомби.
+
 [CRAZY_DAVE_405]
-{SHOW_HAMMER}And instead of a shovel, it's a mallet.
+{SHOW_HAMMER}А вместо лопаты {D} молоток.
+
 [CRAZY_DAVE_406]
-And instead of ME, it's YOU! {MOUTH_BIG_SMILE} {SCREAM}
+А вместо МЕНЯ — ТЫ! {MOUTH_BIG_SMILE} {SCREAM}
 
 [CRAZY_DAVE_501]
-Looks like the zombies gave up attacking your front yard.
+Похоже, зомби отказались от атаки на твой передний двор.
+
 [CRAZY_DAVE_502]
-Now they're trying your backyard.
+Теперь они лезут на задний.
+
 [CRAZY_DAVE_503]
-And to top it all off, you can't even use your mushrooms!
+И вдобавок ты даже не можешь использовать грибы!
+
 [CRAZY_DAVE_504]
-'cause they'll fall asleep during the day!
+Потому что днём они уснут!
+
 [CRAZY_DAVE_505]
-Well isn't that just dandy!
+Ну разве это не прелесть!
 
 [CRAZY_DAVE_601]
-YOU FOUND MY MAGIC TACO!! {SCREAM2}
+ТЫ НАШЁЛ МОЁ ВОЛШЕБНОЕ ТАКО!! {SCREAM2}
+
 [CRAZY_DAVE_602]
-{SHOW_MONEYBAG}I must have it! I'll give you $1000!
+{SHOW_MONEYBAG}Мне оно нужно! Я дам тебе $1000!
+
 [CRAZY_DAVE_603]
-YES!  THE TACO IS MINE! {SCREAM}
+ДА! ТАКО МОЁ! {SCREAM}
+
 [CRAZY_DAVE_604]
-Why'd I give you so much money for a taco?
+Зачем я отдал тебе столько денег за тако?
+
 [CRAZY_DAVE_605]
-{SHAKE}BECAUSE I'M CRAAAAZY!!!! {MOUTH_BIG_SMILE}
+{SHAKE}ПОТОМУ ЧТО Я БЕЗУУУМНЫЙ!!!! {MOUTH_BIG_SMILE}
+
 [CRAZY_DAVE_606]
-Take a look around my shop! You'll notice I got some new items in stock!
+Загляни в мой магазин! Заметишь, что у меня появились новые товары!
 
 [CRAZY_DAVE_701]
-Funny thing about the zombie process. Sometimes it makes 'em come out real little.
+Забавная штука с процессом зомбификации. Иногда они получаются совсем маленькие.
+
 [CRAZY_DAVE_702]
-Real little and REAL MEAN!
+Совсем маленькие и ОЧЕНЬ ЗЛЫЕ!
+
 [CRAZY_DAVE_703]
-Defend your shins! {SCREAM}
+Береги свои голени! {SCREAM}
 
 [CRAZY_DAVE_801]
-You know, they used to call me "Fog Man"
+Знаешь, меня раньше звали «Человек-туман»
+
 [CRAZY_DAVE_802]
-'cause I would hang out in the fog and JUMP OUT AT PEOPLE! {MOUTH_BIG_SMILE}
+Потому что я прятался в тумане и ВЫСКАКИВАЛ НА ЛЮДЕЙ! {MOUTH_BIG_SMILE}
+
 [CRAZY_DAVE_803]
-Ah, those were the days. {MOUTH_SMALL_SMILE}
+Эх, славные были деньки. {MOUTH_SMALL_SMILE}
 
 [CRAZY_DAVE_1101]
-Why'd it get so dark all of a sudden?
+Почему вдруг так потемнело?
+
 [CRAZY_DAVE_1102]
-This can't be good.
+Это не к добру.
+
 [CRAZY_DAVE_1103]
-Oh well, hope you survive the night!
+Ну ладно, надеюсь, ты переживёшь эту ночь!
 
 [CRAZY_DAVE_1201]
-Whoa! They even found a way onto your roof!
+Ого! Они даже нашли путь на крышу!
+
 [CRAZY_DAVE_1202]
-Those are some persistent zombies, dude.
+Настырные зомби, чувак.
+
 [CRAZY_DAVE_1203]
-You'll need to use cabbage-pults here due to your roof's angle.
+Здесь тебе придётся использовать капустапульты из-за наклона крыши.
+
 [CRAZY_DAVE_1204]
-Remember that, and you're good to go!
+Запомни это, и вперёд!
 
 [CRAZY_DAVE_1301]
-Zen Garden is pretty nifty, huh?
+Дзен-сад — классная штука, а?
+
 [CRAZY_DAVE_1302]
-You can visit it any time from the main menu.
+Ты можешь посещать его в любое время из главного меню.
+
 [CRAZY_DAVE_1303]
-But enough of that! It's time to defend your house!
+Но хватит об этом! Пора защищать свой дом!
+
 [CRAZY_DAVE_1304]
-I have to warn you...
+Должен тебя предупредить...
+
 [CRAZY_DAVE_1305]
-You are going to hate this next level.
+Тебе ужасно не понравится следующий уровень.
+
 [CRAZY_DAVE_1306]
-Why?  Because it's non-stop bungee zombie after bungee zombie.
+Почему? Потому что там бесконечные зомби-банджи один за другим.
+
 [CRAZY_DAVE_1307]
-I hate those confounded bungees!!! {SCREAM2}
+Ненавижу этих проклятых банджи!!! {SCREAM2}
+
 [CRAZY_DAVE_1308]
-I hate them!!
+Ненавижу их!!
+
 [CRAZY_DAVE_1309]
-Hate them with a passion!
+Ненавижу со всей страстью!
+
 [CRAZY_DAVE_1310]
-And a vengeance!
+И с жаждой мести!
+
 [CRAZY_DAVE_1311]
-A-Whoop-a-dee-doo! Here come those idiots now!
+О-хо-хо! Вот и эти идиоты!
 
 [CRAZY_DAVE_1401]
-Hey, you've collected {MONEY} in coins so far!
+Эй, ты собрал уже {MONEY} монет!
+
 [CRAZY_DAVE_1402]
-When you collect {UPGRADE_COST}, I'll sell you something really neat-o!
+Когда соберёшь {UPGRADE_COST}, я продам тебе кое-что классное!
 
 [CRAZY_DAVE_1501]
-Hey! Wanna buy an extra seed slot?
+Эй! Хочешь купить дополнительный слот для семян?
+
 [CRAZY_DAVE_1502]
-It'll cost you {UPGRADE_COST}, but you'll be able to choose 7 seeds per level instead of 6!
+Это обойдётся в {UPGRADE_COST}, но ты сможешь выбирать 7 семян за уровень вместо 6!
+
 [CRAZY_DAVE_1503]
-{NO_CLICK}How's that sound?
+{NO_CLICK}Как тебе?
+
 [CRAZY_DAVE_1510]
-All right! And hey, when you save up to {UPGRADE_COST}, I'll sell you the 8-seed slot upgrade!
+Отлично! И когда накопишь {UPGRADE_COST}, я продам тебе улучшение до 8 слотов!
+
 [CRAZY_DAVE_1511]
-Check you later!
+До встречи!
+
 [CRAZY_DAVE_1520]
-Bummer, dude!
+Жаль, чувак!
 
 [CRAZY_DAVE_1551]
-Hey! Wanna buy an extra seed slot?
+Эй! Хочешь купить дополнительный слот для семян?
+
 [CRAZY_DAVE_1552]
-It'll cost you {UPGRADE_COST}, but you'll be able to choose 8 seeds per level instead of 7!
+Это обойдётся в {UPGRADE_COST}, но ты сможешь выбирать 8 семян за уровень вместо 7!
+
 [CRAZY_DAVE_1553]
-{NO_CLICK}How's that sound?
+{NO_CLICK}Как тебе?
+
 [CRAZY_DAVE_1560]
-All right!
+Отлично!
+
 [CRAZY_DAVE_1570]
-Bummer, dude!
+Жаль, чувак!
 
 [UPGRADE_DIALOG_BODY]
-Upgrade to {SLOTS} seed slots?
+Улучшить до {SLOTS} слотов для семян?
 
 [CRAZY_DAVE_1601]
-Man, those zombies just keep a-comin'!
+Эти зомби просто не прекращают!
+
 [CRAZY_DAVE_1602]
-This time around, I wanna pick some seeds for you!
+В этот раз я хочу выбрать семена за тебя!
+
 [CRAZY_DAVE_1603]
-I choose... these three!
+Я выбираю... вот эти три!
 
 [CRAZY_DAVE_1700]
-{NO_CLICK}I'll give you ${SELL_PRICE}0 for that {PLANT_TYPE}!
+{NO_CLICK}Я дам тебе ${SELL_PRICE}0 за этот {PLANT_TYPE}!
 
 [CRAZY_DAVE_2000]
-{NO_SOUND}{NO_CLICK}Plant these on your repeaters to turn them into gatling peas! Gatling peas shoot four peas at a time!
+{NO_SOUND}{NO_CLICK}Посади их на скорострелы, чтобы превратить их в гатлинг-горох! Гатлинг-горох стреляет четырьмя горошинами за раз!
 
 [CRAZY_DAVE_2001]
-{NO_SOUND}{NO_CLICK}Plant these on your sunflowers to turn them into twin sunflowers! Twin sunflowers give twice as much sun as a sunflower!
+{NO_SOUND}{NO_CLICK}Посади их на подсолнухи, чтобы превратить их в двойные подсолнухи! Двойные подсолнухи дают вдвое больше солнца!
 
 [CRAZY_DAVE_2002]
-{NO_SOUND}{NO_CLICK}Plant these on your fume-shrooms to turn them into gloom-shrooms! Gloom-shrooms do rapid attacks in a small area!
+{NO_SOUND}{NO_CLICK}Посади их на дымо-грибы, чтобы превратить их в мрачные грибы! Мрачные грибы быстро атакуют в малой области!
 
 [CRAZY_DAVE_2003]
-{NO_SOUND}{NO_CLICK}Plant these on your lily pads to turn them into cattails! Cattails can attack any lane and take down balloon zombies!
+{NO_SOUND}{NO_CLICK}Посади их на кувшинки, чтобы превратить их в рогозы! Рогозы могут атаковать любую линию и сбивать зомби на шариках!
 
 [CRAZY_DAVE_2004]
-{NO_SOUND}{NO_CLICK}Plant these on your melon-pults to turn them into winter melons! Winter melons do heavy damage and slow groups of zombies!
+{NO_SOUND}{NO_CLICK}Посади их на арбузапульты, чтобы превратить их в зимние арбузы! Зимние арбузы наносят тяжёлый урон и замедляют группы зомби!
 
 [CRAZY_DAVE_2005]
-{NO_SOUND}{NO_CLICK}Plant these on your magnet-shrooms to turn them into gold magnets! Gold magnets collect coins and diamonds for you!
+{NO_SOUND}{NO_CLICK}Посади их на магнит-грибы, чтобы превратить их в золотые магниты! Золотые магниты собирают монеты и алмазы за вас!
 
 [CRAZY_DAVE_2006]
-{NO_SOUND}{NO_CLICK}Plant these on your spikeweeds to turn them into spikerocks! Spikerocks do twice the damage and are extremely durable!
+{NO_SOUND}{NO_CLICK}Посади их на колючки, чтобы превратить их в шипокамни! Шипокамни наносят вдвое больше урона и очень прочны!
 
 [CRAZY_DAVE_2007]
-{NO_SOUND}{NO_CLICK}Plant these on your kernel-pults to turn them into cob cannons! Click on a cob cannon to launch a deadly attack!
+{NO_SOUND}{NO_CLICK}Посади их на кукурузапульты, чтобы превратить их в кукурузные пушки! Нажми на кукурузную пушку, чтобы нанести смертоносную атаку!
 
 [CRAZY_DAVE_2008]
-{NO_SOUND}{NO_CLICK}This Imitater lets you have two of the same plant during a level!
+{NO_SOUND}{NO_CLICK}Этот Подражатель позволяет иметь два одинаковых растения на уровне!
 
 [CRAZY_DAVE_2009]
-{NO_SOUND}{NO_CLICK}This extra mower will give you another line of defense after a lawn mower is used!
+{NO_SOUND}{NO_CLICK}Эта дополнительная газонокосилка даст вам ещё одну линию обороны после использования предыдущей!
 
 [CRAZY_DAVE_2010]
-{NO_SOUND}{NO_CLICK}This Marigold Sprout goes in your Zen Garden! Grow it to full-size, and it'll reward you nicely!
+{NO_SOUND}{NO_CLICK}Этот росток ноготков для вашего Дзен-сада! Вырастите его до полного размера, и он вас щедро наградит!
 
 [CRAZY_DAVE_2011]
-{NO_SOUND}{NO_CLICK}This extra seed slot will let you choose 7 plants per level!
+{NO_SOUND}{NO_CLICK}Этот дополнительный слот позволит выбирать 7 растений на уровень!
 
 [CRAZY_DAVE_2012]
-{NO_SOUND}{NO_CLICK}This extra seed slot will let you choose 8 plants per level!
+{NO_SOUND}{NO_CLICK}Этот дополнительный слот позволит выбирать 8 растений на уровень!
 
 [CRAZY_DAVE_2013]
-{NO_SOUND}{NO_CLICK}This extra seed slot will let you choose 9 plants per level!
+{NO_SOUND}{NO_CLICK}Этот дополнительный слот позволит выбирать 9 растений на уровень!
 
 [CRAZY_DAVE_2014]
-{NO_SOUND}{NO_CLICK}This extra seed slot will let you choose 10 plants per level!
+{NO_SOUND}{NO_CLICK}Этот дополнительный слот позволит выбирать 10 растений на уровень!
 
 [CRAZY_DAVE_2015]
-{NO_CLICK}All twiddydinkies are priced to move!!
+{NO_CLICK}Все безделушки по самым низким ценам!!
 
 [CRAZY_DAVE_2016]
-{NO_CLICK}ACT NOW! I'M CRRRRRAAAZY!! {SCREAM}
+{NO_CLICK}ПОКУПАЙТЕ СЕЙЧАС! Я БЕЗУУУМНЫЙ!! {SCREAM}
 
 [CRAZY_DAVE_2017]
-{NO_CLICK}Our prices are unbelievable!!!
+{NO_CLICK}Наши цены невероятны!!!
 
 [CRAZY_DAVE_2018]
-{NO_CLICK}I eat food off the floor!
+{NO_CLICK}Я ем еду с пола!
 
 [CRAZY_DAVE_2019]
-{NO_SOUND}{NO_CLICK}The Golden Watering Can lets you water several plants at once!
+{NO_SOUND}{NO_CLICK}Золотая лейка позволяет поливать несколько растений сразу!
 
 [CRAZY_DAVE_2020]
-{NO_SOUND}{NO_CLICK}Your Zen Garden plants need fertilizer to grow!
+{NO_SOUND}{NO_CLICK}Вашим растениям в Дзен-саду нужно удобрение для роста!
 
 [CRAZY_DAVE_2021]
-{NO_SOUND}{NO_CLICK}This Phonograph lets you play music for your Zen Garden plants! It keeps them happy for an entire day!
+{NO_SOUND}{NO_CLICK}Этот граммофон играет музыку для ваших растений в Дзен-саду! Он делает их счастливыми на целый день!
 
 [CRAZY_DAVE_2022]
-{NO_SOUND}{NO_CLICK}Zen Garden plants require Bug Spray from time to time! It keeps them happy for an entire day!
+{NO_SOUND}{NO_CLICK}Растениям в Дзен-саду время от времени нужен спрей от насекомых! Он делает их счастливыми на целый день!
 
 [CRAZY_DAVE_2023]
-{NO_SOUND}{NO_CLICK}The Gardening Glove lets you move your Zen Garden plants around!
+{NO_SOUND}{NO_CLICK}Садовая перчатка позволяет перемещать растения в Дзен-саду!
 
 [CRAZY_DAVE_2024]
-{NO_SOUND}{NO_CLICK}You'll need this Wheel Barrow to transport your Zen Garden plants between gardens!
+{NO_SOUND}{NO_CLICK}Вам понадобится эта тачка, чтобы перевозить растения между садами!
 
 [CRAZY_DAVE_2025]
-{NO_SOUND}{NO_CLICK}Stinky the Snail helps you pick up coins in your Zen Garden!
+{NO_SOUND}{NO_CLICK}Улитка Вонючка помогает собирать монеты в Дзен-саду!
 
 [CRAZY_DAVE_2026]
-{NO_SOUND}{NO_CLICK}These Pool Cleaners add an extra line of defense on levels with a pool!
+{NO_SOUND}{NO_CLICK}Эти очистители бассейна добавят ещё одну линию обороны на уровнях с бассейном!
 
 [CRAZY_DAVE_2027]
-{NO_SOUND}{NO_CLICK}These Roof Cleaners add an extra line of defense for those difficult roof levels!
+{NO_SOUND}{NO_CLICK}Эти очистители крыши добавят ещё одну линию обороны на сложных уровнях с крышей!
 
 [CRAZY_DAVE_2028]
-{NO_SOUND}{NO_CLICK}This Garden Rake takes out the first zombie that steps on it! It lasts for 3 levels!
+{NO_SOUND}{NO_CLICK}Эти садовые грабли уничтожат первого зомби, который на них наступит! Действуют 3 уровня!
 
 [CRAZY_DAVE_2029]
-{NO_SOUND}{NO_CLICK}This Aquarium Garden is a place you can keep your aquatic Zen Garden plants!
+{NO_SOUND}{NO_CLICK}Этот Аквариум — место, где вы можете держать водные растения из Дзен-сада!
 
 [CRAZY_DAVE_2030]
-{NO_SOUND}{NO_CLICK}The Tree of Wisdom will tell you valuable tips and secrets if you grow it tall enough!
+{NO_SOUND}{NO_CLICK}Дерево Мудрости будет давать вам ценные советы и секреты, если вы вырастите его достаточно высоким!
 
 [CRAZY_DAVE_2031]
-{NO_SOUND}{NO_CLICK}Purchase some tree food to grow your Tree of Wisdom nice and tall!
+{NO_SOUND}{NO_CLICK}Купите корм для дерева, чтобы вырастить Дерево Мудрости красивым и высоким!
 
 [CRAZY_DAVE_2032]
-{NO_SOUND}{NO_CLICK}This Mushroom Garden is a place you can keep your Zen Garden plants that fall asleep during the day!
+{NO_SOUND}{NO_CLICK}Этот Грибной сад — место, где вы можете держать растения из Дзен-сада, которые засыпают днём!
 
 [CRAZY_DAVE_2033]
-{NO_SOUND}{NO_CLICK}Wall-nut First Aid lets you plant fresh new wall-nuts over damaged ones!  Works for tall-nuts and pumpkins too!
+{NO_SOUND}{NO_CLICK}Первая помощь для орехов позволяет сажать новые орехи поверх повреждённых! Работает также для высоких орехов и тыкв!
 
 [CRAZY_DAVE_2034]
-{NO_SOUND}{NO_CLICK}Get more levels, more plants, and more zombies in the full version of this game!
+{NO_SOUND}{NO_CLICK}Получите больше уровней, больше растений и больше зомби в полной версии этой игры!
 
 [CRAZY_DAVE_2100]
-Hey, check it out, you found a watering can!
+Эй, смотри, ты нашёл лейку!
+
 [CRAZY_DAVE_2101]
-In honor of this
-occasion I present you: 
-Your very own Zen Garden!
+В честь этого
+события дарю тебе: 
+Твой собственный Дзен-сад!
+
 [CRAZY_DAVE_2102]
-Hey, I'll even start you off with a couple of sprouts!
+Эй, я даже дам тебе пару ростков для начала!
+
 [CRAZY_DAVE_2103]
-Grow them to full-size, and they'll reward you nicely!
+Вырасти их до полного размера, и они тебя щедро наградят!
+
 [CRAZY_DAVE_2104]
-Have fun!
+Удачи!
 
 [CRAZY_DAVE_2200]
-The zombies asked me to help them practice invading houses.
+Зомби попросили меня помочь им потренироваться во вторжении в дома.
+
 [CRAZY_DAVE_2201]
-I told them it'd be okay as long as no plants were harmed.
+Я сказал, что это нормально, пока ни одно растение не пострадает.
+
 [CRAZY_DAVE_2202]
-So, I put a bunch of cardboard cut-outs on your lawn.
+Так что я расставил кучу картонных макетов на твоём газоне.
+
 [CRAZY_DAVE_2203]
-Have fun!
+Удачи!
 
 [CRAZY_DAVE_2300]
-Uh oh, he's here.
+О нет, он здесь.
+
 [CRAZY_DAVE_2301]
-Better get ready.
+Лучше приготовься.
+
 [CRAZY_DAVE_2302]
-It's gonna be one heckuva fight!
+Это будет жаркая битва!
+
 [CRAZY_DAVE_2303]
-Listen, though, I know what his weakness is:
+Послушай, я знаю его слабое место:
+
 [CRAZY_DAVE_2304]
-You have to hit him in the pancreas!
+Тебе нужно ударить его в поджелудочную!
+
 [CRAZY_DAVE_2305]
-No, that was a different guy...
+Нет, это был другой парень...
+
 [CRAZY_DAVE_2306]
-You have to... um... kick him in the...
+Тебе нужно... эм... пнуть его в...
+
 [CRAZY_DAVE_2307]
-Hmm...
+Хмм...
+
 [CRAZY_DAVE_2308]
-You have to press up up down down left right...
+Тебе нужно нажать вверх вверх вниз вниз влево вправо...
+
 [CRAZY_DAVE_2309]
-er...
+э-э...
+
 [CRAZY_DAVE_2310]
-Wait, I remember! It's... {MOUTH_SMALL_OH}
+Стой, вспомнил! Это... {MOUTH_SMALL_OH}
 
 [CRAZY_DAVE_2400]
-Greetings, neighbor!
+Привет, сосед!
+
 [CRAZY_DAVE_2401]
-The name's Crazy Dave.
+Меня зовут Безумный Дэйв.
+
 [CRAZY_DAVE_2402]
-But you can just call me Crazy Dave.
+Но ты можешь звать меня просто Безумный Дэйв.
+
 [CRAZY_DAVE_2403]
-Listen, I've got a surprise for you.
+Слушай, у меня для тебя сюрприз.
+
 [CRAZY_DAVE_2404]
-But first, I'll need you to clear your lawn.
+Но сначала тебе нужно очистить газон.
+
 [CRAZY_DAVE_2405]
-Use your shovel and dig up those plants!
+Используй лопату и выкопай эти растения!
+
 [CRAZY_DAVE_2406]
-LET THE DIGGING COMMENCE!{MOUTH_SMALL_OH} {SCREAM}
+ДА НАЧНЁТСЯ КОПАНИЕ!{MOUTH_SMALL_OH} {SCREAM}
 
 [CRAZY_DAVE_2410]
-Ok goody, now for the surprise...
+Отлично, теперь сюрприз...
+
 [CRAZY_DAVE_2411]
-We're going BOWLING!{MOUTH_SMALL_SMILE}
+Мы идём ИГРАТЬ В БОУЛИНГ!{MOUTH_SMALL_SMILE}
+
 [CRAZY_DAVE_2412]
-{SHOW_WALLNUT}HERE, TAKE THIS WALL-NUT!!
+{SHOW_WALLNUT}НА, ДЕРЖИ ЭТОТ ОРЕХ!!
+
 [CRAZY_DAVE_2413]
-Why'd I put a wall-nut in your hand?{MOUTH_SMALL_OH}
+Зачем я вложил орех тебе в руку?{MOUTH_SMALL_OH}
+
 [CRAZY_DAVE_2414]
-{SHAKE}Because I'm CRAAAZY!!!!!{MOUTH_BIG_SMILE}
+{SHAKE}Потому что я БЕЗУУУМНЫЙ!!!!!{MOUTH_BIG_SMILE}
+
 [CRAZY_DAVE_2415]
-NOW GO! BOWL ME A WINNER!{MOUTH_BIG_SMILE} {SCREAM}
+ВПЕРЁД! ВЫБЕЙ МНЕ ПОБЕДУ!{MOUTH_BIG_SMILE} {SCREAM}
 
 [CRAZY_DAVE_2500]
-Me and my buddy Harvey Flaxcaster used to break vases when we were bored.
+Мы с моим приятелем Харви Льнотрёпкиным раньше разбивали вазы, когда нам было скучно.
+
 [CRAZY_DAVE_2501]
-Well Harvey's outta town, so you're coming with me, Harvey #2!
+Харви сейчас в отъезде, так что идёшь со мной ты, Харви «2!
+
 [CRAZY_DAVE_2502]
-BREAK IT LIKE YOU MEAN IT, HARVEY! {SCREAM}
+РАЗБИВАЙ ОТ ДУШИ, ХАРВИ! {SCREAM}
 
 [CRAZY_DAVE_2600]
-Hey, welcome to the Zen Garden section of my shop!
+Эй, добро пожаловать в раздел Дзен-сада моего магазина!
+
 [CRAZY_DAVE_2601]
-{SHOW_FERTILIZER}I'll give you some fertilizer for stopping by!
+{SHOW_FERTILIZER}Дарю тебе немного удобрений за визит!
+
 [CRAZY_DAVE_2602]
-Take a look around and see if there's anything else you like!
+Посмотри вокруг, может, найдёшь ещё что-нибудь интересное!
 
 [CRAZY_DAVE_2700]
-Man, you broke those vases nice and good!
+Отлично ты разбил те вазы!
+
 [CRAZY_DAVE_2701]
-Broke 'em like the time I broke my back digging through those trash cans!
+Разбил их как в тот раз, когда я сорвал спину, копаясь в мусорных баках!
+
 [CRAZY_DAVE_2702]
-Here, I brought you some more vases.
+Вот, я принёс тебе ещё вазы.
+
 [CRAZY_DAVE_2703]
-Gotta be careful about breaking them too fast, though.
+Но будь осторожнее, не разбивай их слишком быстро.
+
 [CRAZY_DAVE_2704]
-You don't wanna end up with more zombies than you can handle, huh huh.
+Не хочешь ведь оказаться с большим количеством зомби, чем можешь осилить, хе-хе.
 
 [CRAZY_DAVE_2800]
-All right!
+Отлично!
+
 [CRAZY_DAVE_2801]
-This should be the last of 'em.
+Это должны быть последние.
+
 [CRAZY_DAVE_2802]
-Break these, and you'll be all done!
+Разбей их, и всё будет готово!
 
 [CRAZY_DAVE_3000]
-This here is Vasebreaker.
+Это Ваза-бой.
+
 [CRAZY_DAVE_3001]
-Some of these levels are really difficult.
+Некоторые из этих уровней очень сложные.
+
 [CRAZY_DAVE_3002]
-Good luck!
+Удачи!
 
 [CRAZY_DAVE_3100]
-Hey neighbor! Got some new items for sale!
+Привет, сосед! Появились новые товары!
 
 [CRAZY_DAVE_3200]
-{SHOW_TREE_FOOD}Hey {PLAYER_NAME}! This here is your Tree of Wisdom! I brought you some tree food to get you started.
+{SHOW_TREE_FOOD}Привет, {PLAYER_NAME}! Это твоё Дерево Мудрости! Я принёс тебе немного корма для начала.
 
 [CRAZY_DAVE_3300]
-{TIME_275}End of the line, buddy!{DELAY_50}
+{TIME_275}Тупик, дружище!{DELAY_50}
+
 [CRAZY_DAVE_3301]
-{TIME_275}Yup, you knew this talk was coming.{DELAY_50}
+{TIME_275}Ага, ты знал, что этот разговор будет.{DELAY_50}
+
 [CRAZY_DAVE_3302]
-{TIME_325}You wanna go further? You gotta get the FULL VERSION.{DELAY_50}
+{TIME_325}Хочешь продолжить? Нужна ПОЛНАЯ ВЕРСИЯ.{DELAY_50}
+
 [CRAZY_DAVE_3303]
-{TIME_275}Ok, I'll level with ya, sassafras...{DELAY_50}
+{TIME_275}Ладно, скажу как есть, сассафрас...{DELAY_50}
+
 [CRAZY_DAVE_3304]
-{TIME_325}If you get the FULL VERSION, I'll give you more PLANTS!{DELAY_25}
+{TIME_325}Если купишь ПОЛНУЮ ВЕРСИЮ, я дам тебе больше РАСТЕНИЙ!{DELAY_25}
+
 [CRAZY_DAVE_3305]
-{TIME_175}{SCREAM}{HANDING}LIKE THIS ONE!{DELAY_50}
+{TIME_175}{SCREAM}{HANDING}КАК ВОТ ЭТО!{DELAY_50}
+
 [CRAZY_DAVE_3306]
-{TIME_175}{SCREAM}{HANDING}AND THIS ONE!{DELAY_50}
+{TIME_175}{SCREAM}{HANDING}И ВОТ ЭТО!{DELAY_50}
+
 [CRAZY_DAVE_3307]
-{TIME_275}{HANDING}and later on, I'll even throw in THIS ONE!{DELAY_50}
+{TIME_275}{HANDING}а позже я даже подкину ВОТ ЭТО!{DELAY_50}
+
 [CRAZY_DAVE_3308]
-{TIME_125}{SHORT_SOUND}{HANDING}Why?{DELAY_50}
+{TIME_125}{SHORT_SOUND}{HANDING}Почему?{DELAY_50}
+
 [CRAZY_DAVE_3309]
-{TIME_225}{SHAKE}Because I'm CRAAAZY!!!!!{MOUTH_BIG_SMILE}{DELAY_150}
+{TIME_225}{SHAKE}Потому что я БЕЗУУУМНЫЙ!!!!!{MOUTH_BIG_SMILE}{DELAY_150}
+
 [CRAZY_DAVE_3310]
-{TIME_150}And hey...{DELAY_50}
+{TIME_150}И послушай...{DELAY_50}
+
 [CRAZY_DAVE_3311]
-{TIME_175}You want action?{DELAY_50}
+{TIME_175}Хочешь экшена?{DELAY_50}
+
 [CRAZY_DAVE_3312]
-{TIME_200}{SCREAM}I'LL GIVE YOU ACTION!{DELAY_300}
+{TIME_200}{SCREAM}Я ДАМ ТЕБЕ ЭКШЕН!{DELAY_300}
+
 [CRAZY_DAVE_3313]
-{TIME_300}{SCREAM2}25 MORE LEVELS OF ACTION!{DELAY_300}
+{TIME_300}{SCREAM2}ЕЩЁ 25 УРОВНЕЙ ЭКШЕНА!{DELAY_300}
+
 [CRAZY_DAVE_3314]
-{TIME_300}{SCREAM}40 MINI-GAMES & PUZZLES!{DELAY_50}
+{TIME_300}{SCREAM}40 МИНИ-ИГР И ГОЛОВОЛОМОК!{DELAY_50}
+
 [CRAZY_DAVE_3315]
-{TIME_200}TERRA COTTA!!!{DELAY_100}
+{TIME_200}ТЕРРАКОТА!!!{DELAY_100}
+
 [CRAZY_DAVE_3316]
-{TIME_300}{SCREAM2}IT'S ENOUGH TO BLOW YOUR MIND TO MARS AND BACK!!{DELAY_300}
+{TIME_300}{SCREAM2}ЭТОГО ДОСТАТОЧНО, ЧТОБЫ ВЗОРВАТЬ ВАШ РАЗУМ ДО МАРСА И ОБРАТНО!!{DELAY_300}
+
 [CRAZY_DAVE_3317]
-{TIME_150}Well, what are you waiting for?
+{TIME_150}Ну чего ты ждёшь?
 
 [CRAZY_DAVE_3400]
-{NO_CLICK}To use Wall-nut First Aid, simply plant a fresh new Wall-nut over the damaged one!
+{NO_CLICK}Чтобы использовать Первую помощь для орехов, просто посадите новый орех поверх повреждённого!
 
 [CRAZY_DAVE_4000]
-{NO_CLICK}{MOUTH_BIG_OH}You just bought the final plant!
+{NO_CLICK}{MOUTH_BIG_OH}Ты только что купил последнее растение!
+
 [CRAZY_DAVE_4001]
-{NO_CLICK}{SCREAM}You're an all-plant haver, by gum!
+{NO_CLICK}{SCREAM}Ты обладатель всех растений, ей-богу!
+
 [CRAZY_DAVE_4002]
-{NO_CLICK}Why isn't there a word for that kind of achievement?
+{NO_CLICK}Почему для такого достижения нет слова?
+
 [CRAZY_DAVE_4003]
-{NO_CLICK}I've got it... 
+{NO_CLICK}Придумал... 
+
 [CRAZY_DAVE_4004]
-{NO_CLICK}{SHAKE}Morticulturalist!!!{MOUTH_BIG_SMILE}
+{NO_CLICK}{SHAKE}Мортикультуролог!!!{MOUTH_BIG_SMILE}
 
 [MENU_BUTTON]
-Menu
+Меню
 
 [ADVICE_MORE_ZOMBIES]
-More zombies approaching!
+Приближается ещё больше зомби!
 
 [ADVICE_MORE_SCARY_POTS]
-More vases incoming!
-Current Streak: {STREAK}
+Ещё больше ваз!
+Текущая серия: {STREAK}
 
 [ADVICE_SCARY_POTTER_TUTORIAL]
-TEMP - Dave put more vases on your lawn!
-{STREAK} of 5 waves cleared
+ВРЕМ - Дэйв поставил ещё вазы на твой газон!
+{STREAK} из 5 волн пройдено
 
 [ADVICE_3_IN_A_ROW]
-More vases incoming!
-{STREAK} of 3 waves cleared
+Ещё больше ваз!
+{STREAK} из 3 волн пройдено
 
 [LONGEST_STREAK]
-Longest
-Streak: {STREAK}
+Лучшая
+серия: {STREAK}
 
 [ADVICE_MORE_IZOMBIE]
-Good job!
-Current Streak: {STREAK}
+Отличная работа!
+Текущая серия: {STREAK}
 
 [ADVICE_CLICK_ON_SUN]
-Click on the falling sun to collect it!
+Нажми на падающее солнце, чтобы собрать его!
 
 [ADVICE_GRAVEBUSTERS_ON_GRAVES]
-Grave busters can only be planted on graves
+Могилоедов можно сажать только на могилы
 
 [ADVICE_LILYPAD_ON_WATER]
-Lily pads can only be planted in water
+Кувшинки можно сажать только в воду
 
 [ADVICE_TANGLEKELP_ON_WATER]
-Tangle kelp can only be planted in water
+Водоросли можно сажать только в воду
 
 [ADVICE_SEASHROOM_ON_WATER]
-Sea-shrooms can only be planted in water
+Морские грибы можно сажать только в воду
 
 [ADVICE_POTATO_MINE_ON_LILY]
-Potato mines can't be planted on lily pads
+Картофельные мины нельзя сажать на кувшинки
 
 [ADVICE_NOT_PASSED_LINE]
-Place your wall-nut to the left of the bowling line
+Поставьте орех левее линии боулинга
 
 [ADVICE_I_ZOMBIE_NOT_PASSED_LINE]
-Place the zombie on the right side of the line
+Поставьте зомби справа от линии
 
 [ADVICE_I_ZOMBIE_LEFT_OF_LINE]
-Place the bungee zombie on the left side of the line
+Поставьте зомби-банджи слева от линии
 
 [ADVICE_ONLY_ON_REPEATERS]
-Can only be planted on repeaters
+Можно сажать только на скорострелы
 
 [ADVICE_ONLY_ON_MELONPULT]
-Can only be planted on melon-pults
+Можно сажать только на арбузапульты
 
 [ADVICE_ONLY_ON_SUNFLOWER]
-Can only be planted on sunflowers
+Можно сажать только на подсолнухи
 
 [ADVICE_ONLY_ON_SPIKEWEED]
-Can only be planted on spikeweeds
+Можно сажать только на колючки
 
 [ADVICE_ONLY_ON_KERNELPULT]
-Can only be planted on a pair of kernel-pults
+Можно сажать только на пару кукурузапульт
 
 [ADVICE_ONLY_ON_MAGNETSHROOM]
-Can only be planted on magnet-shrooms
+Можно сажать только на магнит-грибы
 
 [ADVICE_ONLY_ON_FUMESHROOM]
-Can only be planted on fume-shrooms
+Можно сажать только на дымо-грибы
 
 [ADVICE_ONLY_ON_LILYPAD]
-Can only be planted on lily pads
+Можно сажать только на кувшинки
 
 [ADVICE_WRONG_ART_TYPE]
-You can only plant {SEED} seeds there
+Здесь можно сажать только семена {SEED}
 
 [ADVICE_PLANT_NEED_POT1]
-You can only plant in flower pots
-					 
+Сажать можно только в цветочные горшки
+
 [ADVICE_PLANT_NEED_POT2]
-Plant a flower pot first
+Сначала посадите цветочный горшок
 
 [ADVICE_PLANT_NOT_ON_GRAVE]
-You can't plant on graves
+Нельзя сажать на могилы
 
 [ADVICE_PLANT_NOT_ON_CRATER]
-You can't plant on craters
+Нельзя сажать на кратеры
 
 [ADVICE_CANT_PLANT_THERE]
-You can't plant there
+Здесь нельзя сажать
 
 [ADVICE_PLANT_NOT_ON_WATER]
-Plant a lily pad first
+Сначала посадите кувшинку
 
 [ADVICE_PLANTING_NEED_SLEEPING]
-Coffee beans can only be planted on sleeping mushrooms
+Кофейные бобы можно сажать только на спящие грибы
 
 [ADVICE_PLANTING_NEEDS_GROUND]
-Spikeweeds can only be planted on solid ground
+Колючки можно сажать только на твёрдую землю
 
 [ADVICE_MORE_SUNFLOWERS]
-The more sunflowers you have,
-the faster you can grow plants!
+Чем больше у вас подсолнухов,
+тем быстрее вы сможете выращивать растения!
 
 [ADVICE_SHOVEL_REFRESH]
-The shovel needs time to refresh before digging again
+Лопате нужно время для перезарядки
 
 [ADVICE_HUGE_WAVE]
-A HUGE WAVE OF ZOMBIES IS APPROACHING!
+ПРИБЛИЖАЕТСЯ ОГРОМНАЯ ВОЛНА ЗОМБИ!
 
 [ADVICE_CLICK_PEASHOOTER]
-Click on the peashooter to plant another one!
+Нажмите на горохострел, чтобы посадить ещё один!
 
 [ADVICE_PLANT_SUNFLOWER1]
-Sunflowers are an extremely important plant!
+Подсолнухи — чрезвычайно важное растение!
 
 [ADVICE_PLANT_SUNFLOWER2]
-Try to plant at least 3 of them!
+Попробуйте посадить хотя бы 3 штуки!
 
 [ADVICE_PLANT_SUNFLOWER3]
-Planting at least 3 sunflowers improves your
-chances of surviving a zombie attack!
+Посадка хотя бы 3 подсолнухов увеличит ваши
+шансы пережить атаку зомби!
 
 [ADVICE_PLANT_SUNFLOWER4]
-Try to plant at least 3 sunflowers!
+Попробуйте посадить хотя бы 3 подсолнуха!
 
 [ADVICE_PLANT_SUNFLOWER5]
-Planting sunflowers will improve your chances 
-of surviving the zombie attack!
+Посадка подсолнухов улучшит ваши шансы 
+пережить атаку зомби!
 
 [ADVICE_CLICK_SEED_PACKET]
-Click on a seed packet to pick it up!
+Нажмите на пакетик семян, чтобы взять его!
 
 [ADVICE_ENOUGH_SUN]
-Excellent! You've collected
-enough for your next plant!
+Отлично! Вы собрали
+достаточно для следующего растения!
 
 [ADVICE_CLICK_ON_GRASS]
-Click on the grass to plant your seed!
+Нажмите на траву, чтобы посадить семя!
 
 [ADVICE_PLANTED_PEASHOOTER]
-Nicely done!
+Отлично сделано!
 
 [ADVICE_ZOMBIE_ONSLAUGHT]
-Don't let the zombies reach your house!
+Не дайте зомби добраться до вашего дома!
 
 [ADVICE_CLICK_SHOVEL]
-Click on the shovel to pick it up!
+Нажмите на лопату, чтобы взять её!
 
 [ADVICE_CLICK_PLANT]
-Click on a plant to remove it!
+Нажмите на растение, чтобы убрать его!
 
 [ADVICE_KEEP_DIGGING]
-Keep digging until your lawn is clear of plants!
+Продолжайте копать, пока газон не будет чист!
 
 [ADVICE_SURVIVE_FLAGS]
-Can you survive for {FLAGS} flags?
+Сможете ли вы выжить {FLAGS} флагов?
 
 [ADVICE_SURVIVE_ENDLESS]
-How many flags can you survive?
+Сколько флагов вы сможете выдержать?
 
 [ADVICE_FILL_IN_WALLNUTS]
-Fill in all the outlined spaces with wall-nuts!
+Заполните все обведённые места орехами!
 
 [ADVICE_FILL_IN_SPACES]
-Fill in all the outlined spaces!
+Заполните все обведённые места!
 
 [ADVICE_FILL_IN_STARFRUIT]
-Fill in all the outlined spaces with starfruit!
+Заполните все обведённые места карамболами!
 
 [ADVICE_BEGHOULED_DRAG_TO_MATCH_3]
-Click-and-drag plants to make matches of 3
+Перетаскивайте растения, чтобы собрать 3 в ряд
 
 [ADVICE_BEGHOULED_TWIST_TO_MATCH_3]
-Click to twist plants to make matches of 3
+Нажимайте, чтобы вращать растения и собрать 3 в ряд
 
 [ADVICE_BEGHOULED_MATCH_3]
-Make {SCORE} matches to pass the level
+Соберите {SCORE} комбинаций, чтобы пройти уровень
 
 [ADVICE_BEGHOULED_NO_MOVES]
-No possible moves!
+Нет доступных ходов!
 
 [ADVICE_BEGHOULED_USE_CRATER_1]
-The zombies ate one of your plants!
+Зомби съели одно из ваших растений!
 
 [ADVICE_BEGHOULED_USE_CRATER_2]
-Spend some sun to fill in the crater!
+Потратьте немного солнца, чтобы заполнить кратер!
 
 [ADVICE_BEGHOULED_SAVE_SUN]
-Save up sun to upgrade your plants!
+Копите солнце, чтобы улучшить растения!
 
 [ADVICE_SLOT_MACHINE_PULL]
-Pull handle for new seeds!
+Дёрните рычаг для новых семян!
 
 [ADVICE_SLOT_MACHINE_SPIN_AGAIN]
-Spin Again!
+Крутите ещё!
 
 [ADVICE_SLOT_MACHINE_COLLECT_SUN]
-Get {SCORE} sun to pass the level
+Соберите {SCORE} солнца, чтобы пройти уровень
 
 [SLOT_MACHINE_PULL_TOOLTIP]
-Costs 25 sun for pull
+Стоимость: 25 солнца
 
 [ADVICE_SLOT_MACHINE_3_OF_A_KIND]
-Three of a kind! 3 free plants!
+Три одинаковых! 3 бесплатных растения!
 
 [ADVICE_SLOT_MACHINE_2_OF_A_KIND]
-Two of a kind! Free plant!
+Два одинаковых! Бесплатное растение!
 
 [ADVICE_SLOT_MACHINE_2_SUNS]
-Two of a kind! Bonus sun!
+Два одинаковых! Бонусное солнце!
 
 [ADVICE_SLOT_MACHINE_2_DIAMONDS]
-Two of a kind! Diamonds!
+Два одинаковых! Алмазы!
 
 [ADVICE_SLOT_MACHINE_SUN_JACKPOT]
-Sun Jackpot!
+Солнечный джекпот!
 
 [ADVICE_SLOT_MACHINE_DIAMOND_JACKPOT]
-Diamond Jackpot!
+Алмазный джекпот!
 
 [SLOT_MACHINE_SUN_TOOLTIP]
-Sun
+Солнце
 
 [SLOT_MACHINE_DIAMOND_TOOLTIP]
-Diamond
+Алмаз
 
 [ADVICE_BUNGEES_INCOMING]
-Bungees incoming!!!
+Банджи приближаются!!!
 
 [ADVICE_CLICKED_ON_SUN]
-Keep on collecting sun!
-You'll need it to grow more plants!
+Продолжайте собирать солнце!
+Оно понадобится для выращивания растений!
 
 [ADVICE_CLICKED_ON_COIN]
-Save up money to purchase cool stuff!
+Копите деньги, чтобы покупать крутые вещи!
 
 [ADVICE_SEED_REFRESH]
-Seeds need time to refresh before planting again
+Семенам нужно время для перезарядки
 
 [ADVICE_CANT_AFFORD_PLANT]
-You need more sun to do that!
+Вам нужно больше солнца!
 
 [ADVICE_PLANT_NEEDS_REPEATER]
-Plant a repeater first!
+Сначала посадите скорострел!
 
 [ADVICE_PLANT_NEEDS_MELONPULT]
-Plant a winter melon first!
+Сначала посадите арбузапульту!
 
 [ADVICE_PLANT_NEEDS_SUNFLOWER]
-Plant a sunflower first!
+Сначала посадите подсолнух!
 
 [ADVICE_PLANT_NEEDS_SPIKEWEED]
-Plant a spikeweed first!
+Сначала посадите колючку!
 
 [ADVICE_PLANT_NEEDS_KERNELPULT]
-Plant a pair of kernel-pults first!
+Сначала посадите пару кукурузапульт!
 
 [ADVICE_PLANT_NEEDS_MAGNETSHROOM]
-Plant a magnet-shroom first!
+Сначала посадите магнит-гриб!
 
 [ADVICE_PLANT_NEEDS_FUMESHROOM]
-Plant a fume-shroom first!
+Сначала посадите дымо-гриб!
 
 [ADVICE_PLANT_NEEDS_LILYPAD]
-Plant a lily pad first!
+Сначала посадите кувшинку!
 
 [PLAYERS_HOUSE]
-{PLAYER}'s House
+Дом {PLAYER}
 
 [PLAYERS_BACKYARD]
-{PLAYER}'s Backyard
+Задний двор {PLAYER}
 
 [PLAYERS_ROOF]
-{PLAYER}'s Roof!
+Крыша {PLAYER}!
 
 [ADVICE_PORTAL_RELOCATING]
-Portal Relocating...
+Портал перемещается...
 
 [ZEN_SELL_HEADER]
-Are you sure?
+Вы уверены?
 
 [ZEN_SELL_LINES]
-Sell this plant to Crazy Dave?
+Продать это растение Безумному Дэйву?
 
 [DIALOG_WARNING]
-Warning
+Предупреждение
 
 [DIALOG_ZEN_GARDEN_FULL]
-Oh no! Your garden is too full!
+О нет! Ваш сад переполнен!
 
 [DIALOG_BUTTON_OK]
-OK
+ОК
 
 [DIALOG_BUTTON_CANCEL]
-CANCEL
+ОТМЕНА
 
 [DIALOG_BUTTON_YES]
-YES
+ДА
 
 [DIALOG_BUTTON_NO]
-NO
+НЕТ
 
 [NEW_PLANT]
-YOU GOT A NEW PLANT!
+ВЫ ПОЛУЧИЛИ НОВОЕ РАСТЕНИЕ!
 
 [NEXT_LEVEL_BUTTON]
-NEXT LEVEL!
+СЛЕДУЮЩИЙ УРОВЕНЬ!
 
 [CONTINUE_BUTTON]
-Continue
+Продолжить
 
 [VIEW_ALMANAC_BUTTON]
-View Almanac
+Смотреть альманах
 
 [MAIN_MENU_BUTTON]
-Main Menu
+Главное меню
 
 [AWARD_MAIN_MENU_BUTTON]
-MAIN MENU
+ГЛАВНОЕ МЕНЮ
 
 [REPICK_BUTTON]
-Re-pick
+Выбрать заново
 
 [SHOVEL]
-Shovel
+Лопата
 
 [GOT_SHOVEL]
-You got the shovel!
+Вы получили лопату!
 
 [SHOVEL_DESCRIPTION]
-Lets you dig up a plant
-to make room for
-another plant
+Позволяет выкопать растение,
+чтобы освободить место
+для другого растения
 
 [FOUND_NOTE]
-You found a note:
+Вы нашли записку:
 
 [SUBURBAN_ALMANAC]
-Suburban Almanac
+Пригородный альманах
 
 [FOUND_SUBURBAN_ALMANAC]
-You found a suburban almanac!
+Вы нашли пригородный альманах!
 
 [SUBURBAN_ALMANAC_DESCRIPTION]
-Keeps track of all plants and zombies you encounter
+Хранит информацию обо всех встреченных растениях и зомби
 
 [KEYS]
-Crazy Dave's Car Key
+Ключ от машины Безумного Дэйва
 
 [FOUND_KEYS]
-You found Crazy Dave's car key!
+Вы нашли ключ от машины Безумного Дэйва!
 
 [KEYS_DESCRIPTION]
-Now you can visit
-Crazy Dave's shop!
+Теперь вы можете посетить
+магазин Безумного Дэйва!
 
 [VASE]
-Mysterious Vase
+Таинственная ваза
 
 [FOUND_VASE]
-You found a Mysterious Vase!
+Вы нашли таинственную вазу!
 
 [VASE_DESCRIPTION]
-Now you can play
-Vasebreaker Mode!
+Теперь вы можете играть
+в режиме Ваза-бой!
 
 [WATERING_CAN]
-Watering Can
+Лейка
 
 [FOUND_WATERING_CAN]
-You found a watering can!
+Вы нашли лейку!
 
 [WATERING_CAN_DESCRIPTION]
-Now you can play
-Zen Garden Mode!
+Теперь вы можете играть
+в режиме Дзен-сад!
 
 [TACO]
-Taco
+Тако
 
 [FOUND_TACO]
-You found a taco!
+Вы нашли тако!
 
 [TACO_DESCRIPTION]
-What are you going to do with a taco?
+Что вы собираетесь делать с тако?
 
 [WATERING_CAN_TOOLTIP]
-water a plant
+полить растение
 
 [FERTILIZER_TOOLTIP]
-fertilize a plant
+удобрить растение
 
 [TREE_FERTILIZER_TOOLTIP]
-give tree food
+дать корм для дерева
 
 [BUG_SPRAY_TOOLTIP]
-bug spray
+спрей от насекомых
 
 [PHONOGRAPH_TOOLTIP]
-play music for a plant
+включить музыку для растения
 
 [CHOCOLATE_TOOLTIP]
-chocolate
+шоколад
 
 [GLOVE_TOOLTIP]
-move a plant
+переместить растение
 
 [MONEY_SIGN_TOOLTIP]
-sell a plant
+продать растение
 
 [WHEELBARROW_TOOLTIP]
-holds plant for transporting
+перевозит растения
 
 [NEXT_GARDEN_TOOLTIP]
-visit other garden
+посетить другой сад
 
 [SHOVEL_TOOLTIP]
-remove a plant
+убрать растение
 
 [BEGHOULED_REPEATER_UPGRADE_TOOLTIP]
-Upgrade all your peashooters to repeaters
+Улучшить все горохострелы до скорострелов
 
 [BEGHOULED_FUMESHROOM_UPGRADE_TOOLTIP]
-Upgrade all your puff-shrooms to fume-shrooms
+Улучшить все дым-грибы до дымо-грибов
 
 [BEGHOULED_TALLNUT_UPGRADE_TOOLTIP]
-Upgrade all your wall-nuts to tall-nuts
+Улучшить все орехи до высоких орехов
 
 [BEGHOULED_SHUFFLE_TOOLTIP]
-Shuffle plants
+Перемешать растения
 
 [BEGHOULED_CRATER_TOOLTIP]
-Refill crater
+Заполнить кратер
 
 [BEGHOULED_SEED_ALREADY_PURCHASED]
-Purchased
+Куплено
 
 [BEGHOULED_NO_CRATERS]
-No craters to fill
+Нет кратеров для заполнения
 
 [FREE_PLANTING_CHEAT]
-Free Planting Cheat
+Бесплатная посадка
 
 [WAITING_FOR_SEED]
-recharging...
+перезарядка...
 
 [NOT_ENOUGH_SUN]
-not enough sun
+недостаточно солнца
 
 [REQUIRES_REPEATER]
-requires repeater
+требуется скорострел
 
 [REQUIRES_MELONPULT]
-requires melon-pult
+требуется арбузапульта
 
 [REQUIRES_SUNFLOWER]
-requires sunflower
+требуется подсолнух
 
 [REQUIRES_SPIKEWEED]
-requires spikeweed
+требуется колючка
 
 [REQUIRES_KERNELPULTS]
-requires 2 kernel-pults
+требуется 2 кукурузапульты
 
 [REQUIRES_MAGNETSHROOM]
-requires magnet-shroom
+требуется магнит-гриб
 
 [REQUIRES_FUMESHROOM]
-requires fume-shroom
+требуется дымо-гриб
 
 [REQUIRES_LILY_PAD]
-requires lily pad
+требуется кувшинка
 
 [WAITING_TO_REFRESH]
-waiting to refresh
+ожидание перезарядки
 
 [CLICK_TO_VIEW]
-click to view
+нажмите для просмотра
 
 [LETS_ROCK_BUTTON]
-LET'S ROCK!
+ПОЕХАЛИ!
 
 [VIEW_LAWN]
-VIEW LAWN
+СМОТРЕТЬ ГАЗОН
 
 [ALMANAC_BUTTON]
-ALMANAC
+АЛЬМАНАХ
 
 [SHOP_BUTTON]
-SHOP
+МАГАЗИН
 
 [CLOSE_BUTTON]
-CLOSE
+ЗАКРЫТЬ
 
 [ALMANAC_INDEX]
-ALMANAC INDEX
+ОГЛАВЛЕНИЕ АЛЬМАНАХА
 
 [VIEW_PLANTS]
-View Plants
+Растения
 
 [VIEW_ZOMBIES]
-View Zombies
+Зомби
 
 [BACK_TO_MENU]
-Back to Menu
+В главное меню
 
 [ROLL_CREDITS]
-Roll Credits!
+Титры!
 
 [PAGE_X]
-PAGE {PAGE}
+СТРАНИЦА {PAGE}
 
 [RESTART_BUTTON]
-Restart
+Заново
 
 [NEW_GAME_BUTTON]
-New Game
+Новая игра
 
 [LEAVE_BUTTON]
-LEAVE
+УЙТИ
 
 [QUIT_BUTTON]
-Quit
+Выход
 
 [QUIT_MESSAGE]
-Are you sure you wish to 
-quit the game?
+Вы уверены, что хотите 
+выйти из игры?
 
 [QUIT_HEADER]
-Quit
+Выход
 
 [AWW_YEAH_BUTTON]
-AWW YEAH!
+ДА, КОНЕЧНО!
 
 [NAH_BUTTON]
-NAH!
+НЕТ!
 
 [MORE_SEEDS_HEADER]
-More seeds?
+Больше семян?
 
 [MORE_SEEDS_BODY]
-Would you like to be able to plant more kinds of seeds?
+Хотите иметь возможность сажать больше видов семян?
 
 [STORE_NEXT_LEVEL_BUTTON]
-NEXT LEVEL
+СЛЕДУЮЩИЙ УРОВЕНЬ
 
 [STORE_MAIN_MENU_BUTTON]
-MAIN MENU
+ГЛАВНОЕ МЕНЮ
 
 [STORE_BACK_TO_GAME]
-GO BACK
+НАЗАД
 
 [STORE_BACK_TO_ZEN]
-BACK
+НАЗАД
 
 [SEED_CHOOSER_UPGRADE_WARNING]
-Are you sure you want to use the {UPGRADE_TO} without the {UPGRADE_FROM}?
+Вы уверены, что хотите использовать {UPGRADE_TO} без {UPGRADE_FROM}?
 
 [SEED_CHOOSER_SEEING_STARS_WARNING]
-Are you sure you want to play this level without starfruit?
+Вы уверены, что хотите играть на этом уровне без карамболы?
 
 [SEED_CHOOSER_LILY_WARNING]
-Are you sure you want to play this level without lily pads?
+Вы уверены, что хотите играть на этом уровне без кувшинок?
 
 [SEED_CHOOSER_ART_WALLNUT_WARNING]
-Are you sure you want to play this level without wall-nuts?
+Вы уверены, что хотите играть на этом уровне без орехов?
 
 [SEED_CHOOSER_ART_2_WARNING]
-Are you sure you want to play this level without starfruit, umbrella leaf, and wall-nut seeds??
+Вы уверены, что хотите играть на этом уровне без карамболы, зонтик-листа и ореха??
 
 [SEED_CHOOSER_FLYER_WARNING]
-You haven't chosen any plants that fight off balloon zombies, are you sure you want to continue?
+Вы не выбрали растения против зомби на воздушных шариках. Вы уверены, что хотите продолжить?
 
 [SEED_CHOOSER_SUN_WARNING]
-You haven't chosen any sun producing plants, are you sure you want to continue?
+Вы не выбрали растения, производящие солнце. Вы уверены, что хотите продолжить?
 
 [SEED_CHOOSER_NIGHT_SUN_WARNING]
-Now that it's nighttime, you need sunflowers more than ever. Are you sure you want to play the level without them?
+Сейчас ночь, и подсолнухи нужны как никогда. Вы уверены, что хотите играть без них?
 
 [SEED_CHOOSER_PUFFSHROOM_WARNING]
-This level will be extremely difficult without puff-shrooms. Are you sure you wish to continue without them?
+Этот уровень будет чрезвычайно сложен без дым-грибов. Вы уверены, что хотите продолжить без них?
 
 [SEED_CHOOSER_POOL_WARNING]
-Are you sure want to play this level without any water plants?
+Вы уверены, что хотите играть на этом уровне без водных растений?
 
 [SEED_CHOOSER_ROOF_WARNING]
-Are you sure want to play this level without flower pots?
+Вы уверены, что хотите играть на этом уровне без цветочных горшков?
 
 [ADVICE_ALMOST_THERE]
-Almost there!
+Почти готово!
 
 [ADVICE_BEGHOULED_ALMOST_THERE]
-5 matches to go!
+Осталось 5 комбинаций!
 
 [ZOMBIQUARIUM_SNORKEL_TOOLTIP]
-Buy Snorkel Zombie
+Купить Зомби с трубкой
 
 [ZOMBIQUARIUM_TROPHY_TOOLTIP]
-Buy Trophy
+Купить трофей
 
 [ADVICE_ZOMBIQUARIUM_CLICK_TO_FEED]
-Click on tank to feed zombies
+Нажмите на аквариум, чтобы покормить зомби
 
 [ADVICE_ZOMBIQUARIUM_COLLECT_SUN]
-Get {SCORE} sun to pass the level
+Соберите {SCORE} солнца, чтобы пройти уровень
 
 [ZOMBIQUARIUM_DEATH_MESSAGE]
-All your pet zombies have perished!
+Все ваши ручные зомби погибли!
 
 [I_ZOMBIE_DEATH_MESSAGE]
-You lost all your zombies!
+Вы потеряли всех зомби!
 
 [ADVICE_ZOMBIQUARIUM_CLICK_TROPHY]
-Click on the trophy to complete the level!
+Нажмите на трофей, чтобы завершить уровень!
 
 [ADVICE_ZOMBIQUARIUM_BUY_SNORKEL]
-Click to buy more snorkel zombies!
+Нажмите, чтобы купить ещё зомби с трубкой!
 
 [TRY_AGAIN]
-Try Again
+Попробовать снова
 
 [ONE_FLAG]
-1 flag
+1 флаг
 
 [COUNT_FLAGS]
-{COUNT} flags
+{COUNT} флагов
 
 [SURVIVAL_DEATH_MESSAGE]
-You survived for {FLAGS}
-before dying a
-GRUESOME ZOMBIE DEATH!!!
+Вы выживали {FLAGS},
+прежде чем погибли
+УЖАСНОЙ ЗОМБИ-СМЕРТЬЮ!!!
 
 [ENDLESS_PUZZLE_DEATH_MESSAGE]
-You made it to a streak of {STREAK}
+Ваша серия составила {STREAK}
 
 [ENDLESS_STREAK]
-Streak: {STREAK}
- 
+Серия: {STREAK}
+
 [LEVEL]
-Level
+Уровень
 
 [GAME_OVER]
-GAME OVER
+ИГРА ОКОНЧЕНА
 
 [PICK_AREA]
-Survival
+Выживание
 
 [PICK_CHALLENGE]
-Mini-Games
+Мини-игры
 
 [ONE_MORE_CHALLENGE_TOOLTIP]
-Complete 1 more mini-game to unlock
+Пройдите ещё 1 мини-игру для разблокировки
 
 [ONE_MORE_SCARY_POTTER_TOOLTIP]
-Earn 1 more vasebreaker trophy to unlock
+Получите ещё 1 трофей ваза-боя для разблокировки
 
 [ONE_MORE_IZOMBIE_TOOLTIP]
-Earn 1 more I, Zombie trophy to unlock
+Получите ещё 1 трофей «Я, Зомби» для разблокировки
 
 [ONE_MORE_SURVIVAL_TOOLTIP]
-Earn 1 more survival trophy to unlock
+Получите ещё 1 трофей выживания для разблокировки
 
 [10_SURVIVAL_TOOLTIP]
-Earn 10 survival trophies to unlock
+Получите 10 трофеев выживания для разблокировки
 
 [FINISH_ADVENTURE_TOOLTIP]
-Finish adventure mode to unlock
+Пройдите режим приключений для разблокировки
 
 [SURVIVAL_DAY_NORMAL]
-Survival: Day
+Выживание: День
 
 [SURVIVAL_NIGHT_NORMAL]
-Survival: Night
+Выживание: Ночь
 
 [SURVIVAL_POOL_NORMAL]
-Survival: Pool
+Выживание: Бассейн
 
 [SURVIVAL_FOG_NORMAL]
-Survival: Fog
+Выживание: Туман
 
 [SURVIVAL_ROOF_NORMAL]
-Survival: Roof
+Выживание: Крыша
 
 [SURVIVAL_DAY_HARD]
-Survival: Day (Hard)
+Выживание: День (Сложно)
 
 [SURVIVAL_NIGHT_HARD]
-Survival: Night (Hard)
+Выживание: Ночь (Сложно)
 
 [SURVIVAL_POOL_HARD]
-Survival: Pool (Hard)
+Выживание: Бассейн (Сложно)
 
 [SURVIVAL_FOG_HARD]
-Survival: Fog (Hard)
+Выживание: Туман (Сложно)
 
 [SURVIVAL_ROOF_HARD]
-Survival: Roof (Hard)
+Выживание: Крыша (Сложно)
 
 [SURVIVAL_DAY_ENDLESS]
-Survival: Day (Endless)
+Выживание: День (Бесконечно)
 
 [SURVIVAL_NIGHT_ENDLESS]
-Survival: Night (Endless)
+Выживание: Ночь (Бесконечно)
 
 [SURVIVAL_POOL_ENDLESS]
-Survival: Endless
+Выживание: Бесконечное
 
 [SURVIVAL_FOG_ENDLESS]
-Survival: Fog (Endless)
+Выживание: Туман (Бесконечно)
 
 [SURVIVAL_ROOF_ENDLESS]
-Survival: Roof (Endless)
+Выживание: Крыша (Бесконечно)
 
 [WAR_AND_PEAS]
-ZomBotany
+Зомботаника
 
 [SEEING_STARS]
-Seeing Stars
+Звёздное небо
 
 [CAN_YOU_DIG_IT]
-Can You Dig It?
+Сможешь ли ты это выкопать?
 
 [SCARY_POTTER_1]
-Vasebreaker
+Ваза-бой
 
 [SCARY_POTTER_2]
-To the Left
+Налево
 
 [SCARY_POTTER_3]
-Third Vase
+Третья ваза
 
 [SCARY_POTTER_4]
-Chain Reaction
+Цепная реакция
 
 [SCARY_POTTER_5]
-M is for Metal
+М значит Металл
 
 [SCARY_POTTER_6]
-Scary Potter
+Страшный гончар
 
 [SCARY_POTTER_7]
-Hokey Pokey
+Хоки-поки
 
 [SCARY_POTTER_8]
-Another Chain Reaction
+Ещё одна цепная реакция
 
 [SCARY_POTTER_9]
-Ace of Vase
+Туз ваз
 
 [SCARY_POTTER_10]
-Vasebreaker Facebreaker
+Ваза-бой Лицо-бой
 
 [SCARY_POTTER_ENDLESS]
-Vasebreaker Endless
+Ваза-бой: Бесконечный
 
 [SCARY_POTTER]
-Puzzle
+Головоломка
 
 [PORTAL_COMBAT]
-Portal Combat
+Битва порталов
 
 [BEGHOULED]
-Beghouled
+Зачарованный
 
 [BEGHOULED_TWIST]
-Beghouled Twist
+Зачарованный: Кручение
 
 [WALL_NUT_BOWLING]
-Wall-nut Bowling
+Боулинг с орехами
 
 [GRAVE_DANGER]
-Grave Danger
+Могильная опасность
 
 [I_ZOMBIE]
-I, Zombie
+Я, Зомби
 
 [WHACK_A_ZOMBIE]
-Whack a Zombie
+Стукни Зомби
 
 [SLOT_MACHINE]
-Slot Machine
+Игровой автомат
 
 [ZOMBIQUARIUM]
-Zombiquarium
+Зомбиквариум
 
 [LITTLE_TROUBLE]
-Big Trouble Little Zombie
+Большие проблемы, маленький зомби
 
 [BOBSLED_BONANZA]
-Bobsled Bonanza
+Бобслейный бонанза
 
 [ITS_RAINING_SEEDS	]
-It's Raining Seeds	
+Дождь из семян	
 
 [INVISIGHOUL]
-Invisi-ghoul
+Невидимозомби
 
 [DARK_STORMY_NIGHT]
-Dark Stormy Night
+Тёмная грозовая ночь
 
 [AIR_RAID]
-Air Raid
+Воздушный налёт
 
 [COLUMN_AS_YOU_SEE_EM]
-Column Like You See 'Em
+Колонна как она есть
 
 [BUNGEE_BLITZ]
-Bungee Blitz
+Банджи-блиц
 
 [POGO_PARTY]
-Pogo Party
+Пого-вечеринка
 
 [FINAL_BOSS]
-Dr. Zomboss's Revenge
+Месть Доктора Зомбосса
 
 [LAST_STAND]
-Last Stand
+Последний рубеж
 
 [ART_CHALLENGE_WALL_NUT]
-Art Challenge Wall-nut
+Арт-задание: Орех
 
 [SUNNY_DAY]
-Sunny Day
+Солнечный день
 
 [UNSODDED]
-Unsodded
+Без газона
 
 [BIG_TIME]
-Big Time
+Большое время
 
 [ART_CHALLENGE_SUNFLOWER]
-Art Challenge Sunflower
+Арт-задание: Подсолнух
 
 [ZOMBIES_ON_SPEED]
-Zombie Nimble Zombie Quick
+Зомби-проворный, зомби-шустрый
 
 [ICE_LEVEL]
-Ice Level
+Ледяной уровень
 
 [ZEN_GARDEN]
-Zen Garden	
+Дзен-сад	
 
 [HIGH_GRAVITY]
-High Gravity
+Высокая гравитация
 
 [WAR_AND_PEAS_2]
-ZomBotany 2
+Зомботаника 2
 
 [I_ZOMBIE_TOO]
-I, Zombie 2
+Я, Зомби 2
 
 [WALL_NUT_BOWLING_EXTREME]
-Wall-nut Bowling 2
+Боулинг с орехами 2
 
 [BEAT_GAME_MESSAGE1]
-You got the Gold Sunflower Trophy
+Вы получили золотой трофей Подсолнуха
 
 [BEAT_GAME_MESSAGE2]
-Wow! You got all the trophies! Now it's time to play more Endless Games! And don't forget to tend your Zen Garden!
+Ура! Вы собрали все трофеи! Теперь можно играть в бесконечные режимы! И не забывайте ухаживать за Дзен-садом!
 
 [GOLD_SUNFLOWER_TROPHY]
-Gold Sunflower Trophy
+Золотой трофей Подсолнуха
 
 [SILVER_SUNFLOWER_TROPHY]
-Silver Sunflower Trophy
+Серебряный трофей Подсолнуха
 
 [WIN_MESSAGE1]
-You have defeated the Boss Zombie!
+Вы победили Босс-зомби!
 
 [WIN_MESSAGE2]
-Congratulations!  You have most triumphantly fended off the zombie attack!  Your lawn is safe... for now!
+Поздравляем! Вы с триумфом отразили атаку зомби! Ваш газон в безопасности... пока что!
 
 [GOT_TROPHY]
-You got a Trophy!
+Вы получили трофей!
 
 [TROPHY]
-Trophy
+Трофей
 
 [NOW_YOU_CAN_PLAY]
-Now you can play
+Теперь вы можете играть в
 {MODE}!
 
 [CHALLENGE_UNLOCKED]
-You've unlocked a new mini-game!
+Вы разблокировали новую мини-игру!
 
 [GET_MORE_TROPHIES]
-Keep on collecting those trophies!
+Продолжайте собирать трофеи!
 
 [SUN]
-Sun
+Солнце
 
 [MATCHES]
-Matches
+Комбинации
 
 [MODE_LOCKED]
-Locked!
+Заблокировано!
 
 [SURVIVAL_LOCKED_MESSAGE]
-Play more Adventure to 
-unlock Survival Mode.
+Пройдите больше уровней Приключения, 
+чтобы разблокировать режим Выживания.
 
 [MINIGAME_LOCKED_MESSAGE]
-Play more Adventure to 
-unlock the Mini-games.
+Пройдите больше уровней Приключения, 
+чтобы разблокировать Мини-игры.
 
 [PUZZLE_LOCKED_MESSAGE]
-Play more Adventure to 
-unlock Puzzle Mode.
+Пройдите больше уровней Приключения, 
+чтобы разблокировать режим Головоломок.
 
 [CLICK_TO_START]
-CLICK TO START!
+НАЖМИТЕ, ЧТОБЫ НАЧАТЬ!
 
 [LOADING]
-LOADING...
+ЗАГРУЗКА...
 
 [CREDITS]
-Credits
+Титры
 
 [BACK_TO_GAME]
-Back To Game
+Вернуться в игру
 
 [RESTART_LEVEL]
-Restart Level
+Начать уровень заново
 
 [ADVICE_ZEN_GARDEN_PICK_UP_WATER]
-Click on the watering can to pick it up!
+Нажмите на лейку, чтобы взять её!
 
 [ADVICE_ZEN_GARDEN_WATER_PLANT]
-Click on a sprout to water it!	
+Нажмите на росток, чтобы полить его!	
 
 [ADVICE_ZEN_GARDEN_KEEP_WATERING]
-Keep watering your plants when they get thirsty!
+Продолжайте поливать растения, когда они захотят пить!
 
 [ADVICE_ZEN_GARDEN_VISIT_STORE]
-Your plants need fertilizer to grow!
-Visit the shop to pick up some fertilizer!
+Вашим растениям нужны удобрения для роста!
+Посетите магазин, чтобы купить удобрения!
 
 [ADVICE_ZEN_GARDEN_FERTILIZE]
-Now fertilize your plants and watch them grow!
+Теперь удобрите растения и наблюдайте, как они растут!
 
 [ADVICE_ZEN_GARDEN_NEED_MORE_FERTILIZER]
-You need to fertilize both plants!
-Here, have some more fertilizer!
+Вам нужно удобрить оба растения!
+Вот, возьмите ещё удобрений!
 
 [ADVICE_ZEN_GARDEN_CONTINUE_ADVENTURE]
-That's all you can do for now!
-Check back later when your plants need more nurturing!
+Это всё, что вы можете сделать сейчас!
+Вернитесь позже, когда растениям понадобится уход!
 
 [CHOOSE_SEED_TO_COPY]
-Choose a Seed to Copy
+Выберите семя для копирования
 
 [NOT_ALLOWED_ON_THIS_LEVEL]
-Not allowed on this level
+Нельзя на этом уровне
 
 [FULL_VERSION_ONLY]
-Full version only
+Только в полной версии
 
 [GET_FULL_VERSION_BODY]
-Get the full version of this game 
-to use this awesome plant!
+Получите полную версию игры, 
+чтобы использовать это потрясающее растение!
 
 [GET_FULL_VERSION_TITLE]
-Full Version Only
+Только полная версия
 
 [BUY_PVZ_TITLE]
-Get Full Version
+Полная версия
 
 [BUY_PVZ_BODY]
-Would you like the purchase the full version?
+Хотите приобрести полную версию?
 
 [GET_FULL_VERSION_YES_BUTTON]
-Get Full Version
+Полная версия
 
 [GET_FULL_VERSION_NO_BUTTON]
-Maybe Later
+Может быть, позже
 
 [FULL_VERSION_TO_BUY]
-This item is only available in the 
-full version of the game!
+Этот предмет доступен только в 
+полной версии игры!
 
 [CRAZY_DAVE_WANTS]
-Crazy Dave chose this
+Безумный Дэйв выбрал это
 
 [NOCTURNAL_WARNING]
-Nocturnal - sleeps during day
+Ночное — засыпает днём
 
 [NOT_RECOMMENDED_FOR_LEVEL]
-Not recommended for level
+Не рекомендуется для уровня
 
 [CHOOSE_YOUR_PLANTS]
-CHOOSE YOUR PLANTS!
+ВЫБЕРИТЕ РАСТЕНИЯ!
 
 [ADVICE_USE_SHOVEL_ON_POTS]
-Click on a vase to see what's inside!
+Нажмите на вазу, чтобы увидеть, что внутри!
 
 [ADVICE_DESTROY_POTS_TO_FINISH_LEVEL]
-Destroy all zombies and vases to finish the level!
+Уничтожьте всех зомби и вазы, чтобы пройти уровень!
 
 [SUBURBAN_ALMANAC_INDEX]
-Suburban Almanac - Index
+Пригородный альманах — Оглавление
 
 [SUBURBAN_ALMANAC_PLANTS]
-Suburban Almanac - Plants
+Пригородный альманах — Растения
 
 [SUBURBAN_ALMANAC_ZOMBIES]
-Suburban Almanac - Zombies
+Пригородный альманах — Зомби
 
 [ZOMBATAR_DELETE_HEADER]
-Delete this Zombatar?
+Удалить этот Зомбатар?
 
 [ZOMBATAR_DELETE_BODY]
-Are you sure you want to delete this Zombatar?
+Вы уверены, что хотите удалить этот Зомбатар?
 
 [ZOMBATAR_DELETE_BUTTON]
-DELETE
+УДАЛИТЬ
 
 [ZOMBATAR_SAVE_BODY]
-Your Zombatar has been saved to your desktop as a jpg image file!
+Ваш Зомбатар был сохранён на рабочий стол в формате jpg!
 
 [ZOMBATAR_SAVE_BUTTON]
-OK
+ОК
 
 [ZOMBATAR_COLOR_NOT_APPLICABLE]
-Color cannot be applied to this item.
+Цвет не может быть применён к этому предмету.
 
 [ZOMBATAR_COLOR_ITEM_NOT_CHOSEN]
-Please select a Zombatar item above.
+Пожалуйста, выберите предмет Зомбатара выше.
 
 [ZOMBATAR_FINISHED_WARNING_HEADER]
-WARNING!
+ПРЕДУПРЕЖДЕНИЕ!
 
 [ZOMBATAR_FINISHED_WARNING_TEXT]
-Are you sure you're done creating your Zombatar?
-If you wish to make any changes after you click "Finished"
-below, you'll need to start over.
+Вы уверены, что закончили создание Зомбатара?
+Если вы захотите внести изменения после нажатия «Готово»,
+вам придётся начать заново.
 
 [ZOMBATAR_FINISHED_BUTTON_TEXT]
-All done. Let me have it!
+Всё готово. Давайте!
 
 [ZOMBATAR_BACK_BUTTON_TEXT]
-Wait! I'm not done!
+Подождите! Я ещё не закончил!
 
 [ZOMBATAR_START_TEXT]
-To get started, choose your Zombie's 
-skin color below.
+Для начала выберите цвет кожи 
+вашего зомби ниже.
 
-When you're ready to change other parts,
-click the categories on the left.
+Когда будете готовы менять другие части,
+нажмите на категории слева.
 
 
 [ZOMBATAR_FEATURE_DESCRIPTION]
-Zombatar section description goes here!
+Описание раздела Зомбатара!
 
 [ZOMBATAR_ACCEPT_ULA_BUTTON]
-I Accept
+Я согласен
 
 [STORE_PAGE]
-Page {PAGE} of {NUM_PAGES}
+Страница {PAGE} из {NUM_PAGES}
 
 [STORE_UPGRADE_SLOTS]
 {SLOTS}
-slots
+слотов
 
 [ADVICE_I_ZOMBIE_EAT_ALL_BRAINS]
-Eat all the brains to pass the level!
+Съешьте все мозги, чтобы пройти уровень!
 
 [ADVICE_I_ZOMBIE_PLANTS_NOT_REAL]
-Do not be alarmed
-Plants are not real
+Не волнуйтесь
+Растения ненастоящие
 
 [SQUIRRELS]
-Squirrels
+Белки
 
 [ADVICE_SQUIRRELS_ONE_LEFT]
-{COUNT} more squirrel to go!
+Осталась {COUNT} белка!
 
 [ADVICE_SQUIRRELS_LEFT]
-{COUNT} more squirrels to go!
+Осталось {COUNT} белок!
 
 [ADVICE_SQUIRREL_ZOMBIE]
-Oh no! Find all the squirrels before 
-the zombie makes it to your house!
+О нет! Найдите всех белок, пока 
+зомби не добрался до вашего дома!
 
 [BRAINS]
-Brains Eaten
+Мозгов съедено
 
 [COST]
-Cost
+Стоимость
 
 [WAIT_TIME]
-Recharge
+Перезарядка
 
 [WAIT_TIME_SHORT]
-fast
+быстрая
 
 [WAIT_TIME_LONG]
-slow
+медленная
 
 [WAIT_TIME_VERY_LONG]
-very slow
+очень медленная
 
 [ADVICE_PEASHOOTER_DIED]
-One of your peashooters died!
-Try planting them further to the left!
+Один из ваших горохострелов погиб!
+Попробуйте сажать их левее!
 
 [ADVICE_FOUND_PLANT]
-You found a plant for your Zen Garden!
+Вы нашли растение для Дзен-сада!
 
 [ADVICE_FOUND_CHOCOLATE]
-You found some Chocolate!
-Feed it to Stinky to speed him up for a while!
+Вы нашли шоколад!
+Покормите им Вонючку, чтобы ускорить его на время!
 
 [ADVICE_STINKY_SLEEPING]
-Stinky the Snail fell asleep! Click wake him up!
+Улитка Вонючка уснула! Нажмите, чтобы разбудить!
 
 [START_ONSLAUGHT]
-Start Onslaught
+Начать натиск
 
 [CONTINUE_ONSLAUGHT]
-Continue Onslaught
+Продолжить натиск
 
 [LAST_STAND_DEATH_MESSAGE]
-You survived for {FLAGS}!!
+Вы продержались {FLAGS}!!
 
 [SUCCESSFULLY_DEFENDED]
-Successfully defended {FLAGS}
+Успешно защищено: {FLAGS}
 
 [FLAGS_COMPLETED]
-{FLAGS} completed
+{FLAGS} пройдено
 
 [I_ZOMBIE_1]
-I, Zombie
+Я, Зомби
 
 [I_ZOMBIE_2]
-I, Zombie Too
+Я тоже Зомби
 
 [I_ZOMBIE_3]
-Can You Dig It?
+Сможешь ли ты это выкопать?
 
 [I_ZOMBIE_4]
-Totally Nuts
+Совсем чокнутый
 
 [I_ZOMBIE_5]
-Dead Zeppelin
+Мёртвый дирижабль
 
 [I_ZOMBIE_6]
-Me Smash!
+Крушить!
 
 [I_ZOMBIE_7]
-ZomBoogie
+Зомбуги
 
 [I_ZOMBIE_8]
-Three Hit Wonder
+Чудо трёх ударов
 
 [I_ZOMBIE_9]
-All your brainz r belong to us
+Все ваши мозги принадлежат нам
 
 [I_ZOMBIE_ENDLESS]
-I, Zombie Endless
+Я, Зомби: Бесконечный
 
 [UNLOCKED_I_ZOMBIE_LEVEL]
-You've unlocked a new
-I, Zombie level!
+Вы разблокировали новый
+уровень «Я, Зомби»!
 
 [UNLOCKED_VASEBREAKER_LEVEL]
-You've unlocked a new
-Vasebreaker level!
+Вы разблокировали новый
+уровень Ваза-боя!
 
 [EARN_MORE_TROPHIES_FOR_ENDLESS_SURVIVAL]
-Earn more survival trophies to unlock the final survival mode
+Получите больше трофеев выживания, чтобы разблокировать финальный режим выживания
 
 [YOU_UNLOCKED_A_SURVIVAL]
-You've unlocked a new survival mode!
+Вы разблокировали новый режим выживания!
 
 [YOU_UNLOCKED_ENDLESS_SURVIVAL]
-You've unlocked the endless survival mode!
+Вы разблокировали бесконечный режим выживания!
 
 [NOT_ENCOUNTERED_YET]
-(not encountered yet)
+(ещё не встречено)
 
 [CLICK_TO_CONTINUE]
-Click to continue
+Нажмите для продолжения
 
 [SOLD_OUT]
-Sold Out
+Распродано
 
 [COMING_SOON]
-Coming Soon
+Скоро
 
 [ZEN_ONLY_AQUATIC_PLANTS]
-You can only keep aquatic plants here. It's under water!
+Здесь можно держать только водные растения. Тут вода!
 
 [RESTART_LEVEL_HEADER]
-Restart Level?
+Начать уровень заново?
 
 [RESTART_PUZZLE_HEADER]
-Restart Puzzle?
+Начать головоломку заново?
 
 [RESTART_CHALLENGE_HEADER]
-Restart Challenge?
+Начать испытание заново?
 
 [RESTART_SURVIVAL_HEADER]
-Restart Survival?
+Начать выживание заново?
 
 [RESTART_LEVEL_BODY]
-Do you want to try this level 
-again from the beginning?
+Хотите попробовать этот уровень 
+сначала?
 
 [RESTART_PUZZLE_BODY]
-Do you want to try this puzzle
-again from the beginning?
+Хотите попробовать эту головоломку
+сначала?
 
 [RESTART_CHALLENGE_BODY]
-Do you want to try this challenge
-again from the beginning?
+Хотите попробовать это испытание
+сначала?
 
 [RESTART_SURVIVAL_BODY]
-Do you want to try this survival 
-level again from the beginning?
+Хотите попробовать этот уровень 
+выживания сначала?
 
 [SILVER_SUNFLOWER_TOOLTIP]
-Collect all the trophies in mini-games, puzzle, & survival to get the Gold Sunflower Trophy!
+Соберите все трофеи в мини-играх, головоломках и выживании, чтобы получить Золотой трофей Подсолнуха!
 
 [GOLD_SUNFLOWER_TOOLTIP]
-You've finished 
-adventure 1 time!
+Вы прошли 
+приключение 1 раз!
 
 [GOLD_SUNFLOWER_TOOLTIP_PLURAL]
-You've finished 
-adventure {COUNT} times!
+Вы прошли 
+приключение {COUNT} раз!
 
 [TREE_OF_WISDOM_1]
-Thank you for feeding me! Keep giving me food and I'll give you valuable information!
+Спасибо за корм! Продолжайте кормить меня, и я дам вам ценную информацию!
 
 [TREE_OF_WISDOM_2]
-Chompers and wall-nuts work exceedingly well together. It's no surprise, considering they were roommates in college.
+Зубастики и орехи прекрасно работают вместе. Неудивительно, ведь они были соседями по комнате в колледже.
 
 [TREE_OF_WISDOM_3]
-If you ever listen to anything I say, listen to this: you want two columns of sunflowers. I'm dead serious here.
+Если вы когда-нибудь прислушаетесь к моим словам, послушайте вот что: вам нужны два ряда подсолнухов. Я абсолютно серьёзен.
 
 [TREE_OF_WISDOM_4]
-Snorkel zombies. I hate 'em. How do I deal? Wall-nuts on lily pads, that's how.
+Зомби с трубкой. Ненавижу их. Как я справляюсь? Орехи на кувшинках, вот как.
 
 [TREE_OF_WISDOM_5]
-Pssst! Try typing 'future' while playing to experience zombies... from the FUTURE!
+Пссст! Попробуйте набрать 'future' во время игры, чтобы увидеть зомби... ИЗ БУДУЩЕГО!
 
 [TREE_OF_WISDOM_6]
-How many cherry bombs does it take to take down a Gargantuar? Here's a hint: more than one, fewer than three. Here's a more explicit hint: Two.
+Сколько вишнёвых бомб нужно, чтобы уничтожить Гаргантюа? Подсказка: больше одной, но меньше трёх. Более прямая подсказка: две.
 
 [TREE_OF_WISDOM_7]
-If you're looking for mushroom plants for your Zen Garden, you'll have better luck playing on levels where it's nighttime.
+Если вы ищете грибы для Дзен-сада, вам больше повезёт на ночных уровнях.
 
 [TREE_OF_WISDOM_8]
-I wouldn't worry about permanently damaging your lawn with doom-shrooms. In time the earth heals itself.
+Я бы не беспокоился о том, что Грибы Судьбы навсегда повредят ваш газон. Со временем земля исцеляется сама.
 
 [TREE_OF_WISDOM_9]
-Have you tried clicking on the flowers on the main menu? Give it a shot! I'll wait here.
+Вы пробовали нажимать на цветы в главном меню? Попробуйте! Я подожду.
 
 [TREE_OF_WISDOM_10]
-Legend has it that frozen zombies eat slower. I'm here to tell that legend has its facts straight.
+Легенда гласит, что замороженные зомби едят медленнее. Я здесь, чтобы сказать, что легенда не врёт.
 
 [TREE_OF_WISDOM_11]
-Have you heard of the elusive Yeti Zombie? Some say he likes hiding where it's pitch black.
+Вы слышали о неуловимом Зомби-Йети? Говорят, он любит прятаться там, где кромешная тьма.
 
 [TREE_OF_WISDOM_12]
-What's cheaper than free? Nothing! That's why puff-shrooms are essential on all night levels! 
+Что может быть дешевле бесплатного? Ничего! Вот почему дым-грибы необходимы на всех ночных уровнях! 
 
 [TREE_OF_WISDOM_13]
-Are you hoping to find water plants for your Zen Garden? I bet my phloem you'll have the most luck searching in pool levels.
+Надеетесь найти водные растения для Дзен-сада? Ставлю свою флоэму, что вам повезёт на уровнях с бассейном.
 
 [TREE_OF_WISDOM_14]
-Have you noticed that Gargantuars sometimes use OTHER ZOMBIES to bash your plants?  Whatever works, I guess.
+Вы замечали, что Гаргантюа иногда использует ДРУГИХ ЗОМБИ, чтобы бить ваши растения? Что работает, то работает, наверное.
 
 [TREE_OF_WISDOM_15]
-Stinky the Snail sure loves his chocolate. Maybe loves it a little too much, you know? He won't sit still for an hour after he's had some.
+Улитка Вонючка обожает шоколад. Может, даже слишком. Он не сидит на месте целый час после того, как его поест.
 
 [TREE_OF_WISDOM_16]
-If you think playing survival 'endless' mode only drops pool-style plants for your Zen Garden, think again!  It drops everything-style.
+Если вы думаете, что бесконечный режим выживания даёт только растения для бассейна в Дзен-сад — подумайте ещё раз! Он даёт абсолютно все!
 
 [TREE_OF_WISDOM_17]
-Often the question is asked: where do you find chocolate? A better question would be: where DON'T you find chocolate? It drops in every game mode!
+Часто задают вопрос: где найти шоколад? Лучше спросить: где его НЕ найти? Он выпадает во всех режимах игры!
 
 [TREE_OF_WISDOM_18]
-Grave Busters, eh? Pick 'em only when you can see graves on the right side of the screen along with the zombies. That's what I do.
+Могилоеды, да? Берите их, только когда видите могилы справа на экране вместе с зомби. Вот что я делаю.
 
 [TREE_OF_WISDOM_19]
-I've heard that Buckethead zombies take five times as many hits as regular ones.
+Слышал, что Зомби с ведром выдерживают в пять раз больше попаданий, чем обычные.
 
 [TREE_OF_WISDOM_20]
-I hear that typing 'mustache' brings about a terrifying transformation in the undead!
+Слышал, что набрав 'mustache', вы увидите ужасающее превращение среди нежити!
 
 [TREE_OF_WISDOM_21]
-Do multiple Snow-peas in a row slow zombies down more than just one? The sad but truthful answer is 'Nay.'
+Замедляют ли несколько Снежных горохов подряд зомби больше, чем один? Печальный, но правдивый ответ: 'Нет.'
 
 [TREE_OF_WISDOM_22]
-You know that zombies emerge from gravestones, right? So what's stopping you from using grave busters to get rid of them in Survival night? Is it pride?
+Вы знаете, что зомби появляются из надгробий? Так что мешает использовать могилоедов в ночном Выживании? Гордость?
 
 [TREE_OF_WISDOM_23]
-If you're looking for the inside info on how long a level's going to be, count the flags on the level meter. That'll set you up real nice.
+Если хотите знать, сколько продлится уровень, посчитайте флаги на шкале уровня. Это вам поможет.
 
 [TREE_OF_WISDOM_24]
-Roof cleaners. Classic items. Can't recommend them highly enough. Best thing about them? They give you a shot at beating Pogo Party.
+Очистители крыши. Классика. Не могу рекомендовать их достаточно. Лучшее в них? Они дают шанс пройти Пого-вечеринку.
 
 [TREE_OF_WISDOM_25]
-If you're wondering if feeding a hypno-shroom to a dancer zombie compels him to summon backup dancers for you, bet it all on 'Yes.'
+Если вам интересно, заставляет ли гипно-гриб, скормленный танцующему зомби, вызвать танцоров для вас — ставьте всё на 'Да.'
 
 [TREE_OF_WISDOM_26]
-Make Money Fast! By Playing Survival Endless! Then E-mail Me Your Bank Account Number!
+Зарабатывайте быстро! Играя в бесконечное Выживание! А потом пришлите мне номер вашего банковского счёта!
 
 [TREE_OF_WISDOM_27]
-You'd think torchwoods would douse snow peas. And you'd be correct, because you, my friend, are one smart cookie.
+Вы бы подумали, что Факелы потушат Снежный горох. И были бы правы, потому что вы, мой друг, очень умны.
 
 [TREE_OF_WISDOM_28]
-Those hateful ZomBotany zombies! Who do they think they are, shooting at your plants? It's a good thing wall-nuts stop 'em cold.
+Эти ненавистные Зомботанические зомби! Кем они себя считают, стреляя по вашим растениям? Хорошо, что орехи их останавливают.
 
 [TREE_OF_WISDOM_29]
-The Pogo Party and Bobsled Bonanza mini-games are really, really, really difficult. Wanna drop one of the 'reallys' off that description? Use the squash.
+Мини-игры Пого-вечеринка и Бобслейный бонанза действительно очень-очень-очень сложные. Хотите убрать одно 'очень'? Используйте кабачок.
 
 [TREE_OF_WISDOM_30]
-Just when you thought jalapenos couldn't be any more useful, a Tree of Wisdom lets you know that they also destroy the Zomboni's ice trails! BAM!
+Как раз когда вы подумали, что халапеньо не могут быть полезнее, Дерево Мудрости сообщает, что они ещё и уничтожают ледовые следы Зомбони! БАМ!
 
 [TREE_OF_WISDOM_31]
-Once you buy the imitater, try clicking the little drawing in the upper left corner of your Almanac to access the entry on that sucker.
+Когда купите подражателя, попробуйте нажать на маленький рисунок в левом верхнем углу Альманаха, чтобы найти его описание.
 
 [TREE_OF_WISDOM_32]
-The number of coins you receive in Wall-nut Bowling is proportional to how cool you are as measured by how many ricochets per nut you can pull off.
+Количество монет в Боулинге с орехами пропорционально вашей крутости, измеряемой количеством рикошетов за один орех.
 
 [TREE_OF_WISDOM_33]
-Please do not tap on the glass! Or actually, go ahead; right-click on your Aquarium Garden or during Zombiquarium to deafen your underwater creatures.
+Пожалуйста, не стучите по стеклу! Хотя, ладно, стучите; щёлкните правой кнопкой в Аквариуме или во время Зомбиквариума, чтобы оглушить подводных обитателей.
 
 [TREE_OF_WISDOM_34]
-When I was just an acorn my grampa told me, 'Son, Vasebreaker puzzles are much easier if you break the vases on the right side first.' 
+Когда я был ещё жёлудем, мой дедушка сказал: 'Сынок, головоломки Ваза-боя гораздо проще, если разбивать вазы справа первыми.' 
 
 [TREE_OF_WISDOM_35]
-Dancers in I, Zombie may seem expensive, but in the right situation they're worth every penny.
+Танцоры в «Я, Зомби» могут показаться дорогими, но в правильной ситуации они стоят каждой копейки.
 
 [TREE_OF_WISDOM_36]
-I had a dream. In it, cattail spikes popped balloons and dropped zombies to the ground. I don't know what it means.
+Мне приснился сон. В нём шипы рогоза лопали воздушные шарики и роняли зомби на землю. Не знаю, что это значит.
 
 [TREE_OF_WISDOM_37]
-Growing aquatic plants in your Zen Garden is pretty much impossible without the Aquarium Garden. Just saying.
+Выращивать водные растения в Дзен-саду практически невозможно без Аквариума. Просто к сведению.
 
 [TREE_OF_WISDOM_38]
-Digger zombies violate the natural order with their subterranean ways. It's only fair to use magnet-shrooms to steal their mining picks.
+Зомби-землекопы нарушают естественный порядок своими подземными путями. Только справедливо использовать магнит-грибы, чтобы украсть их кирки.
 
 [TREE_OF_WISDOM_39]
-Every day brings new challenges and opportunities. Oh, and new marigolds in Crazy Dave's shop.
+Каждый день приносит новые испытания и возможности. А ещё — новые ноготки в магазине Безумного Дэйва.
 
 [TREE_OF_WISDOM_40]
-Mushroom Garden! Huh! What is it good for? Absolutely nothin'! Except growing mushrooms, that is.
+Грибной сад! Ха! Зачем он нужен? Абсолютно ни для чего! Кроме выращивания грибов, конечно.
 
 [TREE_OF_WISDOM_41]
-Tired? Depressed? Ladders on tall-nuts getting you down? A quick magnet-shroom will whisk your cares away!
+Устали? Подавлены? Лестницы на высоких орехах вас достали? Быстрый магнит-гриб развеет ваши заботы!
 
 [TREE_OF_WISDOM_42]
-The tallness of tall-nuts earns widespread acclaim due to their effectiveness vs. Dolphin Riders and Pogo Zombies.
+Высота высоких орехов заслуживает всеобщего признания благодаря их эффективности против Зомби на дельфине и Зомби на пого-палке.
 
 [TREE_OF_WISDOM_43]
-The explosive force of a cherry bomb or jalapeno is more than capable of dislodging a ladder from a Wall-nut.
+Взрывная сила вишнёвой бомбы или халапеньо более чем способна сбить лестницу с ореха.
 
 [TREE_OF_WISDOM_44]
-It's tempting to feed all your chocolate to Stinky the Snail. He's such a chocolate hog. But remember: Zen Garden plants like chocolate too!
+Соблазнительно скармливать весь шоколад улитке Вонючке. Он такой шоколадный обжора. Но помните: растения в Дзен-саду тоже любят шоколад!
 
 [TREE_OF_WISDOM_45]
-Torchwood fire is hotter than rage, but Zombonis, screen doors, ladders and catapults can take the heat.
+Огонь Факела горячее ярости, но Зомбони, двери, лестницы и катапульты выдерживают жар.
 
 [TREE_OF_WISDOM_46]
-If you rely on upgrade plants in Survival: Endless, be acutely aware that they get more expensive the more you have on your lawn.
+Если вы полагаетесь на улучшенные растения в бесконечном Выживании, имейте в виду, что они дорожают с каждым новым на газоне.
 
 [TREE_OF_WISDOM_47]
-The Imps in I, Zombie seem weak. But they're speedy and great for fetching that last brain when you've cleared the rest of the opposition.
+Бесёнки в «Я, Зомби» кажутся слабыми. Но они быстрые и отлично подходят для того, чтобы схватить последний мозг, когда остальная оборона снята.
 
 [TREE_OF_WISDOM_48]
-If you type 'trickedout,' don't be surprised if you see something wacky happen to your lawnmowers.
+Если наберёте 'trickedout', не удивляйтесь, если увидите что-то забавное с вашими газонокосилками.
 
 [TREE_OF_WISDOM_49]
-Thank you for feeding me! I'm out of new wisdom for now, but I might have more if you grow me tall enough!
+Спасибо за корм! У меня пока нет новой мудрости, но может появиться, если вырастите меня повыше!
 
 [TREE_OF_WISDOM_101]
-Mmmm, I could sure use some yummy fertilizer!
+Мммм, мне бы вкусного удобрения!
 
 [TREE_OF_WISDOM_102]
-I think I've seen that cloud before.
+Кажется, я уже видел это облако.
 
 [TREE_OF_WISDOM_103]
-Don't mind me. I'll just be over here, growing.
+Не обращайте внимания. Я тут просто расту.
 
 [TREE_OF_WISDOM_104]
-I'm metabolizing like crazy!
+Мой метаболизм зашкаливает!
 
 [TREE_OF_WISDOM_105]
-I'll never get why you animals spend all day moving around like you do.
+Никогда не пойму, почему вы, животные, целый день носитесь туда-сюда.
 
 [TREE_OF_WISDOM_106]
-I experience time at a vastly slower rate than you!
+Я воспринимаю время намного медленнее, чем вы!
 
 [TREE_OF_WISDOM_107]
-I think I'm perennial!
+Кажется, я многолетник!
 
 [TREE_OF_WISDOM_108]
-My xylem is tingling!
+Моя ксилема покалывает!
 
 [TREE_OF_WISDOM_109]
-You can get a lot of wisdom just by standing around.
+Можно набраться мудрости, просто стоя на месте.
 
 [TREE_OF_WISDOM_110]
-So I've heard about this "winter" dealie. Can't say I'm looking forward to it.
+Я слышал об этой штуке — «зиме». Не могу сказать, что жду её.
 
 [TREE_OF_WISDOM_201]
-Mmmm... sunlight is DELICIOUS!
+Мммм... солнечный свет ВКУСНЫЙ!
 
 [TREE_OF_WISDOM_202]
-Oops, sorry... I just gave off some oxygen.
+Ой, простите... я выделил немного кислорода.
 
 [TREE_OF_WISDOM_203]
-Gosh, I can grow leaves!
+Ого, я умею выращивать листья!
 
 [TREE_OF_WISDOM_204]
-I feel a spurt coming on! 
+Чувствую, что сейчас рванёт в рост! 
 
 [TREE_OF_WISDOM_205]
-At this stage I lack worldly knowledge!
+На данном этапе мне не хватает жизненного опыта!
 
 [TREE_OF_WISDOM_301]
-I really appreciate all the cash you're spending on fertilizer!
+Я очень ценю все деньги, что вы тратите на удобрения!
 
 [TREE_OF_WISDOM_302]
-That cloud looks just like a vast aggregation of water droplets!
+То облако похоже на огромное скопление водяных капель!
 
 [TREE_OF_WISDOM_303]
-Have you met my cousin Yggdrasil? Very big in Sweden. Lots of fans.
+Вы знакомы с моим кузеном Иггдрасилем? Очень популярен в Швеции. Много поклонников.
 
 [TREE_OF_WISDOM_304]
-I'm taking sociology at an online college. I'm really learning a lot.
+Я изучаю социологию в онлайн-колледже. Я действительно многому учусь.
 
 [TREE_OF_WISDOM_305]
-After careful observation I've deduced that it is the Earth that revolves around the sun and not the reverse as it appears.
+После тщательного наблюдения я пришёл к выводу, что это Земля вращается вокруг Солнца, а не наоборот, как кажется.
 
 [TREE_OF_WISDOM_401]
-When you've been around as long as I have, you sleep less and hallucinate more.
+Когда ты прожил столько, сколько я, ты меньше спишь и больше галлюцинируешь.
 
 [TREE_OF_WISDOM_402]
-If you're mistaking the forest for the trees, just remember: A forest is a collection of individual trees and not the other way around.
+Если вы за деревьями не видите леса, просто помните: лес — это совокупность отдельных деревьев, а не наоборот.
 
 [TREE_OF_WISDOM_403]
-History repeats itself but it always gets the details wrong.
+История повторяется, но всегда путает детали.
 
 [TREE_OF_WISDOM_404]
-If the past, present and future all simultaneously exist as "block time", surely the experience of "now" can only be an elaborate illusion?
+Если прошлое, настоящее и будущее существуют одновременно как «блочное время», разве ощущение «сейчас» не может быть лишь искусной иллюзией?
 
 [TREE_OF_WISDOM_405]
-Courage is easy; dedication costs extra.
+Храбрость даётся легко; преданность стоит дороже.
 
 [TREE_OF_WISDOM_500]
-Here's some wisdom that bears repeating...
+Вот мудрость, которую стоит повторить...
 
 [TREE_OF_WISDOM_600]
-Tree food, please!
+Корм для дерева, пожалуйста!
 
 [TREE_OF_WISDOM_800]
-Hey, I'm 100 feet tall! Celebrate with me by typing 'daisies' to get the zombies to leave tiny daisies behind when they die.
+Эй, я 100 футов! Отпразднуйте, набрав 'daisies', чтобы зомби оставляли маленькие маргаритки после гибели.
 
 [TREE_OF_WISDOM_900]
-Whoa! I'm 500 feet tall! This calls for some dancing!  Type 'dance' to get the zombies to boogie on down!
+Ого! Я 500 футов! Самое время потанцевать! Наберите 'dance', чтобы зомби пустились в пляс!
 
 [TREE_OF_WISDOM_1000]
-WOW! I'm 1000 feet tall! Celebrate with me by typing 'pinata' to make zombies spit out candy when destroyed!
+ВАУ! Я 1000 футов! Отпразднуйте, набрав 'pinata', чтобы зомби при уничтожении выбрасывали конфеты!
 
 [TREE_OF_WISDOM_1100]
-Thank you for feeding me! I've given you all my wisdom, but you can still grow me taller!
+Спасибо за корм! Я поделился всей мудростью, но вы всё ещё можете растить меня выше!
 
 [TREE_OF_WISDOM_HIEGHT]
-{HEIGHT} Feet Tall
+{HEIGHT} футов
 
 [UNLOCKED_MINIGAMES]
-Mini-games unlocked!
-Play them from the main menu!
+Мини-игры разблокированы!
+Играйте в них из главного меню!
 
 [UNLOCKED_PUZZLE_MODE]
-Puzzle mode unlocked!
-Play it from the main menu!
+Режим головоломок разблокирован!
+Играйте из главного меню!
 
 [UNLOCKED_SURVIVAL_MODE]
-Survival mode unlocked!
-Play it from the main menu!
+Режим выживания разблокирован!
+Играйте из главного меню!
 
 [CREDITS_GAMENAME]
-PLANTS VS. ZOMBIES
+РАСТЕНИЯ ПРОТИВ ЗОМБИ
 
 [CREDITS_ROLES1]
-^PLANTS VS. ZOMBIES
+^РАСТЕНИЯ ПРОТИВ ЗОМБИ
+
 [CREDITS_NAMES1]
 
 [CREDITS_ROLES2]
 ^
+
 [CREDITS_NAMES2]
 
 [CREDITS_ROLES3]
-GAME DESIGN
-PROGRAMMING
-ART
-MUSIC & SOUND
-BACKGROUND ART
-UI ART
-WRITING
+ГЕЙМДИЗАЙН
+ПРОГРАММИРОВАНИЕ
+ГРАФИКА
+МУЗЫКА И ЗВУК
+ФОНОВАЯ ГРАФИКА
+ИНТЕРФЕЙС
+ТЕКСТЫ
 
 [CREDITS_NAMES3]
 GEORGE FAN
@@ -3056,16 +3173,16 @@ STEPHEN NOTLEY
 
 [CREDITS_ROLES4]
 ^
+
 [CREDITS_NAMES4]
 
-
 [CREDITS_ROLES5]
-STUDIO DIRECTOR
-QA LEAD
-QA TESTING
-POPCAP FRAMEWORK
-MARMOT SALESMAN
-SPECIAL THANKS
+ДИРЕКТОР СТУДИИ
+ВЕДУЩИЙ ТЕСТИРОВЩИК
+ТЕСТИРОВАНИЕ
+ФРЕЙМВОРК POPCAP
+ПРОДАВЕЦ СУРКОВ
+ОСОБАЯ БЛАГОДАРНОСТЬ
 
 [CREDITS_NAMES5]
 SUKHBIR SIDHU
@@ -3080,22 +3197,25 @@ POPCAP BETA TESTERS
 
 [CREDITS_ROLES6]
 ^
+
 [CREDITS_NAMES6]
 
 [CREDITS_ROLES7]
-^GAME OF THE YEAR CONTENT
+^КОНТЕНТ ИЗДАНИЯ «ИГРА ГОДА»
+
 [CREDITS_NAMES7]
 
 [CREDITS_ROLES8]
 ^
+
 [CREDITS_NAMES8]
 
 [CREDITS_ROLES9]
-PROGRAMMING
-ART
-PRODUCER
-TECH WIZARDRY
-QA
+ПРОГРАММИРОВАНИЕ
+ГРАФИКА
+ПРОДЮСЕР
+ТЕХНИЧЕСКОЕ ВОЛШЕБСТВО
+ТЕСТИРОВАНИЕ
 
 [CREDITS_NAMES9]
 DAVID FRANZI
@@ -3106,69 +3226,71 @@ BOB CHURCH
 
 [CREDITS_ROLES10]
 ^
+
 [CREDITS_NAMES10]
 
 [CREDITS_ROLES11]
-^THANK YOU FOR PLAYING!
+^СПАСИБО ЗА ИГРУ!
+
 [CREDITS_NAMES11]
 
 [CREDITS_REPLAY_BUTTON]
-REPLAY
+ПОВТОР
 
 [CREDITS_MAIN_MENU_BUTTON]
-MAIN MENU
+ГЛАВНОЕ МЕНЮ
 
 [VISIT_TREE_HEADER]
-Visit Tree?
+Посетить Дерево?
 
 [VISIT_TREE_BODY]
-Do you want to visit the Tree of Wisdom now?
+Хотите посетить Дерево Мудрости сейчас?
 
 [CREDITS_PAUSE_HEADER]
-CREDITS PAUSED
+ТИТРЫ НА ПАУЗЕ
 
 [CREDITS_PAUSE_BODY]
-Click to resume the credits. 
+Нажмите, чтобы продолжить титры. 
 
-You can also view the credits later 
-from the options on the main menu.
+Вы также можете посмотреть титры позже 
+из настроек в главном меню.
 
 [CREDITS_RESUME_BUTTON]
-Resume Credits
+Продолжить титры
 
 [GET_FULL_VERSION_BUTTON]
-Get Full Version
+Полная версия
 
 [UPSELL_PAUSE_HEADER]
-PAUSED
+ПАУЗА
 
 [UPSELL_PAUSE_BODY]
-Click to resume to continue. 
+Нажмите, чтобы продолжить. 
 
 [UPSELL_RESUME_BUTTON]
-Resume
+Продолжить
 
 [INTRO_PRESENTS]
-PopCap Games Presents
+PopCap Games представляет
 
 [CANT_USE_CODE]
-You don't have a tall enough Tree of Wisdom for that!
+Ваше Дерево Мудрости недостаточно высокое для этого!
 
 [ADVENTURE_COMPLETE_HEADER]
-Adventure Complete
+Приключение пройдено
 
 [ADVENTURE_COMPLETE_BODY]
-More Mini-Games, Puzzle, and Survival Modes have been unlocked! Also, check out the new items in Crazy Dave's shop!
+Разблокированы новые мини-игры, головоломки и режимы выживания! Также загляните за новыми товарами в магазин Безумного Дэйва!
 
 [ADVICE_NEED_WHEELBARROW]
-To move your plants between gardens,
-purchase a wheelbarrow from the shop!
+Чтобы перемещать растения между садами,
+купите тачку в магазине!
 
 [AVAILABLE_IN_FULL_VERSION]
-This plant is only available in the FULL VERSION!
+Это растение доступно только в ПОЛНОЙ ВЕРСИИ!
 
 [REPLAY_LEVEL_HEADER]
-Replay level?
+Переиграть уровень?
 
 [REPLAY_LEVEL_BODY]
-Do you wish to replay level 3-4?
+Хотите переиграть уровень 3-4?
