@@ -6,27 +6,17 @@
 <title>PvZ Portable</title>
 <style>
 html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000; }
-/* Canvas is positioned/sized entirely by fitCanvas() below */
 #canvas { display:block; position:absolute; }
-#loading { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  color:#fff; font:20px sans-serif; text-align:center; z-index:10; }
-#loading .bar { width:300px; height:20px; border:2px solid #555; margin:10px auto; }
-#loading .fill { height:100%; background:#4a0; width:0%; transition:width .2s; }
 </style>
 </head>
 <body>
-<div id="loading">
-  <div>Loading PvZ Portable...</div>
-  <div class="bar"><div class="fill" id="progress"></div></div>
-  <div id="status">Initializing...</div>
-</div>
 <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
 
 <script>
 /**
  * fitCanvas() — Enforces strict 4:3 aspect ratio.
  *
- * Calculates the largest 4∶3 rectangle that fits inside the browser
+ * Calculates the largest 4:3 rectangle that fits inside the browser
  * viewport, centres it, and applies the size via style.setProperty
  * with !important so SDL's inline-style overrides are ignored.
  *
@@ -57,15 +47,12 @@ window.YG = {
 
   init: function() {
     console.log('[YG Stub] SDK init (stub)');
-    document.getElementById('status').textContent = 'Loading game...';
     return Promise.resolve();
   },
 
   signalReady: function() {
     console.log('[YG Stub] LoadingAPI.ready()');
     window.YG.ready = true;
-    var el = document.getElementById('loading');
-    if (el) el.style.display = 'none';
   },
 
   showInterstitial: function() {
@@ -104,22 +91,9 @@ document.addEventListener('visibilitychange', function() {
 });
 
 var Module = {
-  canvas: (function() { return document.getElementById('canvas'); })(),
-  setStatus: function(text) {
-    var el = document.getElementById('status');
-    if (el) el.textContent = text;
-    var m = text.match(/(\d+)\/(\d+)/);
-    if (m) {
-      var pct = Math.round(100 * parseInt(m[1]) / parseInt(m[2]));
-      var fill = document.getElementById('progress');
-      if (fill) fill.style.width = pct + '%';
-    }
-  },
-  onRuntimeInitialized: function() {
-    document.getElementById('status').textContent = 'Loading assets...';
-  }
+  canvas: (function() { return document.getElementById('canvas'); })()
 };
-window.onerror = function(e) { Module.setStatus('Error: ' + e); };
+window.onerror = function(e) { console.error('PvZ error:', e); };
 </script>
 {{{ SCRIPT }}}
 </body>

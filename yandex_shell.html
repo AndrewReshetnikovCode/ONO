@@ -10,19 +10,10 @@
 html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000;
   touch-action:none; -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }
 #canvas { display:block; position:absolute; }
-#loading { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  color:#fff; font:20px sans-serif; text-align:center; z-index:10; }
-#loading .bar { width:300px; height:20px; border:2px solid #555; margin:10px auto; border-radius:4px; }
-#loading .fill { height:100%; background:#4a0; width:0%; transition:width .2s; border-radius:4px; }
 </style>
 <script src="https://yandex.ru/games/sdk/v2"></script>
 </head>
 <body>
-<div id="loading">
-  <div>Loading PvZ Portable...</div>
-  <div class="bar"><div class="fill" id="progress"></div></div>
-  <div id="status">Initializing SDK...</div>
-</div>
 <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
 
 <script>
@@ -54,7 +45,6 @@ window.YG = {
     return YaGames.init().then(function(sdk) {
       ysdk = sdk;
       window.YG.sdk = sdk;
-      document.getElementById('status').textContent = 'SDK ready, loading game...';
       return sdk.getPlayer({ scopes: false }).then(function(p) {
         ygPlayer = p;
         window.YG.player = p;
@@ -67,8 +57,6 @@ window.YG = {
       ysdk.features.LoadingAPI.ready();
     }
     window.YG.ready = true;
-    var el = document.getElementById('loading');
-    if (el) el.style.display = 'none';
   },
 
   showInterstitial: function() {
@@ -135,22 +123,9 @@ document.addEventListener('visibilitychange', function() {
 document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 
 var Module = {
-  canvas: (function() { return document.getElementById('canvas'); })(),
-  setStatus: function(text) {
-    var el = document.getElementById('status');
-    if (el) el.textContent = text;
-    var m = text.match(/(\d+)\/(\d+)/);
-    if (m) {
-      var pct = Math.round(100 * parseInt(m[1]) / parseInt(m[2]));
-      var fill = document.getElementById('progress');
-      if (fill) fill.style.width = pct + '%';
-    }
-  },
-  onRuntimeInitialized: function() {
-    document.getElementById('status').textContent = 'Loading assets...';
-  }
+  canvas: (function() { return document.getElementById('canvas'); })()
 };
-window.onerror = function(e) { Module.setStatus('Error: ' + e); };
+window.onerror = function(e) { console.error('PvZ error:', e); };
 
 window.YG.init().then(function() {});
 </script>
