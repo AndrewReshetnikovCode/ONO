@@ -4,6 +4,9 @@
 #ifndef NINTENDO_SWITCH
 #include <SDL.h>
 #endif
+#ifdef __EMSCRIPTEN__
+#include <emscripten/html5.h>
+#endif
 
 #include "graphics/GLInterface.h"
 #include "graphics/GLImage.h"
@@ -1074,22 +1077,39 @@ void GLInterface::Remove3DData(MemoryImage* theImage)
 
 GLImage* GLInterface::GetScreenImage() { return mScreenImage; }
 
+/**
+ * UpdateViewport() — Maps the game's 4:3 coordinate space to the GL framebuffer.
+ *
+ * On Emscripten the canvas pixel buffer (canvas.width × canvas.height) is the
+ * ground truth.  SDL_GL_GetDrawableSize can lag behind when the shell's
+ * fitCanvas() resizes the CSS display — so we read the actual element size
+ * via emscripten_get_canvas_element_size and fill it completely (the shell
+ * already guarantees a 4:3 CSS aspect ratio, so no letterboxing is needed
+ * here).
+ *
+ * On desktop / Switch the existing SDL path and 4:3 letterbox logic is kept.
+ */
 void GLInterface::UpdateViewport()
 {
 	int vx = 0, vy = 0, vw, vh;
 
 #ifdef NINTENDO_SWITCH
 	int width = 1280, height = 720;
+#elif defined(__EMSCRIPTEN__)
+	int width, height;
+	emscripten_get_canvas_element_size("#canvas", &width, &height);
 #else
 	int width, height;
 	SDL_GL_GetDrawableSize((SDL_Window*)mApp->mWindow, &width, &height);
+#endif
+
 	glClear(GL_COLOR_BUFFER_BIT);
 	Flush();
-#endif
 
 	vw = width; vh = height;
 
-	// Letterbox to 4:3
+	// Letterbox to 4:3 (on Emscripten the shell already enforces 4:3,
+	// but keep the guard in case the canvas is not exactly 4:3)
 	if (width * 3 > height * 4)
 	{
 		vw = height * 4 / 3;

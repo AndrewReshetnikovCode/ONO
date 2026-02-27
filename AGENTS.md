@@ -32,9 +32,9 @@ cmake --build build-yg
 - `YandexSaveProvider` syncs saves to YG cloud via `player.setData()`/`player.getData()`.
 - Audio auto-mutes on `visibilitychange` and during ads.
 
-### Canvas Resolution
+### Canvas & Aspect Ratio
 
-`CANVAS_WIDTH` / `CANVAS_HEIGHT` CMake options control the CSS display size of the canvas (default 0 = auto-fill viewport). The game renders at its native resolution internally; the browser CSS stretches the canvas to the configured display size. Game rendering code is never touched — this is CSS-only.
+Strict 4:3 aspect ratio is enforced by `fitCanvas()` in both HTML shells. It calculates the largest 4:3 rectangle that fits the viewport, centres it, and applies CSS via `setProperty('important')` to override SDL's inline styles. Game rendering code is untouched — the GL viewport reads actual canvas pixel dimensions via `emscripten_get_canvas_element_size` and fills the canvas exactly.
 
 ### Game Assets
 

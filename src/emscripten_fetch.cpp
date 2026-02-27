@@ -5,23 +5,9 @@
 
 extern LawnApp* gLawnApp;
 
-static void apply_canvas_css()
-{
-#if defined(CANVAS_WIDTH) && defined(CANVAS_HEIGHT)
-	EM_ASM({
-		var c = document.getElementById('canvas');
-		if (c) {
-			c.style.setProperty('width', $0 + 'px', 'important');
-			c.style.setProperty('height', $1 + 'px', 'important');
-		}
-	}, CANVAS_WIDTH, CANVAS_HEIGHT);
-#endif
-}
-
 static void run_game()
 {
 	gLawnApp->Init();
-	apply_canvas_css();
 	gLawnApp->Start();
 	gLawnApp->Shutdown();
 	if (gLawnApp) {

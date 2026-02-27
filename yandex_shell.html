@@ -9,7 +9,7 @@
 <style>
 html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000;
   touch-action:none; -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }
-#canvas { display:block; width:100%; height:100%; }
+#canvas { display:block; position:absolute; }
 #loading { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
   color:#fff; font:20px sans-serif; text-align:center; z-index:10; }
 #loading .bar { width:300px; height:20px; border:2px solid #555; margin:10px auto; border-radius:4px; }
@@ -26,6 +26,22 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
 <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
 
 <script>
+/** fitCanvas() — see yandex_shell_stub.html for full doc */
+function fitCanvas() {
+  var vw = window.innerWidth, vh = window.innerHeight;
+  var cw, ch;
+  if (vw / vh > 4 / 3) { ch = vh; cw = Math.round(vh * 4 / 3); }
+  else { cw = vw; ch = Math.round(vw * 3 / 4); }
+  var c = document.getElementById('canvas');
+  if (!c) return;
+  c.style.setProperty('width',  cw + 'px', 'important');
+  c.style.setProperty('height', ch + 'px', 'important');
+  c.style.setProperty('left', Math.round((vw - cw) / 2) + 'px', 'important');
+  c.style.setProperty('top',  Math.round((vh - ch) / 2) + 'px', 'important');
+}
+fitCanvas();
+window.addEventListener('resize', fitCanvas);
+
 var ysdk = null;
 var ygPlayer = null;
 
