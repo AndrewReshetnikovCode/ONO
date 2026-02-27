@@ -27,7 +27,7 @@ EM_JS(void, pvz_fetch_resources_and_run, (), {
 	var optional = [
 		{ url: base + '/properties/partner.xml', path: '/properties/partner.xml' },
 		{ url: base + '/properties/partner_logo.jpg', path: '/properties/partner_logo.jpg' },
-		{ url: base + '/Properties/LawnStrings.txt', path: '/Properties/LawnStrings.txt' }
+		{ url: base + '/properties/LawnStrings.txt', path: '/Properties/LawnStrings.txt' }
 	];
 
 	function fetchFile(f) {
