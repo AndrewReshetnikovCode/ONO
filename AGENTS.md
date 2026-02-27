@@ -63,6 +63,16 @@ cmake --build build
 
 No linter or test suite. Verification is done by building and running the application.
 
+### Serving the WASM Build
+
+After building and copying assets, serve from the build directory:
+
+```bash
+cd build-yg-stub && python3 -m http.server 8080
+```
+
+Open `http://localhost:8080/index.html` in Chrome. The game runs entirely client-side (no backend).
+
 ### Emscripten SDK
 
 Installed at `/opt/emsdk`. Activate with `source /opt/emsdk/emsdk_env.sh` before building. The update script handles installation/activation automatically.
