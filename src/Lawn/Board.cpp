@@ -33,11 +33,70 @@
 //#define SEXY_PERF_ENABLED
 #include "misc/PerfTimer.h"
 #include "Widget/AchievementsScreen.h"
+#include "System/DeterministicSim.h"
 
 //#define SEXY_MEMTRACE
 //#include "../SexyAppFramework/memmgr.h"
 
 bool gShownMoreSunTutorial = false;
+static DeterministicReplayRecorder gDeterministicReplayRecorder;
+
+static DeterministicSunSpawningState BuildDeterministicSunState(Board* theBoard)
+{
+	DeterministicSunSpawningState aState{};
+	aState.mStageIsNight = theBoard->StageIsNight();
+	aState.mHasLevelAwardDropped = theBoard->HasLevelAwardDropped();
+	aState.mGameMode = theBoard->mApp->mGameMode;
+	aState.mIsIZombieLevel = theBoard->mApp->IsIZombieLevel();
+	aState.mIsScaryPotterLevel = theBoard->mApp->IsScaryPotterLevel();
+	aState.mIsSquirrelLevel = theBoard->mApp->IsSquirrelLevel();
+	aState.mHasConveyorBeltSeedBank = theBoard->HasConveyorBeltSeedBank();
+	aState.mTutorialState = theBoard->mTutorialState;
+	aState.mPlantCount = theBoard->mPlants.mSize;
+	aState.mSunCountDown = theBoard->mSunCountDown;
+	aState.mNumSunsFallen = theBoard->mNumSunsFallen;
+	return aState;
+}
+
+static DeterministicWaveSpawningState BuildDeterministicWaveState(Board* theBoard, int thePreviousWaveHealth)
+{
+	DeterministicWaveSpawningState aState{};
+	aState.mZombieCountDown = theBoard->mZombieCountDown;
+	aState.mZombieCountDownStart = theBoard->mZombieCountDownStart;
+	aState.mPreviousWaveHealth = thePreviousWaveHealth;
+	aState.mZombieHealthToNextWave = theBoard->mZombieHealthToNextWave;
+	aState.mZombieHealthWaveStart = theBoard->mZombieHealthWaveStart;
+	return aState;
+}
+
+static uint64_t BuildDeterministicBoardStateHash(Board* theBoard)
+{
+	DeterministicSunSpawningState aSunState = BuildDeterministicSunState(theBoard);
+	int aPreviousWaveHealth = (theBoard->mCurrentWave > 0) ? theBoard->TotalZombiesHealthInWave(theBoard->mCurrentWave - 1) : 0;
+	DeterministicWaveSpawningState aWaveState = BuildDeterministicWaveState(theBoard, aPreviousWaveHealth);
+
+	uint64_t aHash = DeterministicHashInit();
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aSunState.mStageIsNight ? 1 : 0));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aSunState.mHasLevelAwardDropped ? 1 : 0));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aSunState.mGameMode));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aSunState.mTutorialState));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aSunState.mSunCountDown));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aSunState.mNumSunsFallen));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mSunMoney));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mMainCounter));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mCurrentWave));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mNumWaves));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aWaveState.mZombieCountDown));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aWaveState.mZombieCountDownStart));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aWaveState.mPreviousWaveHealth));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aWaveState.mZombieHealthToNextWave));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(aWaveState.mZombieHealthWaveStart));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mTotalSpawnedWaves));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mBoardRandSeed));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mCoinsCollected));
+	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mDiamondsCollected));
+	return DeterministicHashFinalize(aHash);
+}
 
 //0x407B50
 // GOTY @Patoke: 0x40A3C0
@@ -5397,37 +5456,20 @@ bool Board::HasLevelAwardDropped()
 //0x413A70
 void Board::UpdateSunSpawning()
 {
-	if (StageIsNight() || 
-		HasLevelAwardDropped() || 
-		mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_RAINING_SEEDS || 
-		mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ICE || 
-		mApp->mGameMode == GameMode::GAMEMODE_UPSELL ||
-		mApp->mGameMode == GameMode::GAMEMODE_INTRO || 
-		mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ZOMBIQUARIUM || 
-		mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ZEN_GARDEN ||
-		mApp->mGameMode == GameMode::GAMEMODE_TREE_OF_WISDOM || 
-		mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_LAST_STAND || 
-		mApp->IsIZombieLevel() ||
-		mApp->IsScaryPotterLevel() || 
-		mApp->IsSquirrelLevel() || 
-		HasConveyorBeltSeedBank() || 
-		mTutorialState == TutorialState::TUTORIAL_SLOT_MACHINE_PULL)
+	DeterministicSunSpawningState aSunState = BuildDeterministicSunState(this);
+	if (DeterministicSunShouldSkip(aSunState))
 		return;
 
-	if (mTutorialState == TutorialState::TUTORIAL_LEVEL_1_PICK_UP_PEASHOOTER || mTutorialState == TutorialState::TUTORIAL_LEVEL_1_PLANT_PEASHOOTER)
-	{
-		if (mPlants.mSize == 0)
-		{
-			return;
-		}
-	}
+	if (DeterministicSunNeedsPlantTutorialGate(aSunState))
+		return;
 
 	mSunCountDown--;
-	if (mSunCountDown != 0)
+	if (!DeterministicSunShouldSpawnAfterTick(mSunCountDown))
 		return;
 
 	mNumSunsFallen++;
-	mSunCountDown = std::min(SUN_COUNTDOWN_MAX, SUN_COUNTDOWN + mNumSunsFallen * 10) + Rand(SUN_COUNTDOWN_RANGE);
+	int aSunCountdownJitter = Rand(SUN_COUNTDOWN_RANGE);
+	mSunCountDown = DeterministicComputeNextSunCountDown(mNumSunsFallen, aSunCountdownJitter);
 	CoinType aSunType = mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_SUNNY_DAY ? CoinType::COIN_LARGESUN : CoinType::COIN_SUN;
 	AddCoin(RandRangeInt(100, 649), 60, aSunType, CoinMotion::COIN_MOTION_FROM_SKY);
 }
@@ -5555,7 +5597,9 @@ void Board::UpdateZombieSpawning()
 		return;
 	}
 
-	if (mZombieCountDown > 200 && mZombieCountDownStart - mZombieCountDown > 400 && TotalZombiesHealthInWave(mCurrentWave - 1) <= mZombieHealthToNextWave)
+	int aPreviousWaveHealth = TotalZombiesHealthInWave(mCurrentWave - 1);
+	DeterministicWaveSpawningState aWaveState = BuildDeterministicWaveState(this, aPreviousWaveHealth);
+	if (DeterministicShouldAccelerateZombieCountdown(aWaveState))
 	{
 		mZombieCountDown = 200;
 	}
@@ -5587,14 +5631,16 @@ void Board::UpdateZombieSpawning()
 		}
 		else
 		{
-			mZombieHealthToNextWave = RandRangeFloat(0.5f, 0.65f) * mZombieHealthWaveStart;
+			float aHealthFactor = RandRangeFloat(0.5f, 0.65f);
+			mZombieHealthToNextWave = DeterministicComputeZombieHealthToNextWave(mZombieHealthWaveStart, aHealthFactor);
 			if (mApp->IsLittleTroubleLevel() || mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_COLUMN || mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_LAST_STAND)
 			{
 				mZombieCountDown = 750;
 			}
 			else
 			{
-				mZombieCountDown = ZOMBIE_COUNTDOWN + Rand(ZOMBIE_COUNTDOWN_RANGE);
+				int aZombieCountDownJitter = Rand(ZOMBIE_COUNTDOWN_RANGE);
+				mZombieCountDown = DeterministicComputeZombieCountdownWithRandomOffset(ZOMBIE_COUNTDOWN, aZombieCountDownJitter);
 			}
 		}
 		mZombieCountDownStart = mZombieCountDown;
@@ -5924,6 +5970,11 @@ void Board::UpdateGame()
 	}
 
 	UpdateProgressMeter();
+
+#ifdef _PVZ_DEBUG
+	// Record deterministic state hashes for replay parity checks.
+	gDeterministicReplayRecorder.RecordFrame(static_cast<uint32_t>(mMainCounter), BuildDeterministicBoardStateHash(this), 0);
+#endif
 }
 
 //0x415D40
