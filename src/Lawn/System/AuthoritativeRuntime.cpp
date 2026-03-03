@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <sstream>
+#include "BotActionTrack.h"
 
 static AuthoritativeAntiCheatConfig BuildAntiCheatConfig(const AuthoritativeServerConfig& theConfig)
 {
@@ -38,6 +39,21 @@ void AuthoritativeMatchmaker::FillLobbyWithBots(AuthoritativeLobby& theLobby, in
 		aBot.mMmr = theMmrHint;
 		aBot.mIsBot = true;
 		theLobby.mMembers.push_back(aBot);
+	}
+
+	std::vector<size_t> aBotIndexes;
+	for (size_t i = 0; i < theLobby.mMembers.size(); ++i)
+	{
+		if (theLobby.mMembers[i].mIsBot)
+		{
+			aBotIndexes.push_back(i);
+		}
+	}
+
+	std::vector<int> aAssignedTracks = BotActionTrackPool::AssignTracksUniqueFirst(theLobby.mLobbyId, theMmrHint, aBotIndexes.size());
+	for (size_t i = 0; i < aBotIndexes.size() && i < aAssignedTracks.size(); ++i)
+	{
+		theLobby.mMembers[aBotIndexes[i]].mBotTrackId = aAssignedTracks[i];
 	}
 }
 
@@ -217,6 +233,20 @@ AuthoritativeMatchRuntime::AuthoritativeMatchRuntime(const AuthoritativeServerCo
 		aPlayer.mPvpSentThisPhase = 0;
 		mPlayerStates[aPlayer.mPlayerId] = aPlayer;
 		mPendingDamageByPlayer[aPlayer.mPlayerId] = 0;
+
+		if (aMember.mIsBot)
+		{
+			BotReplayCursor aCursor;
+			aCursor.mTrackId = aMember.mBotTrackId;
+			aCursor.mNextActionIndex = 0;
+			aCursor.mNextCommandId = 1;
+			aCursor.mFinished = false;
+			mBotReplayByPlayerId[aPlayer.mPlayerId] = aCursor;
+
+			std::ostringstream aDetails;
+			aDetails << "[BOT] assigned trackId=" << aMember.mBotTrackId;
+			EmitEvent(NetEventType::NET_EVENT_SNAPSHOT_APPLY, aPlayer.mPlayerId, NetProtocolError::NET_PROTOCOL_OK, aDetails.str());
+		}
 	}
 
 	EmitEvent(NetEventType::NET_EVENT_MATCH_START, 0, NetProtocolError::NET_PROTOCOL_OK, "match started");
@@ -531,6 +561,92 @@ void AuthoritativeMatchRuntime::EmitAntiCheatEvents()
 	mAntiCheat.ClearEvents();
 }
 
+void AuthoritativeMatchRuntime::GenerateBotCommandsForTick()
+{
+	if (mBotReplayByPlayerId.empty())
+	{
+		return;
+	}
+
+	uint64_t aElapsedTick = mCurrentTick >= mMatchStartTick ? (mCurrentTick - mMatchStartTick) : 0;
+	for (auto& aReplayPair : mBotReplayByPlayerId)
+	{
+		uint64_t aBotPlayerId = aReplayPair.first;
+		BotReplayCursor& aCursor = aReplayPair.second;
+		if (aCursor.mFinished)
+		{
+			continue;
+		}
+
+		auto aPlayerIt = mPlayerStates.find(aBotPlayerId);
+		if (aPlayerIt == mPlayerStates.end() || aPlayerIt->second.mEliminated)
+		{
+			continue;
+		}
+
+		const BotActionTrack* aTrack = BotActionTrackPool::FindTrackById(aCursor.mTrackId);
+		if (aTrack == nullptr)
+		{
+			aCursor.mFinished = true;
+			std::ostringstream aDetails;
+			aDetails << "[BOT] missing trackId=" << aCursor.mTrackId << ", replay disabled";
+			EmitEvent(NetEventType::NET_EVENT_SNAPSHOT_APPLY, aBotPlayerId, NetProtocolError::NET_PROTOCOL_INVALID_PAYLOAD, aDetails.str());
+			continue;
+		}
+
+		while (aCursor.mNextActionIndex < aTrack->mActions.size())
+		{
+			const BotRecordedAction& aAction = aTrack->mActions[aCursor.mNextActionIndex];
+			if (aElapsedTick < aAction.mTickOffset)
+			{
+				break;
+			}
+
+			NetClientCommand aCommand;
+			aCommand.mEnvelope.mVersion = NET_PROTOCOL_VERSION_V1;
+			aCommand.mEnvelope.mMatchId = mLobbyId;
+			aCommand.mEnvelope.mPlayerId = aBotPlayerId;
+			aCommand.mEnvelope.mCommandId = aCursor.mNextCommandId++;
+			aCommand.mEnvelope.mClientTick = static_cast<uint32_t>(mCurrentTick);
+
+			if (aAction.mActionType == BotRecordedActionType::BOT_ACTION_PLACE_PLANT)
+			{
+				aCommand.mEnvelope.mCommandType = NetCommandType::NET_COMMAND_PLACE_PLANT;
+				NetPlacePlantPayload aPayload;
+				aPayload.mGridX = aAction.mGridX;
+				aPayload.mGridY = aAction.mGridY;
+				aPayload.mSeedType = aAction.mSeedType;
+				aPayload.mImitaterSeedType = aAction.mImitaterSeedType;
+				aCommand.mPayload = aPayload;
+			}
+			else
+			{
+				aCursor.mNextActionIndex++;
+				continue;
+			}
+
+			NetCommandValidationResult aEnqueueResult = EnqueueCommand(aCommand);
+			std::ostringstream aDetails;
+			aDetails << "[BOT] replay trackId=" << aCursor.mTrackId
+				<< " actionIndex=" << aCursor.mNextActionIndex
+				<< " command=" << NetCommandTypeToString(aCommand.mEnvelope.mCommandType)
+				<< " result=" << NetProtocolErrorToString(aEnqueueResult.mError)
+				<< " reason=" << aEnqueueResult.mReason;
+			EmitEvent(NetEventType::NET_EVENT_SNAPSHOT_APPLY, aBotPlayerId, aEnqueueResult.mError, aDetails.str());
+
+			aCursor.mNextActionIndex++;
+		}
+
+		if (aCursor.mNextActionIndex >= aTrack->mActions.size())
+		{
+			aCursor.mFinished = true;
+			std::ostringstream aDetails;
+			aDetails << "[BOT] replay completed trackId=" << aCursor.mTrackId;
+			EmitEvent(NetEventType::NET_EVENT_SNAPSHOT_APPLY, aBotPlayerId, NetProtocolError::NET_PROTOCOL_OK, aDetails.str());
+		}
+	}
+}
+
 void AuthoritativeMatchRuntime::ProcessQueuedCommands()
 {
 	while (!mCommandQueue.empty() && mRunning)
@@ -592,6 +708,7 @@ void AuthoritativeMatchRuntime::AdvanceOneTick()
 		BeginPvpPhase();
 	}
 
+	GenerateBotCommandsForTick();
 	ProcessQueuedCommands();
 	EmitAntiCheatEvents();
 	CheckForMatchEnd();

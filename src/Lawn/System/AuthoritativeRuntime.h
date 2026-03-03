@@ -49,6 +49,7 @@ struct AuthoritativeLobbyMember
 	uint64_t						mPlayerId = 0;
 	int								mMmr = 0;
 	bool							mIsBot = false;
+	int								mBotTrackId = -1;
 };
 
 struct AuthoritativeLobby
@@ -108,6 +109,14 @@ private:
 		uint64_t						mEnqueueTick = 0;
 	};
 
+	struct BotReplayCursor
+	{
+		int								mTrackId = -1;
+		size_t							mNextActionIndex = 0;
+		uint64_t						mNextCommandId = 1;
+		bool							mFinished = false;
+	};
+
 private:
 	AuthoritativeServerConfig		mConfig;
 	uint64_t						mLobbyId = 0;
@@ -121,6 +130,7 @@ private:
 	std::unordered_map<uint64_t, AuthoritativePlayerState> mPlayerStates;
 	std::unordered_map<uint64_t, int> mPendingDamageByPlayer;
 	std::deque<QueuedCommand>		mCommandQueue;
+	std::unordered_map<uint64_t, BotReplayCursor> mBotReplayByPlayerId;
 	std::unordered_set<std::string>	mSeenCommandKeys;
 	std::deque<std::string>			mSeenCommandKeyOrder;
 	std::vector<AuthoritativeRuntimeEvent> mEvents;
@@ -133,6 +143,7 @@ private:
 	void							ApplyAuthoritativeSunTick();
 	void							ApplyPendingDamageTick();
 	void							ProcessQueuedCommands();
+	void							GenerateBotCommandsForTick();
 	NetCommandValidationResult		ApplyCommand(const NetClientCommand& theCommand);
 	void							MarkEliminated(uint64_t thePlayerId, const std::string& theReason);
 	void							CheckForMatchEnd();
