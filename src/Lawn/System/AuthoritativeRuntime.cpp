@@ -4,6 +4,14 @@
 #include <cmath>
 #include <sstream>
 
+static AuthoritativeAntiCheatConfig BuildAntiCheatConfig(const AuthoritativeServerConfig& theConfig)
+{
+	AuthoritativeAntiCheatConfig aConfig;
+	aConfig.mMaxCommandsPerTick = std::max(1, theConfig.mPvpMaxZombiesPerPhase);
+	aConfig.mMaxSunDeltaPerTick = std::max(100, theConfig.mSunGenerationAmount * 8);
+	return aConfig;
+}
+
 AuthoritativeLobby AuthoritativeMatchmaker::BuildLobbyFromRequests(const std::vector<AuthoritativeMatchmakingRequest>& theMembers, const AuthoritativeServerConfig& theConfig)
 {
 	AuthoritativeLobby aLobby;
@@ -192,7 +200,8 @@ void AuthoritativeMatchRuntime::EmitEvent(NetEventType theEventType, uint64_t th
 }
 
 AuthoritativeMatchRuntime::AuthoritativeMatchRuntime(const AuthoritativeServerConfig& theConfig, const AuthoritativeLobby& theLobby, uint64_t theServerTick)
-	: mConfig(theConfig), mLobbyId(theLobby.mLobbyId), mMatchStartTick(theServerTick), mCurrentTick(theServerTick), mRunning(true)
+	: mConfig(theConfig), mLobbyId(theLobby.mLobbyId), mMatchStartTick(theServerTick), mCurrentTick(theServerTick), mRunning(true),
+	mAntiCheat(BuildAntiCheatConfig(theConfig))
 {
 	mPlayerStates.reserve(theLobby.mMembers.size());
 	for (const AuthoritativeLobbyMember& aMember : theLobby.mMembers)
@@ -319,6 +328,7 @@ void AuthoritativeMatchRuntime::ApplyAuthoritativeSunTick()
 		{
 			aPlayer.mSun += mConfig.mSunGenerationAmount;
 		}
+		mAntiCheat.RecordSunSnapshot(aPlayer.mPlayerId, mCurrentTick, aPlayer.mSun);
 	}
 }
 
@@ -426,6 +436,7 @@ NetCommandValidationResult AuthoritativeMatchRuntime::ApplyCommand(const NetClie
 	}
 
 	AuthoritativePlayerState& aPlayer = aPlayerIt->second;
+	mAntiCheat.RecordCommand(aPlayer.mPlayerId, mCurrentTick, NetCommandTypeToString(theCommand.mEnvelope.mCommandType));
 	if (aPlayer.mEliminated)
 	{
 		NetCommandValidationResult aResult{NetProtocolError::NET_PROTOCOL_INVALID_ENVELOPE, "eliminated player command"};
@@ -472,6 +483,7 @@ NetCommandValidationResult AuthoritativeMatchRuntime::ApplyCommand(const NetClie
 		const NetSendPvpZombiesPayload& aPayload = std::get<NetSendPvpZombiesPayload>(theCommand.mPayload);
 		if (aPayload.mTargetPlayerId != aTargetIt->second)
 		{
+			mAntiCheat.RecordCriticalDesync(aPlayer.mPlayerId, mCurrentTick, "pvp target mismatch");
 			NetCommandValidationResult aResult{NetProtocolError::NET_PROTOCOL_INVALID_PAYLOAD, "target does not match authoritative pvp pairing"};
 			EmitEvent(NetEventType::NET_EVENT_COMMAND_REJECTED, aPlayer.mPlayerId, aResult.mError, aResult.mReason);
 			return aResult;
@@ -479,6 +491,7 @@ NetCommandValidationResult AuthoritativeMatchRuntime::ApplyCommand(const NetClie
 
 		if (aPlayer.mPvpSentThisPhase + aPayload.mZombieCount > mConfig.mPvpMaxZombiesPerPhase)
 		{
+			mAntiCheat.RecordCriticalDesync(aPlayer.mPlayerId, mCurrentTick, "pvp send limit exceeded");
 			NetCommandValidationResult aResult{NetProtocolError::NET_PROTOCOL_INVALID_PAYLOAD, "authoritative pvp zombie limit exceeded"};
 			EmitEvent(NetEventType::NET_EVENT_COMMAND_REJECTED, aPlayer.mPlayerId, aResult.mError, aResult.mReason);
 			return aResult;
@@ -506,6 +519,16 @@ NetCommandValidationResult AuthoritativeMatchRuntime::ApplyCommand(const NetClie
 		return aResult;
 	}
 	}
+}
+
+void AuthoritativeMatchRuntime::EmitAntiCheatEvents()
+{
+	const std::vector<AuthoritativeAntiCheatEvent>& aEvents = mAntiCheat.GetEvents();
+	for (const AuthoritativeAntiCheatEvent& aEvent : aEvents)
+	{
+		EmitEvent(NetEventType::NET_EVENT_COMMAND_REJECTED, aEvent.mPlayerId, NetProtocolError::NET_PROTOCOL_INVALID_PAYLOAD, std::string("anti-cheat: ") + aEvent.mDetails);
+	}
+	mAntiCheat.ClearEvents();
 }
 
 void AuthoritativeMatchRuntime::ProcessQueuedCommands()
@@ -570,6 +593,7 @@ void AuthoritativeMatchRuntime::AdvanceOneTick()
 	}
 
 	ProcessQueuedCommands();
+	EmitAntiCheatEvents();
 	CheckForMatchEnd();
 }
 
@@ -722,4 +746,17 @@ const AuthoritativeMatchRuntime* AuthoritativeServerRuntime::GetActiveMatch(uint
 		return nullptr;
 	}
 	return aIt->second.get();
+}
+
+bool AuthoritativeServerRuntime::TryGetPlayerLobby(uint64_t thePlayerId, uint64_t& theLobbyId) const
+{
+	auto aIt = mPlayerToLobby.find(thePlayerId);
+	if (aIt == mPlayerToLobby.end())
+	{
+		theLobbyId = 0;
+		return false;
+	}
+
+	theLobbyId = aIt->second;
+	return true;
 }

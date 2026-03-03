@@ -10,6 +10,7 @@
 #include <unordered_set>
 #include <vector>
 #include "NetProtocol.h"
+#include "AuthoritativeAntiCheat.h"
 
 enum class AuthoritativeMatchmakingMode
 {
@@ -123,6 +124,7 @@ private:
 	std::unordered_set<std::string>	mSeenCommandKeys;
 	std::deque<std::string>			mSeenCommandKeyOrder;
 	std::vector<AuthoritativeRuntimeEvent> mEvents;
+	AuthoritativeAntiCheatMonitor	mAntiCheat;
 
 private:
 	void							EmitEvent(NetEventType theEventType, uint64_t thePlayerId, NetProtocolError theError, const std::string& theDetails);
@@ -135,6 +137,7 @@ private:
 	void							MarkEliminated(uint64_t thePlayerId, const std::string& theReason);
 	void							CheckForMatchEnd();
 	bool							IsDuplicateCommand(const NetClientCommand& theCommand);
+	void							EmitAntiCheatEvents();
 
 public:
 	AuthoritativeMatchRuntime(const AuthoritativeServerConfig& theConfig, const AuthoritativeLobby& theLobby, uint64_t theServerTick);
@@ -183,6 +186,7 @@ public:
 
 	bool							HasActiveMatch(uint64_t theLobbyId) const;
 	const AuthoritativeMatchRuntime* GetActiveMatch(uint64_t theLobbyId) const;
+	bool							TryGetPlayerLobby(uint64_t thePlayerId, uint64_t& theLobbyId) const;
 
 	const std::vector<AuthoritativeRuntimeEvent>& GetEvents() const { return mEvents; }
 	void							ClearEvents() { mEvents.clear(); }

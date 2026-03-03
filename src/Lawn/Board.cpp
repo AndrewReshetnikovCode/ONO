@@ -4097,6 +4097,7 @@ void Board::MouseDownWithPlant(int x, int y, int theClickCount)
 	else if (mCursorObject->mCursorType == CursorType::CURSOR_TYPE_PLANT_FROM_USABLE_COIN)
 	{
 		AddPlant(aGridX, aGridY, mCursorObject->mType, mCursorObject->mImitaterType);
+		mApp->SubmitAuthoritativePlantCommand(aGridX, aGridY, mCursorObject->mType, mCursorObject->mImitaterType);
 		Coin* aCoin = mCoins.DataArrayTryToGet(mCursorObject->mCoinID);
 		mCursorObject->mCoinID = CoinID::COINID_NULL;
 		aCoin->Die();
@@ -4104,6 +4105,10 @@ void Board::MouseDownWithPlant(int x, int y, int theClickCount)
 	else if (mCursorObject->mCursorType == CursorType::CURSOR_TYPE_PLANT_FROM_BANK)
 	{
 		Plant* aPlant = AddPlant(aGridX, aGridY, mCursorObject->mType, mCursorObject->mImitaterType);
+		if (aPlant != nullptr)
+		{
+			mApp->SubmitAuthoritativePlantCommand(aGridX, aGridY, mCursorObject->mType, mCursorObject->mImitaterType);
+		}
 		if (aIsAwake)
 		{
 			aPlant->SetSleeping(false);
@@ -4145,6 +4150,7 @@ void Board::MouseDownWithPlant(int x, int y, int theClickCount)
 				}
 			}
 			AddPlant(aGridX, aRow, mCursorObject->mType, mCursorObject->mImitaterType);
+			mApp->SubmitAuthoritativePlantCommand(aGridX, aRow, mCursorObject->mType, mCursorObject->mImitaterType);
 		}
 	}
 
@@ -4273,7 +4279,10 @@ void Board::MouseDownWithTool(int x, int y, int theClickCount, CursorType theCur
 	{
 		mApp->PlayFoley(FoleyType::FOLEY_USE_SHOVEL);
 		mPlantsShoveled++;
+		int aRemovedPlantCol = aPlant->mPlantCol;
+		int aRemovedPlantRow = aPlant->mRow;
 		aPlant->Die();
+		mApp->SubmitAuthoritativeRemovePlantCommand(aRemovedPlantCol, aRemovedPlantRow);
 
 		if (aPlant->mSeedType == SeedType::SEED_CATTAIL && GetTopPlantAt(aPlant->mPlantCol, aPlant->mRow, PlantPriority::TOPPLANT_ONLY_PUMPKIN))
 		{

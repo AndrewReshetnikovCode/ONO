@@ -2685,8 +2685,10 @@ bool SexyAppBase::LoadProperties(const std::string& theFileName, bool required, 
 
 bool SexyAppBase::LoadProperties()
 {
-	// Load required localization from LawnStrings.txt
-	if (!TodStringListReadFile("Properties/LawnStrings.txt"))
+	// Load required localization from LawnStrings.txt.
+	// Try lowercase path first for case-sensitive web hosts, then legacy uppercase path.
+	if (!TodStringListReadFile("properties/LawnStrings.txt") &&
+		!TodStringListReadFile("Properties/LawnStrings.txt"))
 	{
 		Popup(GetString("UNABLE_OPEN_PROPERTIES", "Unable to open properties file ") + "Properties/LawnStrings.txt");
 		return false;

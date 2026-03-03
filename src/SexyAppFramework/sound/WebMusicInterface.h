@@ -20,7 +20,10 @@ class WebMusicInterface : public MusicInterface
 {
 protected:
 	std::map<int, WebMusicInfo>	mMusicMap;
-	int							mGlobalVolume;
+	double						mGlobalVolume;
+	int							mCurrentSongId;
+	bool						mIsPlaying;
+	bool						mIsPaused;
 
 public:
 	WebMusicInterface();
