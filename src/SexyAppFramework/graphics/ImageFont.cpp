@@ -300,11 +300,28 @@ static bool UTF8DecodeNext(const std::string& theString, size_t& offset, char32_
 
 static bool UTF8PairToUTF32Pair(const std::string& theString, char32_t& firstChar, char32_t& secondChar)
 {
+	// Legacy image-font descriptors often use a single-byte code page
+	// (for example CP1251 for Cyrillic), so allow raw two-byte pairs.
+	if (theString.size() == 2)
+	{
+		firstChar = static_cast<unsigned char>(theString[0]);
+		secondChar = static_cast<unsigned char>(theString[1]);
+		return true;
+	}
+
 	size_t offset = 0;
-	if (!UTF8DecodeNext(theString, offset, firstChar))
+	size_t firstCharStart = 0;
+	char32_t decodedChar = 0;
+
+	if (!UTF8DecodeNext(theString, offset, decodedChar))
 		return false;
-	if (!UTF8DecodeNext(theString, offset, secondChar))
+	firstChar = UTF8CharToUTF32Char(theString.substr(firstCharStart, offset - firstCharStart));
+
+	size_t secondCharStart = offset;
+	if (!UTF8DecodeNext(theString, offset, decodedChar))
 		return false;
+	secondChar = UTF8CharToUTF32Char(theString.substr(secondCharStart, offset - secondCharStart));
+
 	return offset == theString.size();
 }
 
