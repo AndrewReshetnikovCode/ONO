@@ -18,8 +18,6 @@ jobs:
     container: archlinux:latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Install Base Dependencies
       run: |
@@ -70,8 +68,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - uses: msys2/setup-msys2@v2
       with:
@@ -127,8 +123,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - uses: ilammy/msvc-dev-cmd@v1
 
@@ -162,8 +156,6 @@ jobs:
   #     image: devkitpro/devkita64:latest
   #   steps:
   #     - uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
 
   #     - name: Compile libopenmpt for Switch
   #       shell: bash
@@ -196,8 +188,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Install Dependencies
       run: |
@@ -235,9 +225,32 @@ jobs:
         name: pvz-portable-macos
         path: dist/
 
+  build-web-emscripten:
+    name: Build for Web (Emscripten)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Emscripten SDK
+      uses: mymindstorm/setup-emsdk@v14
+      with:
+        version: latest
+
+    - name: Install Build Tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ninja-build
+
+    - name: Compile PvZ-Portable for Web
+      run: |
+        emcmake cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release
+        cmake --build build
+
+        test -f build/index.html
+
   release:
     name: Release
-    needs: ['build-archlinux', 'build-windows-msys2-ucrt64', 'build-windows-msvc-x64', 'build-macos']
+    needs: ['build-archlinux', 'build-windows-msys2-ucrt64', 'build-windows-msvc-x64', 'build-macos', 'build-web-emscripten']
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     permissions:
