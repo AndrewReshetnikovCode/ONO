@@ -2,9 +2,9 @@ name: CI build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "**" ]
     paths-ignore:
-      - "web-build/**"
+      - "build-yg/**"
   pull_request:
     branches: [ "main" ]
 
@@ -22,6 +22,8 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref || github.ref_name }}
 
     - name: Setup Emscripten SDK
       uses: mymindstorm/setup-emsdk@v14
@@ -40,23 +42,24 @@ jobs:
 
     - name: Place web artifact in repository
       run: |
-        mkdir -p web-build
+        mkdir -p build-yg
+        rm -f build-yg/index.html build-yg/index.js build-yg/index.wasm build-yg/index.data build-yg/index.worker.js build-yg/index.wasm.map
         for f in build/index.html build/index.js build/index.wasm build/index.data build/index.worker.js build/index.wasm.map; do
           if [ -f "$f" ]; then
-            cp "$f" web-build/
+            cp "$f" build-yg/
           fi
         done
-        test -f web-build/index.html
+        test -f build-yg/index.html
 
     - name: Commit web artifact to repository
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      if: github.event_name == 'push'
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add web-build
+        git add -A build-yg
         if git diff --cached --quiet; then
           echo "No artifact changes to commit."
           exit 0
         fi
         git commit -m "chore: update web build artifact [skip ci]"
-        git push
+        git push origin HEAD:${{ github.ref_name }}
