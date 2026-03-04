@@ -27,6 +27,10 @@ class ChallengeScreen;
 class StoreScreen;
 class AlmanacDialog;
 class TypingCheck;
+class ClientSessionRuntime;
+class AuthoritativeProgressionStore;
+class YandexSdkBridge;
+class RuntimeTelemetry;
 
 namespace Sexy
 {
@@ -122,6 +126,12 @@ public:
 	TrialType						mTrialType;										//+0x8C0
 	bool							mDebugTrialLocked;								//+0x8C4
 	bool							mMuteSoundsForCutscene;							//+0x8C5
+	bool							mEnableAuthoritativeClientSession;
+	ClientSessionRuntime*			mClientSessionRuntime;
+	AuthoritativeProgressionStore*	mAuthoritativeProgressionStore;
+	YandexSdkBridge*				mYandexSdkBridge;
+	bool							mYandexLeaderboardSubmitted;
+	RuntimeTelemetry*				mRuntimeTelemetry;
 
 public:
 	LawnApp();
@@ -291,6 +301,13 @@ public:
 	bool							AdvanceCrazyDaveText();
 	/*inline*/ bool					IsWhackAZombieLevel();
 	void							UpdatePlayTimeStats();
+	void							InitClientSessionRuntime();
+	void							ShutdownClientSessionRuntime();
+	void							UpdateClientSessionRuntime();
+	void							ApplyAuthoritativeSnapshotToBoard();
+	bool							SubmitAuthoritativePlantCommand(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterSeedType);
+	bool							SubmitAuthoritativeRemovePlantCommand(int theGridX, int theGridY);
+	const char*						GetClientSessionStateString() const;
 	void							BetaAddFile(std::list<std::string>& theUploadFileList, std::string theFileName, std::string theShortName);
 	bool							CanPauseNow();
 	/*inline*/ bool					IsPuzzleMode();

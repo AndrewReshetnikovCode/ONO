@@ -1,5 +1,6 @@
 //#include <corecrt.h>
 #include <time.h>
+#include <vector>
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
@@ -21,6 +22,9 @@
 #include "Lawn/System/PlayerInfo.h"
 #include "Lawn/System/PoolEffect.h"
 #include "Lawn/System/ProfileMgr.h"
+#include "Lawn/System/AuthoritativeProgressionStore.h"
+#include "Lawn/System/YandexSdkBridge.h"
+#include "Lawn/System/RuntimeTelemetry.h"
 #include "Lawn/Widget/GameButton.h"
 #include "Sexy.TodLib/Reanimator.h"
 #include "Lawn/Widget/UserDialog.h"
@@ -40,6 +44,7 @@
 #include "Lawn/Widget/NewUserDialog.h"
 #include "Lawn/Widget/ContinueDialog.h"
 #include "Lawn/System/ReanimationLawn.h"
+#include "Lawn/System/ClientSessionRuntime.h"
 #include "Lawn/Widget/ChallengeScreen.h"
 #include "Lawn/Widget/NewOptionsDialog.h"
 #include "Lawn/Widget/SeedChooserScreen.h"
@@ -113,6 +118,15 @@ LawnApp::LawnApp()
 	mTrialType = TrialType::TRIALTYPE_NONE;
 	mDebugTrialLocked = false;
 	mMuteSoundsForCutscene = false;
+	mEnableAuthoritativeClientSession = false;
+	mClientSessionRuntime = nullptr;
+	mAuthoritativeProgressionStore = nullptr;
+	mYandexSdkBridge = nullptr;
+	mYandexLeaderboardSubmitted = false;
+	mRuntimeTelemetry = nullptr;
+#ifdef __EMSCRIPTEN__
+	mMuteOnLostFocus = true;
+#endif
 	mMusicVolume = 0.85;
 	mSfxVolume = 0.5525;
 	mAutoStartLoadingThread = false;
@@ -240,6 +254,13 @@ LawnApp::~LawnApp()
 
 	delete mProfileMgr;
 	delete mLastLevelStats;
+	ShutdownClientSessionRuntime();
+	delete mAuthoritativeProgressionStore;
+	mAuthoritativeProgressionStore = nullptr;
+	delete mYandexSdkBridge;
+	mYandexSdkBridge = nullptr;
+	delete mRuntimeTelemetry;
+	mRuntimeTelemetry = nullptr;
 
 	mResourceManager->DeleteResources("");
 	/*
@@ -252,6 +273,8 @@ LawnApp::~LawnApp()
 //0x44F200
 void LawnApp::Shutdown()
 {
+	ShutdownClientSessionRuntime();
+
 	if (!mLoadingThreadCompleted)
 	{
 		mLoadingFailed = true;
@@ -1133,7 +1156,13 @@ void LawnApp::DoConfirmSellDialog(const std::string& theMessage)
 
 void LawnApp::DoConfirmPurchaseDialog(const std::string& theMessage)
 {
-	LawnDialog* aComfirmDialog = (LawnDialog*)DoDialog(Dialogs::DIALOG_STORE_PURCHASE, true, "买下这个物品？", theMessage, "", Dialog::BUTTONS_YES_NO);
+	std::string aDialogHeader = TodStringTranslate("[DIALOG_STORE_PURCHASE_HEADER]");
+	if (aDialogHeader.rfind("<Missing ", 0) == 0)
+	{
+		aDialogHeader = "Купить этот предмет?";
+	}
+
+	LawnDialog* aComfirmDialog = (LawnDialog*)DoDialog(Dialogs::DIALOG_STORE_PURCHASE, true, aDialogHeader, theMessage, "", Dialog::BUTTONS_YES_NO);
 	aComfirmDialog->mLawnYesButton->mLabel = TodStringTranslate("[DIALOG_BUTTON_YES]");
 	aComfirmDialog->mLawnNoButton->mLabel = TodStringTranslate("[DIALOG_BUTTON_NO]");
 }
@@ -1325,6 +1354,31 @@ void LawnApp::Init()
 		mPlayerInfo = mProfileMgr->GetAnyProfile();
 	}
 
+	if (mAuthoritativeProgressionStore == nullptr)
+	{
+		mAuthoritativeProgressionStore = new AuthoritativeProgressionStore();
+	}
+	if (mPlayerInfo != nullptr && mPlayerInfo->mId != 0)
+	{
+		mAuthoritativeProgressionStore->MigrateFromPlayerInfo(mPlayerInfo->mId, *mPlayerInfo, true);
+	}
+
+	if (mEnableAuthoritativeClientSession)
+	{
+		InitClientSessionRuntime();
+	}
+
+	if (mYandexSdkBridge == nullptr)
+	{
+		mYandexSdkBridge = new YandexSdkBridge();
+	}
+	mYandexSdkBridge->Initialize();
+	if (mRuntimeTelemetry == nullptr)
+	{
+		mRuntimeTelemetry = new RuntimeTelemetry();
+	}
+	mRuntimeTelemetry->Reset();
+
 	mMaxExecutions = GetInteger("MaxExecutions", 0);
 	mMaxPlays = GetInteger("MaxPlays", 0);
 	mMaxTime = GetInteger("MaxTime", 60);
@@ -1413,6 +1467,10 @@ void LawnApp::HandleCmdLineParam(const std::string& theParamName, const std::str
 		mTodCheatKeys = true;
 		mDebugKeysEnabled = true;
 #endif
+	}
+	else if (theParamName == "-authoritative")
+	{
+		mEnableAuthoritativeClientSession = true;
 	}
 	else
 	{
@@ -1699,6 +1757,7 @@ void LawnApp::UpdateFrames()
 
 	for (int i = 0; i < aUpdateCount; i++)
 	{
+		uint32_t aFrameStartTick = SDL_GetTicks();
 		mAppCounter++;
 		
 		if (mBoard)
@@ -1711,11 +1770,159 @@ void LawnApp::UpdateFrames()
 		}
 
 		SexyApp::UpdateFrames();
+		UpdateClientSessionRuntime();
+		ApplyAuthoritativeSnapshotToBoard();
 
 		mMusic->MusicUpdate();
 
 		CheckForGameEnd();
+		if (mRuntimeTelemetry != nullptr)
+		{
+			uint32_t aFrameEndTick = SDL_GetTicks();
+			mRuntimeTelemetry->RecordFrameDurationMs(aFrameEndTick - aFrameStartTick);
+		}
 	}
+}
+
+void LawnApp::InitClientSessionRuntime()
+{
+	if (mClientSessionRuntime != nullptr)
+	{
+		return;
+	}
+
+	ClientSessionConfig aConfig;
+	aConfig.mEnableLoopbackServer = true;
+	aConfig.mServerTicksPerClientUpdate = 1;
+	aConfig.mMatchmakingMode = AuthoritativeMatchmakingMode::MATCHMAKING_RANDOM;
+
+	uint64_t aPlayerId = 1;
+	if (mPlayerInfo != nullptr && mPlayerInfo->mId != 0)
+	{
+		aPlayerId = mPlayerInfo->mId;
+	}
+
+	int aPlayerMmr = 1000;
+	if (mAuthoritativeProgressionStore != nullptr)
+	{
+		const AuthoritativePlayerProfile* aProfile = mAuthoritativeProgressionStore->FindProfile(aPlayerId);
+		if (aProfile != nullptr)
+		{
+			aPlayerMmr = aProfile->mMmr;
+		}
+	}
+
+	mClientSessionRuntime = new ClientSessionRuntime();
+	mClientSessionRuntime->Initialize(aConfig, aPlayerId, aPlayerMmr);
+	mYandexLeaderboardSubmitted = false;
+}
+
+void LawnApp::ShutdownClientSessionRuntime()
+{
+	if (mClientSessionRuntime == nullptr)
+	{
+		return;
+	}
+
+	mClientSessionRuntime->Shutdown();
+	delete mClientSessionRuntime;
+	mClientSessionRuntime = nullptr;
+}
+
+void LawnApp::UpdateClientSessionRuntime()
+{
+	if (mYandexSdkBridge != nullptr)
+	{
+		mYandexSdkBridge->Update();
+		const std::vector<YandexSdkEvent>& aSdkEvents = mYandexSdkBridge->GetEvents();
+		for (const YandexSdkEvent& aEvent : aSdkEvents)
+		{
+			if (aEvent.mType == YandexSdkEventType::YANDEX_SDK_EVENT_PAYMENT_SUCCESS && mAuthoritativeProgressionStore != nullptr && mPlayerInfo != nullptr)
+			{
+				mAuthoritativeProgressionStore->AddDiamonds(mPlayerInfo->mId, 100);
+			}
+		}
+		mYandexSdkBridge->ClearEvents();
+	}
+
+	if (mClientSessionRuntime == nullptr)
+	{
+		return;
+	}
+
+	mClientSessionRuntime->Update();
+	if (mClientSessionRuntime->GetState() == ClientSessionState::TERMINATED &&
+		!mYandexLeaderboardSubmitted &&
+		mYandexSdkBridge != nullptr &&
+		mYandexSdkBridge->IsReady() &&
+		mAuthoritativeProgressionStore != nullptr &&
+		mPlayerInfo != nullptr)
+	{
+		const AuthoritativePlayerProfile* aProfile = mAuthoritativeProgressionStore->FindProfile(mPlayerInfo->mId);
+		if (aProfile != nullptr)
+		{
+			mYandexSdkBridge->SubmitLeaderboardScore("global_score", aProfile->mWeeklyScore);
+			mYandexSdkBridge->SubmitLeaderboardScore("weekly_score", aProfile->mWeeklyScore);
+			mYandexLeaderboardSubmitted = true;
+		}
+	}
+}
+
+void LawnApp::ApplyAuthoritativeSnapshotToBoard()
+{
+	if (mClientSessionRuntime == nullptr || mBoard == nullptr)
+	{
+		return;
+	}
+
+	const ClientAuthoritativeSnapshot& aSnapshot = mClientSessionRuntime->GetLatestSnapshot();
+	if (!aSnapshot.mHasSnapshot)
+	{
+		return;
+	}
+
+	mBoard->mSunMoney = aSnapshot.mAuthoritativeSun;
+	if (aSnapshot.mEliminated)
+	{
+		mBoard->ZombiesWon();
+	}
+}
+
+bool LawnApp::SubmitAuthoritativePlantCommand(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterSeedType)
+{
+	if (mClientSessionRuntime == nullptr)
+	{
+		return false;
+	}
+
+	NetCommandValidationResult aResult = mClientSessionRuntime->SubmitPlacePlantCommand(
+		theGridX,
+		theGridY,
+		static_cast<int>(theSeedType),
+		static_cast<int>(theImitaterSeedType)
+	);
+	return aResult.IsOk();
+}
+
+bool LawnApp::SubmitAuthoritativeRemovePlantCommand(int theGridX, int theGridY)
+{
+	if (mClientSessionRuntime == nullptr)
+	{
+		return false;
+	}
+
+	NetCommandValidationResult aResult = mClientSessionRuntime->SubmitRemovePlantCommand(theGridX, theGridY);
+	return aResult.IsOk();
+}
+
+const char* LawnApp::GetClientSessionStateString() const
+{
+	if (mClientSessionRuntime == nullptr)
+	{
+		return ClientSessionRuntime::StateToString(ClientSessionState::TERMINATED);
+	}
+
+	return ClientSessionRuntime::StateToString(mClientSessionRuntime->GetState());
 }
 
 void LawnApp::ToggleSlowMo()
