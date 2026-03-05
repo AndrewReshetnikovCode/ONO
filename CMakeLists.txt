@@ -149,6 +149,23 @@ add_subdirectory(src/SexyAppFramework/sound/SDL-Mixer-X)
 endif()
 
 add_executable(pvz-portable ${SOURCES})
+
+set(AUTH_SERVER_SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/src/authoritative_server_main.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/AuthoritativeRuntime.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/AuthoritativeAntiCheat.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/BotActionTrack.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/NetProtocol.cpp
+)
+
+if(NOT EMSCRIPTEN)
+	add_executable(pvz-authoritative-server ${AUTH_SERVER_SOURCES})
+	target_include_directories(pvz-authoritative-server PRIVATE
+		${PROJECT_SOURCE_DIR}/src
+	)
+	target_compile_features(pvz-authoritative-server PRIVATE cxx_std_20)
+endif()
+
 set(MIXER_INCLUDE "")
 if(NOT EMSCRIPTEN)
 	list(APPEND MIXER_INCLUDE ${PROJECT_SOURCE_DIR}/src/SexyAppFramework/sound/SDL-Mixer-X/include)
