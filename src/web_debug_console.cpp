@@ -14,6 +14,7 @@
 #include "Lawn/System/RuntimeTelemetry.h"
 #include "Lawn/System/YandexSdkBridge.h"
 #include "Lawn/System/PlayerInfo.h"
+#include "Lawn/Widget/GameSelector.h"
 
 static std::string gPvzDebugReturn;
 
@@ -74,6 +75,56 @@ EMSCRIPTEN_KEEPALIVE const char* PvzDebug_GetClientSessionState()
 		return "NO_APP";
 	}
 	return aApp->GetClientSessionStateString();
+}
+
+EMSCRIPTEN_KEEPALIVE int PvzDebug_StartAdventureFromSelector()
+{
+	LawnApp* aApp = PvzGetApp();
+	if (aApp == nullptr || aApp->mGameSelector == nullptr)
+	{
+		return 0;
+	}
+
+	aApp->mGameSelector->ClickedAdventure();
+	return 1;
+}
+
+EMSCRIPTEN_KEEPALIVE int PvzDebug_EnableAuthoritativeRuntime()
+{
+	LawnApp* aApp = PvzGetApp();
+	if (aApp == nullptr)
+	{
+		return 0;
+	}
+
+	aApp->mEnableAuthoritativeClientSession = true;
+	if (aApp->mClientSessionRuntime == nullptr)
+	{
+		aApp->InitClientSessionRuntime();
+	}
+	return aApp->mClientSessionRuntime != nullptr ? 1 : 0;
+}
+
+EMSCRIPTEN_KEEPALIVE int PvzDebug_StartStoryModeWithOpponentSearch(int theLookForSavedGame)
+{
+	LawnApp* aApp = PvzGetApp();
+	if (aApp == nullptr)
+	{
+		return 0;
+	}
+
+	aApp->StartStoryModeWithOpponentSearch(theLookForSavedGame != 0);
+	return 1;
+}
+
+EMSCRIPTEN_KEEPALIVE int PvzDebug_IsSelectorReady()
+{
+	LawnApp* aApp = PvzGetApp();
+	if (aApp == nullptr)
+	{
+		return 0;
+	}
+	return aApp->mGameSelector != nullptr ? 1 : 0;
 }
 
 EMSCRIPTEN_KEEPALIVE int PvzDebug_SubmitPlantCommand(int theGridX, int theGridY, int theSeedType, int theImitaterSeedType)
@@ -411,6 +462,13 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 		hasLawnApp: () => !!ccallSafe('PvzDebug_HasLawnApp', 'number', [], []),
 		GetClientSessionState: () => ccallSafe('PvzDebug_GetClientSessionState', 'string', [], []),
 		getClientSessionState: () => ccallSafe('PvzDebug_GetClientSessionState', 'string', [], []),
+		EnableAuthoritativeRuntime: () => !!ccallSafe('PvzDebug_EnableAuthoritativeRuntime', 'number', [], []),
+		enableAuthoritativeRuntime: () => !!ccallSafe('PvzDebug_EnableAuthoritativeRuntime', 'number', [], []),
+		StartStoryModeWithOpponentSearch: (lookForSavedGame = 0) => !!ccallSafe('PvzDebug_StartStoryModeWithOpponentSearch', 'number', ['number'], [lookForSavedGame | 0]),
+		startStoryModeWithOpponentSearch: (lookForSavedGame = 0) => !!ccallSafe('PvzDebug_StartStoryModeWithOpponentSearch', 'number', ['number'], [lookForSavedGame | 0]),
+		isSelectorReady: () => !!ccallSafe('PvzDebug_IsSelectorReady', 'number', [], []),
+		StartAdventureFromSelector: () => !!ccallSafe('PvzDebug_StartAdventureFromSelector', 'number', [], []),
+		startAdventureFromSelector: () => !!ccallSafe('PvzDebug_StartAdventureFromSelector', 'number', [], []),
 		SubmitPlantCommand: (x, y, seedType, imitaterSeedType = -1) => !!ccallSafe('PvzDebug_SubmitPlantCommand', 'number', ['number', 'number', 'number', 'number'], [x | 0, y | 0, seedType | 0, imitaterSeedType | 0]),
 		submitPlantCommand: (x, y, seedType, imitaterSeedType = -1) => !!ccallSafe('PvzDebug_SubmitPlantCommand', 'number', ['number', 'number', 'number', 'number'], [x | 0, y | 0, seedType | 0, imitaterSeedType | 0]),
 		SubmitRemovePlantCommand: (x, y) => !!ccallSafe('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),

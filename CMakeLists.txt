@@ -217,6 +217,17 @@ if(EMSCRIPTEN)
 		"SHELL:-s ASYNCIFY"
 		"SHELL:-s ASYNCIFY_STACK_SIZE=5242880"
 	)
+	# Local/browser runs require runtime assets next to index.*.
+	add_custom_command(TARGET pvz-portable POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${CMAKE_CURRENT_SOURCE_DIR}/GOTY_Res/main.pak
+			$<TARGET_FILE_DIR:pvz-portable>/main.pak
+		COMMAND ${CMAKE_COMMAND} -E make_directory
+			$<TARGET_FILE_DIR:pvz-portable>/properties
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${CMAKE_CURRENT_SOURCE_DIR}/GOTY_Res/properties
+			$<TARGET_FILE_DIR:pvz-portable>/properties
+	)
 else()
 	target_link_libraries(pvz-portable PRIVATE
 		SDL2_mixer_ext_Static
