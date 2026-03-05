@@ -377,6 +377,7 @@ Use:
 
 - `./scripts/run_authoritative_server.sh local`
 - `./scripts/run_authoritative_server.sh cloud`
+- `./scripts/run_authoritative_server.sh local --build-only` (build only, no run)
 
 The script:
 
@@ -388,6 +389,10 @@ Profile behavior:
 
 - `local`: runs continuously by default (stop with `Ctrl+C`).
 - `cloud`: runs continuously by default.
+
+Windows launch note:
+
+- if launched from a shell window that auto-closes on script exit, use `PAUSE_ON_ERROR=1` (default on Windows-like shells) and check `build-server/run_authoritative_server.log` for exact failure details.
 
 ### 13.2 Override examples
 
