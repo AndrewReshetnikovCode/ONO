@@ -21,6 +21,8 @@ print_usage() {
 	echo "  TOOLCHAIN_FILE (optional CMake toolchain path, e.g. MinGW cross build)"
 	echo "  SERVER_EXTRA_ARGS (default: empty)"
 	echo "  LOG_FILE (default: <build-dir>/run_authoritative_server.log)"
+	echo "  SERVER_LOG_FILE (default: <build-dir>/server_log.txt)"
+	echo "  QUIET_BUILD (default: 1, hide CMake output in console)"
 	echo "  PAUSE_ON_ERROR (default: 1 on Windows-like shells, else 0)"
 }
 
@@ -70,8 +72,21 @@ fi
 
 mkdir -p "${BUILD_DIR}"
 LOG_FILE="${LOG_FILE:-${BUILD_DIR}/run_authoritative_server.log}"
+SERVER_LOG_FILE="${SERVER_LOG_FILE:-${BUILD_DIR}/server_log.txt}"
+QUIET_BUILD="${QUIET_BUILD:-1}"
 : > "${LOG_FILE}"
-exec > >(tee -a "${LOG_FILE}") 2>&1
+
+log() {
+	echo "$*" | tee -a "${LOG_FILE}"
+}
+
+run_build_step() {
+	if [[ "${QUIET_BUILD}" == "1" ]]; then
+		"$@" >> "${LOG_FILE}" 2>&1
+	else
+		"$@" 2>&1 | tee -a "${LOG_FILE}"
+	fi
+}
 
 if [[ -z "${PAUSE_ON_ERROR:-}" ]]; then
 	if [[ ${IS_WINDOWS_ENV} -eq 1 ]]; then
@@ -83,8 +98,9 @@ fi
 
 on_error() {
 	local exit_code=$?
-	echo "[launcher] failed with exit code ${exit_code}"
-	echo "[launcher] see log: ${LOG_FILE}"
+	log "[launcher] failed with exit code ${exit_code}"
+	log "[launcher] see build log: ${LOG_FILE}"
+	log "[launcher] see server log: ${SERVER_LOG_FILE}"
 	if [[ "${PAUSE_ON_ERROR}" == "1" && -t 0 ]]; then
 		read -r -p "[launcher] Press Enter to exit..." _
 	fi
@@ -92,8 +108,8 @@ on_error() {
 }
 trap on_error ERR
 
-echo "[launcher] profile=${PROFILE}"
-echo "[launcher] configuring ${BUILD_DIR}"
+log "[launcher] profile=${PROFILE}"
+log "[launcher] configuring ${BUILD_DIR}"
 
 declare -a CMAKE_ARGS
 CMAKE_ARGS=(
@@ -116,10 +132,10 @@ if [[ -n "${TOOLCHAIN_FILE}" ]]; then
 	CMAKE_ARGS+=(-DCMAKE_TOOLCHAIN_FILE="${TOOLCHAIN_FILE}")
 fi
 
-cmake "${CMAKE_ARGS[@]}"
+run_build_step cmake "${CMAKE_ARGS[@]}"
 
-echo "[launcher] building pvz-authoritative-server"
-cmake --build "${BUILD_DIR}" --target pvz-authoritative-server
+log "[launcher] building pvz-authoritative-server"
+run_build_step cmake --build "${BUILD_DIR}" --target pvz-authoritative-server
 
 SERVER_BIN_NOEXT="${BUILD_DIR}/pvz-authoritative-server"
 SERVER_BIN_EXE="${BUILD_DIR}/pvz-authoritative-server.exe"
@@ -129,33 +145,34 @@ if [[ ${IS_WINDOWS_ENV} -eq 1 ]]; then
 	if [[ -f "${SERVER_BIN_EXE}" ]]; then
 		SERVER_BIN="${SERVER_BIN_EXE}"
 	elif [[ -f "${SERVER_BIN_NOEXT}" ]]; then
-		echo "[launcher] error: found non-Windows server binary at ${SERVER_BIN_NOEXT}"
-		echo "[launcher] expected a Windows executable at ${SERVER_BIN_EXE}"
-		echo "[launcher] clean build directory and rebuild on Windows toolchain"
+	log "[launcher] error: found non-Windows server binary at ${SERVER_BIN_NOEXT}"
+	log "[launcher] expected a Windows executable at ${SERVER_BIN_EXE}"
+	log "[launcher] clean build directory and rebuild on Windows toolchain"
 		exit 1
 	fi
 else
 	if [[ -x "${SERVER_BIN_NOEXT}" ]]; then
 		SERVER_BIN="${SERVER_BIN_NOEXT}"
 	elif [[ -f "${SERVER_BIN_EXE}" ]]; then
-		echo "[launcher] error: found Windows-only executable at ${SERVER_BIN_EXE}"
-		echo "[launcher] expected native executable at ${SERVER_BIN_NOEXT}"
-		echo "[launcher] clean build directory and rebuild on your native toolchain"
+		log "[launcher] error: found Windows-only executable at ${SERVER_BIN_EXE}"
+		log "[launcher] expected native executable at ${SERVER_BIN_NOEXT}"
+		log "[launcher] clean build directory and rebuild on your native toolchain"
 		exit 1
 	fi
 fi
 
 if [[ -z "${SERVER_BIN}" ]]; then
-	echo "[launcher] error: server binary not found."
-	echo "[launcher] looked for:"
-	echo "[launcher]   - ${SERVER_BIN_NOEXT}"
-	echo "[launcher]   - ${SERVER_BIN_EXE}"
+	log "[launcher] error: server binary not found."
+	log "[launcher] looked for:"
+	log "[launcher]   - ${SERVER_BIN_NOEXT}"
+	log "[launcher]   - ${SERVER_BIN_EXE}"
 	exit 1
 fi
 
 if [[ ${BUILD_ONLY} -eq 1 ]]; then
-	echo "[launcher] build-only requested; not starting server."
-	echo "[launcher] artifact: ${SERVER_BIN}"
+	log "[launcher] build-only requested; not starting server."
+	log "[launcher] artifact: ${SERVER_BIN}"
+	log "[launcher] server log file (when run): ${SERVER_LOG_FILE}"
 	exit 0
 fi
 
@@ -172,6 +189,7 @@ if [[ -n "${SERVER_EXTRA_ARGS:-}" ]]; then
 	EXTRA_ARGS=(${SERVER_EXTRA_ARGS})
 fi
 
-echo "[launcher] log file: ${LOG_FILE}"
-echo "[launcher] starting ${SERVER_BIN} ${PROFILE_ARGS[*]} ${SERVER_ARGS[*]} ${EXTRA_ARGS[*]}"
-exec "${SERVER_BIN}" "${PROFILE_ARGS[@]}" "${SERVER_ARGS[@]}" "${EXTRA_ARGS[@]}"
+log "[launcher] build log file: ${LOG_FILE}"
+log "[launcher] full server log file: ${SERVER_LOG_FILE}"
+log "[launcher] starting ${SERVER_BIN} ${PROFILE_ARGS[*]} ${SERVER_ARGS[*]} ${EXTRA_ARGS[*]}"
+exec "${SERVER_BIN}" "${PROFILE_ARGS[@]}" "${SERVER_ARGS[@]}" --server-log "${SERVER_LOG_FILE}" "${EXTRA_ARGS[@]}"

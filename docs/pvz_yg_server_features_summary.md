@@ -394,6 +394,12 @@ Windows launch note:
 
 - if launched from a shell window that auto-closes on script exit, use `PAUSE_ON_ERROR=1` (default on Windows-like shells) and check `build-server/run_authoritative_server.log` for exact failure details.
 
+Logging behavior:
+
+- full runtime event stream is written to `SERVER_LOG_FILE` (default `build-server/server_log.txt`),
+- launcher/build output is written to `LOG_FILE` (default `build-server/run_authoritative_server.log`),
+- console is core-only by default (player create, matchmaking start, bot assignment, match start/end, elimination-class events).
+
 ### 13.2 Override examples
 
 - Local short run:

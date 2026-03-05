@@ -3,6 +3,8 @@
 #include <csignal>
 #include <cstdint>
 #include <cstdlib>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -23,6 +25,8 @@ struct ServerCliConfig
 	int								mBaseMmr = 1000;
 	uint64_t						mStatsLogEveryTicks = 150;
 	bool							mDisableTickSleep = false;
+	bool							mConsoleCoreOnly = true;
+	std::string						mServerLogPath = "server_log.txt";
 };
 
 void PrintUsage(const char* theExeName)
@@ -44,6 +48,8 @@ void PrintUsage(const char* theExeName)
 		<< "  --bot-fill-after-ticks N   AuthoritativeServerConfig::mBotFillAfterTicks override\n"
 		<< "  --pvp-max-zombies N        AuthoritativeServerConfig::mPvpMaxZombiesPerPhase override\n"
 		<< "  --log-every-ticks N        Periodic server stats interval\n"
+		<< "  --server-log PATH          Write full server log to file path\n"
+		<< "  --console-all-events       Print all runtime events to console\n"
 		<< "  --disable-sleep            Run as fast as possible (no per-tick sleep)\n"
 		<< "  --help                     Show this help\n";
 }
@@ -280,6 +286,20 @@ bool ParseArgs(int argc, char** argv, ServerCliConfig& theConfig)
 			}
 			theConfig.mStatsLogEveryTicks = aValue;
 		}
+		else if (aArg == "--server-log")
+		{
+			const char* aValue = NeedsValue("--server-log");
+			if (aValue == nullptr || *aValue == '\0')
+			{
+				std::cerr << "Invalid --server-log value\n";
+				return false;
+			}
+			theConfig.mServerLogPath = aValue;
+		}
+		else if (aArg == "--console-all-events")
+		{
+			theConfig.mConsoleCoreOnly = false;
+		}
 		else if (aArg == "--disable-sleep")
 		{
 			theConfig.mDisableTickSleep = true;
@@ -306,6 +326,50 @@ void PrintConfig(const ServerCliConfig& theConfig)
 		<< " botFillAfterTicks=" << theConfig.mServerConfig.mBotFillAfterTicks
 		<< "\n";
 }
+
+bool ContainsToken(const std::string& theText, const char* theToken)
+{
+	return theText.find(theToken) != std::string::npos;
+}
+
+bool IsCoreRuntimeEvent(const AuthoritativeRuntimeEvent& theEvent)
+{
+	switch (theEvent.mEventType)
+	{
+	case NetEventType::NET_EVENT_MATCH_START:
+	case NetEventType::NET_EVENT_MATCH_END:
+	case NetEventType::NET_EVENT_PVP_PHASE_START:
+	case NetEventType::NET_EVENT_PVP_PHASE_END:
+		return true;
+
+	case NetEventType::NET_EVENT_SNAPSHOT_APPLY:
+		// Keep bot creation and critical replay state visible.
+		return ContainsToken(theEvent.mDetails, "[BOT] assigned trackId") ||
+			ContainsToken(theEvent.mDetails, "[BOT] replay completed") ||
+			ContainsToken(theEvent.mDetails, "[BOT] missing trackId");
+
+	case NetEventType::NET_EVENT_COMMAND_REJECTED:
+		// Keep elimination / disconnect / anti-cheat surface visible.
+		return ContainsToken(theEvent.mDetails, "eliminated") ||
+			ContainsToken(theEvent.mDetails, "disconnected") ||
+			ContainsToken(theEvent.mDetails, "anti-cheat");
+
+	case NetEventType::NET_EVENT_COMMAND_ACCEPTED:
+	case NetEventType::NET_EVENT_DIAMONDS_UPDATED:
+	case NetEventType::NET_EVENT_INVALID:
+	default:
+		return false;
+	}
+}
+
+void WriteLine(std::ofstream& theLog, const std::string& theLine)
+{
+	if (theLog.is_open())
+	{
+		theLog << theLine << '\n';
+		theLog.flush();
+	}
+}
 } // namespace
 
 int main(int argc, char** argv)
@@ -331,13 +395,37 @@ int main(int argc, char** argv)
 
 	PrintConfig(aConfig);
 
+	std::filesystem::path aLogPath(aConfig.mServerLogPath);
+	if (!aLogPath.parent_path().empty())
+	{
+		std::filesystem::create_directories(aLogPath.parent_path());
+	}
+	std::ofstream aServerLog(aLogPath, std::ios::out | std::ios::trunc);
+	if (!aServerLog.is_open())
+	{
+		std::cerr << "[server] failed to open log file: " << aConfig.mServerLogPath << "\n";
+		return 1;
+	}
+	std::cout << "[core] full server log file: " << aConfig.mServerLogPath << "\n";
+	WriteLine(aServerLog, std::string("[server] log started path=") + aConfig.mServerLogPath);
+
 	AuthoritativeServerRuntime aServer(aConfig.mServerConfig);
+	if (aConfig.mSyntheticPlayers > 0)
+	{
+		std::string aLine = "[core] matchmaking started syntheticPlayers=" + std::to_string(aConfig.mSyntheticPlayers);
+		std::cout << aLine << "\n";
+		WriteLine(aServerLog, aLine);
+	}
 	for (uint32_t i = 0; i < aConfig.mSyntheticPlayers; ++i)
 	{
 		uint64_t aPlayerId = static_cast<uint64_t>(i + 1);
 		int aPlayerMmr = aConfig.mBaseMmr + static_cast<int>(i) * 10;
 		bool anEnqueued = aServer.EnqueueMatchmakingRequest(aPlayerId, aPlayerMmr, aConfig.mMatchmakingMode);
-		std::cout << "[server] enqueue playerId=" << aPlayerId << " mmr=" << aPlayerMmr << " result=" << (anEnqueued ? "ok" : "skip") << "\n";
+		std::string aLine = std::string("[player] created playerId=") + std::to_string(aPlayerId) +
+			" mmr=" + std::to_string(aPlayerMmr) +
+			" enqueueResult=" + (anEnqueued ? "ok" : "skip");
+		std::cout << aLine << "\n";
+		WriteLine(aServerLog, aLine);
 	}
 
 	const auto aTickDelay = std::chrono::milliseconds(
@@ -352,24 +440,31 @@ int main(int argc, char** argv)
 		const std::vector<AuthoritativeRuntimeEvent>& aEvents = aServer.GetEvents();
 		for (const AuthoritativeRuntimeEvent& aEvent : aEvents)
 		{
-			std::cout
-				<< "[event] tick=" << aEvent.mTick
-				<< " match=" << aEvent.mMatchId
-				<< " player=" << aEvent.mPlayerId
-				<< " type=" << NetEventTypeToString(aEvent.mEventType)
-				<< " error=" << NetProtocolErrorToString(aEvent.mError)
-				<< " details=\"" << aEvent.mDetails << "\"\n";
+			std::string aLine = std::string("[event] tick=") + std::to_string(aEvent.mTick) +
+				" match=" + std::to_string(aEvent.mMatchId) +
+				" player=" + std::to_string(aEvent.mPlayerId) +
+				" type=" + NetEventTypeToString(aEvent.mEventType) +
+				" error=" + NetProtocolErrorToString(aEvent.mError) +
+				" details=\"" + aEvent.mDetails + "\"";
+			WriteLine(aServerLog, aLine);
+			if (!aConfig.mConsoleCoreOnly || IsCoreRuntimeEvent(aEvent))
+			{
+				std::cout << aLine << "\n";
+			}
 		}
 		aServer.ClearEvents();
 
 		if (aConfig.mStatsLogEveryTicks > 0 && (aTick % aConfig.mStatsLogEveryTicks) == 0)
 		{
-			std::cout
-				<< "[stats] tick=" << aTick
-				<< " queuedRandom=" << aServer.GetQueuedPlayers(AuthoritativeMatchmakingMode::MATCHMAKING_RANDOM)
-				<< " queuedMmr=" << aServer.GetQueuedPlayers(AuthoritativeMatchmakingMode::MATCHMAKING_MMR)
-				<< " activeMatches=" << aServer.GetActiveMatchCount()
-				<< "\n";
+			std::string aStatsLine = std::string("[stats] tick=") + std::to_string(aTick) +
+				" queuedRandom=" + std::to_string(aServer.GetQueuedPlayers(AuthoritativeMatchmakingMode::MATCHMAKING_RANDOM)) +
+				" queuedMmr=" + std::to_string(aServer.GetQueuedPlayers(AuthoritativeMatchmakingMode::MATCHMAKING_MMR)) +
+				" activeMatches=" + std::to_string(aServer.GetActiveMatchCount());
+			WriteLine(aServerLog, aStatsLine);
+			if (!aConfig.mConsoleCoreOnly)
+			{
+				std::cout << aStatsLine << "\n";
+			}
 		}
 
 		if (aConfig.mDurationSeconds > 0)
@@ -378,7 +473,9 @@ int main(int argc, char** argv)
 			uint64_t aElapsedSeconds = static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::seconds>(aElapsed).count());
 			if (aElapsedSeconds >= aConfig.mDurationSeconds)
 			{
-				std::cout << "[server] duration reached, shutting down\n";
+				std::string aLine = "[core] duration reached, shutting down";
+				std::cout << aLine << "\n";
+				WriteLine(aServerLog, aLine);
 				break;
 			}
 		}
@@ -389,6 +486,8 @@ int main(int argc, char** argv)
 		}
 	}
 
-	std::cout << "[server] stopped at tick=" << aServer.GetServerTick() << "\n";
+	std::string aFinalLine = std::string("[core] stopped at tick=") + std::to_string(aServer.GetServerTick());
+	std::cout << aFinalLine << "\n";
+	WriteLine(aServerLog, aFinalLine);
 	return 0;
 }
