@@ -13,6 +13,7 @@ Implemented files:
 
 1. Web-only bridge installation:
    - During `LawnApp::Init` on Emscripten builds, the bridge installs once and exposes `window.PvzDebug`.
+   - If install is attempted before runtime method wiring is ready, install is retried from frame updates until successful.
 
 2. Console invocation style:
    - Example required call pattern is now supported:

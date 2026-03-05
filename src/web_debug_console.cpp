@@ -384,12 +384,12 @@ EMSCRIPTEN_KEEPALIVE const char* PvzDebug_GetRuntimeTelemetryJson()
 
 } // extern "C"
 
-EM_JS(void, PvzInstallDebugConsoleBridgeJs, (), {
-	if (typeof window === 'undefined' || typeof Module === 'undefined' || !Module.ccall) {
-		return;
+EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
+	if (typeof window === 'undefined') {
+		return 0;
 	}
 	if (window.PvzDebug && window.PvzDebug.__installed) {
-		return;
+		return 1;
 	}
 
 	function parseJsonOrRaw(v) {
@@ -397,36 +397,44 @@ EM_JS(void, PvzInstallDebugConsoleBridgeJs, (), {
 		try { return JSON.parse(v); } catch (e) { return v; }
 	}
 
+	function ccallSafe(name, returnType, argTypes, args) {
+		if (typeof Module === 'undefined' || !Module.ccall) {
+			throw new Error('[PvzDebug] Module.ccall is not available yet');
+		}
+		return Module.ccall(name, returnType, argTypes, args);
+	}
+
 	const api = {
 		__installed: true,
-		TestFunction: (a, b) => parseJsonOrRaw(Module.ccall('PvzDebug_TestFunction', 'string', ['string', 'number'], [String(a), Number(b) || 0])),
-		testFunction: (a, b) => parseJsonOrRaw(Module.ccall('PvzDebug_TestFunction', 'string', ['string', 'number'], [String(a), Number(b) || 0])),
-		hasLawnApp: () => !!Module.ccall('PvzDebug_HasLawnApp', 'number', [], []),
-		GetClientSessionState: () => Module.ccall('PvzDebug_GetClientSessionState', 'string', [], []),
-		getClientSessionState: () => Module.ccall('PvzDebug_GetClientSessionState', 'string', [], []),
-		SubmitPlantCommand: (x, y, seedType, imitaterSeedType = -1) => !!Module.ccall('PvzDebug_SubmitPlantCommand', 'number', ['number', 'number', 'number', 'number'], [x | 0, y | 0, seedType | 0, imitaterSeedType | 0]),
-		submitPlantCommand: (x, y, seedType, imitaterSeedType = -1) => !!Module.ccall('PvzDebug_SubmitPlantCommand', 'number', ['number', 'number', 'number', 'number'], [x | 0, y | 0, seedType | 0, imitaterSeedType | 0]),
-		SubmitRemovePlantCommand: (x, y) => !!Module.ccall('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),
-		submitRemovePlantCommand: (x, y) => !!Module.ccall('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),
-		getBoardSun: () => Module.ccall('PvzDebug_GetBoardSun', 'number', [], []),
-		getLatestSnapshot: () => parseJsonOrRaw(Module.ccall('PvzDebug_GetLatestSnapshotJson', 'string', [], [])),
-		getSessionEvents: (limit = 32) => parseJsonOrRaw(Module.ccall('PvzDebug_GetSessionEventsJson', 'string', ['number'], [limit | 0])),
-		clearSessionEvents: () => Module.ccall('PvzDebug_ClearSessionEvents', 'void', [], []),
-		getAuthoritativeProfile: () => parseJsonOrRaw(Module.ccall('PvzDebug_GetAuthoritativeProfileJson', 'string', [], [])),
-		getYandexStatus: () => parseJsonOrRaw(Module.ccall('PvzDebug_GetYandexStatusJson', 'string', [], [])),
+		TestFunction: (a, b) => parseJsonOrRaw(ccallSafe('PvzDebug_TestFunction', 'string', ['string', 'number'], [String(a), Number(b) || 0])),
+		testFunction: (a, b) => parseJsonOrRaw(ccallSafe('PvzDebug_TestFunction', 'string', ['string', 'number'], [String(a), Number(b) || 0])),
+		hasLawnApp: () => !!ccallSafe('PvzDebug_HasLawnApp', 'number', [], []),
+		GetClientSessionState: () => ccallSafe('PvzDebug_GetClientSessionState', 'string', [], []),
+		getClientSessionState: () => ccallSafe('PvzDebug_GetClientSessionState', 'string', [], []),
+		SubmitPlantCommand: (x, y, seedType, imitaterSeedType = -1) => !!ccallSafe('PvzDebug_SubmitPlantCommand', 'number', ['number', 'number', 'number', 'number'], [x | 0, y | 0, seedType | 0, imitaterSeedType | 0]),
+		submitPlantCommand: (x, y, seedType, imitaterSeedType = -1) => !!ccallSafe('PvzDebug_SubmitPlantCommand', 'number', ['number', 'number', 'number', 'number'], [x | 0, y | 0, seedType | 0, imitaterSeedType | 0]),
+		SubmitRemovePlantCommand: (x, y) => !!ccallSafe('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),
+		submitRemovePlantCommand: (x, y) => !!ccallSafe('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),
+		getBoardSun: () => ccallSafe('PvzDebug_GetBoardSun', 'number', [], []),
+		getLatestSnapshot: () => parseJsonOrRaw(ccallSafe('PvzDebug_GetLatestSnapshotJson', 'string', [], [])),
+		getSessionEvents: (limit = 32) => parseJsonOrRaw(ccallSafe('PvzDebug_GetSessionEventsJson', 'string', ['number'], [limit | 0])),
+		clearSessionEvents: () => ccallSafe('PvzDebug_ClearSessionEvents', 'void', [], []),
+		getAuthoritativeProfile: () => parseJsonOrRaw(ccallSafe('PvzDebug_GetAuthoritativeProfileJson', 'string', [], [])),
+		getYandexStatus: () => parseJsonOrRaw(ccallSafe('PvzDebug_GetYandexStatusJson', 'string', [], [])),
 		validatePlaceCommand: (matchId, playerId, commandId, clientTick, gridX, gridY, seedType, imitaterSeedType = -1) =>
-			parseJsonOrRaw(Module.ccall('PvzDebug_ValidatePlaceCommandJson', 'string',
+			parseJsonOrRaw(ccallSafe('PvzDebug_ValidatePlaceCommandJson', 'string',
 				['number', 'number', 'number', 'number', 'number', 'number', 'number', 'number'],
 				[matchId | 0, playerId | 0, commandId | 0, clientTick | 0, gridX | 0, gridY | 0, seedType | 0, imitaterSeedType | 0])),
 		assignBotTracks: (lobbyId, mmrHint, botCount) =>
-			parseJsonOrRaw(Module.ccall('PvzDebug_AssignBotTracksJson', 'string', ['number', 'number', 'number'], [lobbyId | 0, mmrHint | 0, botCount | 0])),
-		getBotTrack: (trackId) => parseJsonOrRaw(Module.ccall('PvzDebug_GetBotTrackJson', 'string', ['number'], [trackId | 0])),
-		listBotTracks: (limit = 20) => parseJsonOrRaw(Module.ccall('PvzDebug_ListBotTracksJson', 'string', ['number'], [limit | 0])),
-		getRuntimeTelemetry: () => parseJsonOrRaw(Module.ccall('PvzDebug_GetRuntimeTelemetryJson', 'string', [], []))
+			parseJsonOrRaw(ccallSafe('PvzDebug_AssignBotTracksJson', 'string', ['number', 'number', 'number'], [lobbyId | 0, mmrHint | 0, botCount | 0])),
+		getBotTrack: (trackId) => parseJsonOrRaw(ccallSafe('PvzDebug_GetBotTrackJson', 'string', ['number'], [trackId | 0])),
+		listBotTracks: (limit = 20) => parseJsonOrRaw(ccallSafe('PvzDebug_ListBotTracksJson', 'string', ['number'], [limit | 0])),
+		getRuntimeTelemetry: () => parseJsonOrRaw(ccallSafe('PvzDebug_GetRuntimeTelemetryJson', 'string', [], []))
 	};
 
 	window.PvzDebug = api;
 	console.info('[PvzDebug] bridge installed. Use window.PvzDebug.TestFunction(\"abc\", 1)');
+	return 1;
 });
 
 void PvzInstallDebugConsoleBridge()
@@ -436,8 +444,7 @@ void PvzInstallDebugConsoleBridge()
 	{
 		return;
 	}
-	sInstalled = true;
-	PvzInstallDebugConsoleBridgeJs();
+	sInstalled = PvzInstallDebugConsoleBridgeJs() != 0;
 }
 
 #endif

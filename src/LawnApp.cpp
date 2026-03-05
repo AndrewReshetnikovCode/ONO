@@ -1777,6 +1777,9 @@ void LawnApp::UpdateFrames()
 		}
 
 		SexyApp::UpdateFrames();
+#ifdef __EMSCRIPTEN__
+		PvzInstallDebugConsoleBridge();
+#endif
 		UpdateClientSessionRuntime();
 		ApplyAuthoritativeSnapshotToBoard();
 
