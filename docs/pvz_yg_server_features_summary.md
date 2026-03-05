@@ -384,6 +384,11 @@ The script:
 2. builds `pvz-authoritative-server`,
 3. launches with profile-appropriate defaults.
 
+Profile behavior:
+
+- `local`: runs continuously by default (stop with `Ctrl+C`).
+- `cloud`: runs continuously by default.
+
 ### 13.2 Override examples
 
 - Local short run:

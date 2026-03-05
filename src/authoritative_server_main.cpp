@@ -56,7 +56,7 @@ void HandleSignal(int)
 void ApplyLocalProfile(ServerCliConfig& theConfig)
 {
 	theConfig.mTickRate = 30;
-	theConfig.mDurationSeconds = 20;
+	theConfig.mDurationSeconds = 0;
 	theConfig.mSyntheticPlayers = 6;
 	theConfig.mBaseMmr = 1000;
 	theConfig.mStatsLogEveryTicks = 150;

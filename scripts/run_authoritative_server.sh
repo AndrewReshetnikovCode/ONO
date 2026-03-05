@@ -43,6 +43,12 @@ C_COMPILER="${C_COMPILER:-$(command -v gcc || command -v clang || true)}"
 CXX_COMPILER="${CXX_COMPILER:-$(command -v g++ || command -v clang++ || true)}"
 ASM_COMPILER="${ASM_COMPILER:-${C_COMPILER}}"
 
+UNAME_S="$(uname -s | tr '[:upper:]' '[:lower:]')"
+IS_WINDOWS_ENV=0
+if [[ "${UNAME_S}" == *"mingw"* || "${UNAME_S}" == *"msys"* || "${UNAME_S}" == *"cygwin"* ]]; then
+	IS_WINDOWS_ENV=1
+fi
+
 echo "[launcher] profile=${PROFILE}"
 echo "[launcher] configuring ${BUILD_DIR}"
 if [[ -z "${C_COMPILER}" || -z "${CXX_COMPILER}" ]]; then
@@ -60,9 +66,35 @@ cmake -S "${REPO_ROOT}" -B "${BUILD_DIR}" -G "${CMAKE_GENERATOR}" \
 echo "[launcher] building pvz-authoritative-server"
 cmake --build "${BUILD_DIR}" --target pvz-authoritative-server
 
-SERVER_BIN="${BUILD_DIR}/pvz-authoritative-server"
-if [[ ! -x "${SERVER_BIN}" ]]; then
-	echo "[launcher] error: server binary not found at ${SERVER_BIN}"
+SERVER_BIN_NOEXT="${BUILD_DIR}/pvz-authoritative-server"
+SERVER_BIN_EXE="${BUILD_DIR}/pvz-authoritative-server.exe"
+SERVER_BIN=""
+
+if [[ ${IS_WINDOWS_ENV} -eq 1 ]]; then
+	if [[ -f "${SERVER_BIN_EXE}" ]]; then
+		SERVER_BIN="${SERVER_BIN_EXE}"
+	elif [[ -f "${SERVER_BIN_NOEXT}" ]]; then
+		echo "[launcher] error: found non-Windows server binary at ${SERVER_BIN_NOEXT}"
+		echo "[launcher] expected a Windows executable at ${SERVER_BIN_EXE}"
+		echo "[launcher] clean build directory and rebuild on Windows toolchain"
+		exit 1
+	fi
+else
+	if [[ -x "${SERVER_BIN_NOEXT}" ]]; then
+		SERVER_BIN="${SERVER_BIN_NOEXT}"
+	elif [[ -f "${SERVER_BIN_EXE}" ]]; then
+		echo "[launcher] error: found Windows-only executable at ${SERVER_BIN_EXE}"
+		echo "[launcher] expected native executable at ${SERVER_BIN_NOEXT}"
+		echo "[launcher] clean build directory and rebuild on your native toolchain"
+		exit 1
+	fi
+fi
+
+if [[ -z "${SERVER_BIN}" ]]; then
+	echo "[launcher] error: server binary not found."
+	echo "[launcher] looked for:"
+	echo "[launcher]   - ${SERVER_BIN_NOEXT}"
+	echo "[launcher]   - ${SERVER_BIN_EXE}"
 	exit 1
 fi
 
