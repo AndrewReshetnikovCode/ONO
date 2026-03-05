@@ -16,7 +16,9 @@ print_usage() {
 	echo "  BUILD_DIR (default: <repo>/build-server)"
 	echo "  CMAKE_BUILD_TYPE (default: Release)"
 	echo "  CMAKE_GENERATOR (default: Ninja)"
+	echo "  BUILD_PVZ_PORTABLE (default: OFF for server-only build)"
 	echo "  C_COMPILER / CXX_COMPILER / ASM_COMPILER (optional explicit compiler paths)"
+	echo "  TOOLCHAIN_FILE (optional CMake toolchain path, e.g. MinGW cross build)"
 	echo "  SERVER_EXTRA_ARGS (default: empty)"
 	echo "  LOG_FILE (default: <build-dir>/run_authoritative_server.log)"
 	echo "  PAUSE_ON_ERROR (default: 1 on Windows-like shells, else 0)"
@@ -54,9 +56,11 @@ fi
 BUILD_DIR="${BUILD_DIR:-${REPO_ROOT}/build-server}"
 CMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:-Release}"
 CMAKE_GENERATOR="${CMAKE_GENERATOR:-Ninja}"
+BUILD_PVZ_PORTABLE="${BUILD_PVZ_PORTABLE:-OFF}"
 C_COMPILER="${C_COMPILER:-}"
 CXX_COMPILER="${CXX_COMPILER:-}"
 ASM_COMPILER="${ASM_COMPILER:-}"
+TOOLCHAIN_FILE="${TOOLCHAIN_FILE:-}"
 
 UNAME_S="$(uname -s | tr '[:upper:]' '[:lower:]')"
 IS_WINDOWS_ENV=0
@@ -97,6 +101,7 @@ CMAKE_ARGS=(
 	-B "${BUILD_DIR}"
 	-G "${CMAKE_GENERATOR}"
 	-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
+	-DBUILD_PVZ_PORTABLE="${BUILD_PVZ_PORTABLE}"
 )
 if [[ -n "${C_COMPILER}" ]]; then
 	CMAKE_ARGS+=(-DCMAKE_C_COMPILER="${C_COMPILER}")
@@ -106,6 +111,9 @@ if [[ -n "${CXX_COMPILER}" ]]; then
 fi
 if [[ -n "${ASM_COMPILER}" ]]; then
 	CMAKE_ARGS+=(-DCMAKE_ASM_COMPILER="${ASM_COMPILER}")
+fi
+if [[ -n "${TOOLCHAIN_FILE}" ]]; then
+	CMAKE_ARGS+=(-DCMAKE_TOOLCHAIN_FILE="${TOOLCHAIN_FILE}")
 fi
 
 cmake "${CMAKE_ARGS[@]}"

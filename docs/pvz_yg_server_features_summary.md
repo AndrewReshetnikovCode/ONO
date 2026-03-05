@@ -406,6 +406,8 @@ Windows launch note:
 - `BUILD_DIR` (default `build-server`)
 - `CMAKE_BUILD_TYPE` (default `Release`)
 - `CMAKE_GENERATOR` (default `Ninja`)
+- `BUILD_PVZ_PORTABLE` (default `OFF` in launcher for server-only builds)
+- `TOOLCHAIN_FILE` (optional, for cross-target builds such as MinGW Windows x64)
 - `SERVER_EXTRA_ARGS` (appended to executable args)
 
 ### 13.4 Runner executable flags
@@ -424,6 +426,16 @@ Windows launch note:
 - `--pvp-max-zombies N`
 - `--log-every-ticks N`
 - `--disable-sleep`
+
+### 13.5 Windows x64 artifact on repository
+
+For Windows-targeted server delivery, the repository can carry:
+
+- `build-server/pvz-authoritative-server.exe`
+
+This artifact can be produced with the MinGW toolchain file:
+
+- `cmake/toolchains/mingw-w64-x86_64.cmake`
 
 ---
 
