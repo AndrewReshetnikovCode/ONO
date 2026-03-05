@@ -1,8 +1,10 @@
 #include <time.h>
 #include <algorithm>
+#include <sstream>
 #include <SDL.h>
 #include "ZenGarden.h"
 #include "BoardInclude.h"
+#include "System/ClientSessionRuntime.h"
 #include "System/Music.h"
 #include "System/SaveGame.h"
 #include "Widget/LawnDialog.h"
@@ -5768,6 +5770,13 @@ void Board::UpdateProgressMeter()
 //0x4144E0
 void Board::UpdateTutorial()
 {
+	if (mApp->mGameMode != GameMode::GAMEMODE_ADVENTURE)
+	{
+		mTutorialState = TutorialState::TUTORIAL_OFF;
+		mTutorialTimer = 0;
+		return;
+	}
+
 	if (mTutorialTimer > 0)
 		mTutorialTimer--;
 
@@ -7380,6 +7389,10 @@ void Board::DrawDebugText(Graphics* g)
 		aText += StrFormat("COLLISION DEBUG\n");
 		break;
 
+	case DebugTextMode::DEBUG_TEXT_MATCH_RUNTIME:
+		aText += StrFormat("MATCH DEBUG OVERLAY ACTIVE\n");
+		break;
+
 	default:
 		TOD_ASSERT(false);
 		break;
@@ -7393,6 +7406,66 @@ void Board::DrawDebugText(Graphics* g)
 	g->DrawStringWordWrapped(aText, 11, 90);
 	g->SetColor(Color(255, 255, 255));
 	g->DrawStringWordWrapped(aText, 10, 90);
+
+#ifdef _PVZ_DEBUG
+	std::string aPlayerName = "TestPlayer";
+	if (mApp->mPlayerInfo != nullptr && !mApp->mPlayerInfo->mName.empty())
+	{
+		aPlayerName = mApp->mPlayerInfo->mName;
+	}
+
+	bool aEnemyBoardDisplayed = false;
+	std::string aFocusedEnemyName = "N/A";
+	uint64_t aMatchId = 0;
+	std::string aLastActionEvent = "none";
+
+	if (mApp->mClientSessionRuntime != nullptr)
+	{
+		const ClientAuthoritativeSnapshot& aSnapshot = mApp->mClientSessionRuntime->GetLatestSnapshot();
+		aEnemyBoardDisplayed = aSnapshot.mPvpEnemyBoardDisplayed;
+		aFocusedEnemyName = aSnapshot.mFocusedEnemyName.empty() ? "N/A" : aSnapshot.mFocusedEnemyName;
+		aMatchId = aSnapshot.mMatchId;
+
+		const uint64_t aLocalPlayerId = mApp->mClientSessionRuntime->GetLocalPlayerId();
+		const std::vector<AuthoritativeRuntimeEvent>& aEvents = mApp->mClientSessionRuntime->GetEvents();
+		for (auto aIt = aEvents.rbegin(); aIt != aEvents.rend(); ++aIt)
+		{
+			if (aIt->mPlayerId == aLocalPlayerId)
+			{
+				aLastActionEvent = StrFormat("tick=%llu %s", static_cast<unsigned long long>(aIt->mTick), aIt->mDetails.c_str());
+				break;
+			}
+		}
+		if (aLastActionEvent.size() > 96)
+		{
+			aLastActionEvent = aLastActionEvent.substr(0, 96) + "...";
+		}
+	}
+
+	std::vector<std::string> aOverlayLines;
+	aOverlayLines.push_back(StrFormat("player: %s", aPlayerName.c_str()));
+	aOverlayLines.push_back(StrFormat("pvp enemy board displayed: %s", aEnemyBoardDisplayed ? "true" : "false"));
+	aOverlayLines.push_back(StrFormat("focused enemy: %s", aFocusedEnemyName.c_str()));
+	aOverlayLines.push_back(StrFormat("match id: %llu", static_cast<unsigned long long>(aMatchId)));
+	aOverlayLines.push_back(StrFormat("last action event: %s", aLastActionEvent.c_str()));
+
+	const int aCenterX = mApp->mWidth / 2;
+	int aStartY = mApp->mHeight / 2 - 42;
+	g->SetColor(Color::Black);
+	for (const std::string& aLine : aOverlayLines)
+	{
+		TodDrawString(g, aLine, aCenterX + 1, aStartY + 1, Sexy::FONT_PICO129, Color::Black, DrawStringJustification::DS_ALIGN_CENTER);
+		aStartY += 16;
+	}
+
+	aStartY = mApp->mHeight / 2 - 42;
+	g->SetColor(Color(255, 255, 255));
+	for (const std::string& aLine : aOverlayLines)
+	{
+		TodDrawString(g, aLine, aCenterX, aStartY, Sexy::FONT_PICO129, Color(255, 255, 255), DrawStringJustification::DS_ALIGN_CENTER);
+		aStartY += 16;
+	}
+#endif
 }
 
 //0x419AE0
@@ -8398,7 +8471,7 @@ void Board::KeyChar(char theChar)
 	else if (theChar == 'z')
 	{
 		mDebugTextMode = static_cast<DebugTextMode>(static_cast<int>(mDebugTextMode) + 1);
-		if (mDebugTextMode > DebugTextMode::DEBUG_TEXT_COLLISION)
+		if (mDebugTextMode > DebugTextMode::DEBUG_TEXT_MATCH_RUNTIME)
 		{
 			mDebugTextMode = DebugTextMode::DEBUG_TEXT_NONE;
 		}

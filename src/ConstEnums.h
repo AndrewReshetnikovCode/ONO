@@ -303,7 +303,8 @@ enum DebugTextMode : int
     DEBUG_TEXT_ZOMBIE_SPAWN = 1,
     DEBUG_TEXT_MUSIC = 2,
     DEBUG_TEXT_MEMORY = 3,
-    DEBUG_TEXT_COLLISION = 4
+    DEBUG_TEXT_COLLISION = 4,
+    DEBUG_TEXT_MATCH_RUNTIME = 5
 };
 enum DrawStringJustification : int
 {

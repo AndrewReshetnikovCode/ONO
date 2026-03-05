@@ -25,7 +25,7 @@ void SexyAppBase::MakeWindow()
 
 		SDL_Init(SDL_INIT_VIDEO);
 
-		Uint32 winFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
+		Uint32 winFlags = SDL_WINDOW_OPENGL
 			| (!mIsWindowed ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
 
 		// Try OpenGL ES 2.0 first (Linux, most Windows drivers, ANGLE, etc.)

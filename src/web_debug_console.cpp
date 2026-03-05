@@ -17,6 +17,8 @@
 #include "Lawn/Widget/GameSelector.h"
 
 static std::string gPvzDebugReturn;
+static bool gPvzAutoRuntimeStartRequested = false;
+static bool gPvzAutoRuntimeStartConsumed = false;
 
 static const char* PvzDebugReturn(const std::string& theValue)
 {
@@ -117,6 +119,11 @@ EMSCRIPTEN_KEEPALIVE int PvzDebug_StartStoryModeWithOpponentSearch(int theLookFo
 	return 1;
 }
 
+EMSCRIPTEN_KEEPALIVE int PvzDebug_StartSurvivalModeWithOpponentSearch(int theLookForSavedGame)
+{
+	return PvzDebug_StartStoryModeWithOpponentSearch(theLookForSavedGame);
+}
+
 EMSCRIPTEN_KEEPALIVE int PvzDebug_IsSelectorReady()
 {
 	LawnApp* aApp = PvzGetApp();
@@ -125,6 +132,12 @@ EMSCRIPTEN_KEEPALIVE int PvzDebug_IsSelectorReady()
 		return 0;
 	}
 	return aApp->mGameSelector != nullptr ? 1 : 0;
+}
+
+EMSCRIPTEN_KEEPALIVE void PvzDebug_RequestAutoRuntimeStart()
+{
+	gPvzAutoRuntimeStartRequested = true;
+	gPvzAutoRuntimeStartConsumed = false;
 }
 
 EMSCRIPTEN_KEEPALIVE int PvzDebug_SubmitPlantCommand(int theGridX, int theGridY, int theSeedType, int theImitaterSeedType)
@@ -163,6 +176,25 @@ EMSCRIPTEN_KEEPALIVE int PvzDebug_GetBoardSun()
 	return aApp->mBoard->mSunMoney;
 }
 
+EMSCRIPTEN_KEEPALIVE const char* PvzDebug_GetGameModeJson()
+{
+	LawnApp* aApp = PvzGetApp();
+	std::ostringstream aOut;
+	if (aApp == nullptr)
+	{
+		aOut << "{\"hasApp\":false}";
+		return PvzDebugReturn(aOut.str());
+	}
+
+	aOut << "{"
+		<< "\"hasApp\":true,"
+		<< "\"gameMode\":" << static_cast<int>(aApp->mGameMode) << ","
+		<< "\"isSurvivalMode\":" << (aApp->IsSurvivalMode() ? "true" : "false") << ","
+		<< "\"isAdventureMode\":" << (aApp->IsAdventureMode() ? "true" : "false")
+		<< "}";
+	return PvzDebugReturn(aOut.str());
+}
+
 EMSCRIPTEN_KEEPALIVE const char* PvzDebug_GetLatestSnapshotJson()
 {
 	LawnApp* aApp = PvzGetApp();
@@ -181,7 +213,10 @@ EMSCRIPTEN_KEEPALIVE const char* PvzDebug_GetLatestSnapshotJson()
 		<< "\"tick\":" << aSnapshot.mTick << ","
 		<< "\"sun\":" << aSnapshot.mAuthoritativeSun << ","
 		<< "\"damage\":" << aSnapshot.mAuthoritativeDamage << ","
-		<< "\"eliminated\":" << (aSnapshot.mEliminated ? "true" : "false")
+		<< "\"eliminated\":" << (aSnapshot.mEliminated ? "true" : "false") << ","
+		<< "\"pvpEnemyBoardDisplayed\":" << (aSnapshot.mPvpEnemyBoardDisplayed ? "true" : "false") << ","
+		<< "\"focusedEnemyPlayerId\":" << aSnapshot.mFocusedEnemyPlayerId << ","
+		<< "\"focusedEnemyName\":\"" << PvzEscapeJson(aSnapshot.mFocusedEnemyName) << "\""
 		<< "}";
 	return PvzDebugReturn(aOut.str());
 }
@@ -466,6 +501,8 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 		enableAuthoritativeRuntime: () => !!ccallSafe('PvzDebug_EnableAuthoritativeRuntime', 'number', [], []),
 		StartStoryModeWithOpponentSearch: (lookForSavedGame = 0) => !!ccallSafe('PvzDebug_StartStoryModeWithOpponentSearch', 'number', ['number'], [lookForSavedGame | 0]),
 		startStoryModeWithOpponentSearch: (lookForSavedGame = 0) => !!ccallSafe('PvzDebug_StartStoryModeWithOpponentSearch', 'number', ['number'], [lookForSavedGame | 0]),
+		StartSurvivalModeWithOpponentSearch: (lookForSavedGame = 0) => !!ccallSafe('PvzDebug_StartSurvivalModeWithOpponentSearch', 'number', ['number'], [lookForSavedGame | 0]),
+		startSurvivalModeWithOpponentSearch: (lookForSavedGame = 0) => !!ccallSafe('PvzDebug_StartSurvivalModeWithOpponentSearch', 'number', ['number'], [lookForSavedGame | 0]),
 		isSelectorReady: () => !!ccallSafe('PvzDebug_IsSelectorReady', 'number', [], []),
 		StartAdventureFromSelector: () => !!ccallSafe('PvzDebug_StartAdventureFromSelector', 'number', [], []),
 		startAdventureFromSelector: () => !!ccallSafe('PvzDebug_StartAdventureFromSelector', 'number', [], []),
@@ -474,6 +511,7 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 		SubmitRemovePlantCommand: (x, y) => !!ccallSafe('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),
 		submitRemovePlantCommand: (x, y) => !!ccallSafe('PvzDebug_SubmitRemovePlantCommand', 'number', ['number', 'number'], [x | 0, y | 0]),
 		getBoardSun: () => ccallSafe('PvzDebug_GetBoardSun', 'number', [], []),
+		getGameMode: () => parseJsonOrRaw(ccallSafe('PvzDebug_GetGameModeJson', 'string', [], [])),
 		getLatestSnapshot: () => parseJsonOrRaw(ccallSafe('PvzDebug_GetLatestSnapshotJson', 'string', [], [])),
 		getSessionEvents: (limit = 32) => parseJsonOrRaw(ccallSafe('PvzDebug_GetSessionEventsJson', 'string', ['number'], [limit | 0])),
 		clearSessionEvents: () => ccallSafe('PvzDebug_ClearSessionEvents', 'void', [], []),
@@ -491,6 +529,48 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 	};
 
 	window.PvzDebug = api;
+
+	function applyCanvasAspect43() {
+		if (typeof Module === 'undefined' || !Module['canvas']) {
+			return;
+		}
+		const canvas = Module['canvas'];
+		const maxW = Math.max(320, window.innerWidth || 0);
+		const maxH = Math.max(240, window.innerHeight || 0);
+		let w = maxW;
+		let h = Math.floor((w * 3) / 4);
+		if (h > maxH) {
+			h = maxH;
+			w = Math.floor((h * 4) / 3);
+		}
+		canvas.style.width = w + 'px';
+		canvas.style.height = h + 'px';
+		canvas.style.display = 'block';
+		canvas.style.margin = '0 auto';
+	}
+
+	applyCanvasAspect43();
+	if (!window.__pvzAspect43Bound) {
+		window.__pvzAspect43Bound = true;
+		window.addEventListener('resize', applyCanvasAspect43);
+	}
+
+	try {
+		const params = new URLSearchParams(window.location.search || "");
+		if (params.get('pvz_auto_runtime') === '1') {
+			let attempts = 0;
+			const timer = setInterval(() => {
+				attempts += 1;
+				try {
+					ccallSafe('PvzDebug_RequestAutoRuntimeStart', 'void', [], []);
+					clearInterval(timer);
+				} catch (e) {
+					if (attempts > 80) clearInterval(timer);
+				}
+			}, 250);
+		}
+	} catch (e) {}
+
 	console.info('[PvzDebug] bridge installed. Use window.PvzDebug.TestFunction(\"abc\", 1)');
 	return 1;
 });
@@ -503,6 +583,16 @@ void PvzInstallDebugConsoleBridge()
 		return;
 	}
 	sInstalled = PvzInstallDebugConsoleBridgeJs() != 0;
+}
+
+bool PvzHasPendingAutoRuntimeStart()
+{
+	return gPvzAutoRuntimeStartRequested && !gPvzAutoRuntimeStartConsumed;
+}
+
+void PvzConsumeAutoRuntimeStart()
+{
+	gPvzAutoRuntimeStartConsumed = true;
 }
 
 #endif

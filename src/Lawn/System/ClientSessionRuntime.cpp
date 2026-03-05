@@ -109,6 +109,24 @@ void ClientSessionRuntime::RefreshSnapshot()
 	mLatestSnapshot.mAuthoritativeSun = aPlayer.mSun;
 	mLatestSnapshot.mAuthoritativeDamage = aPlayer.mAccumulatedDamage;
 	mLatestSnapshot.mEliminated = aPlayer.mEliminated;
+	mLatestSnapshot.mPvpEnemyBoardDisplayed = false;
+	mLatestSnapshot.mFocusedEnemyPlayerId = 0;
+	mLatestSnapshot.mFocusedEnemyName.clear();
+
+	uint64_t aFocusedEnemyPlayerId = 0;
+	if (aMatch->TryGetPvpTarget(mLocalPlayerId, aFocusedEnemyPlayerId))
+	{
+		mLatestSnapshot.mPvpEnemyBoardDisplayed = true;
+		mLatestSnapshot.mFocusedEnemyPlayerId = aFocusedEnemyPlayerId;
+
+		auto aEnemyIt = aMatch->GetPlayerStates().find(aFocusedEnemyPlayerId);
+		if (aEnemyIt != aMatch->GetPlayerStates().end())
+		{
+			const AuthoritativePlayerState& aEnemyState = aEnemyIt->second;
+			mLatestSnapshot.mFocusedEnemyName = aEnemyState.mIsBot ? "Bot#" : "Player#";
+			mLatestSnapshot.mFocusedEnemyName += std::to_string(aFocusedEnemyPlayerId);
+		}
+	}
 }
 
 void ClientSessionRuntime::Update()

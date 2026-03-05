@@ -32,6 +32,9 @@ struct ClientAuthoritativeSnapshot
 	int								mAuthoritativeSun = 0;
 	int								mAuthoritativeDamage = 0;
 	bool							mEliminated = false;
+	bool							mPvpEnemyBoardDisplayed = false;
+	uint64_t						mFocusedEnemyPlayerId = 0;
+	std::string						mFocusedEnemyName;
 };
 
 class ClientSessionRuntime
@@ -65,6 +68,7 @@ public:
 	bool							StartStoryMatchmaking();
 
 	ClientSessionState				GetState() const { return mState; }
+	uint64_t						GetLocalPlayerId() const { return mLocalPlayerId; }
 	uint64_t						GetBoundLobbyId() const { return mBoundLobbyId; }
 	const ClientAuthoritativeSnapshot& GetLatestSnapshot() const { return mLatestSnapshot; }
 	const std::vector<AuthoritativeRuntimeEvent>& GetEvents() const { return mEventBuffer; }

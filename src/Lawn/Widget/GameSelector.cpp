@@ -240,6 +240,8 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mChangeUserButton->Resize(0, 0, 250, 30);
 	mChangeUserButton->mBtnNoDraw = true;
 	mChangeUserButton->mMouseVisible = false;
+	mChangeUserButton->mVisible = false;
+	mChangeUserButton->SetDisabled(true);
 
 	mOverlayWidget = new GameSelectorOverlay(this);
 	mOverlayWidget->Resize(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
@@ -286,6 +288,8 @@ GameSelector::GameSelector(LawnApp* theApp)
 	aSelectorReanim->AssignRenderGroupToPrefix("flower", RENDER_GROUP_HIDDEN);
 	aSelectorReanim->AssignRenderGroupToPrefix("leaf", RENDER_GROUP_HIDDEN);
 	aSelectorReanim->AssignRenderGroupToTrack("SelectorScreen_BG", 1);
+	aSelectorReanim->AssignRenderGroupToTrack("woodsign1", RENDER_GROUP_HIDDEN);
+	aSelectorReanim->AssignRenderGroupToTrack("woodsign2", RENDER_GROUP_HIDDEN);
 	mSelectorReanimID = mApp->ReanimationGetID(aSelectorReanim);
 	mSelectorState = SelectorAnimState::SELECTOR_OPEN;
 	int aFrameStart, aFrameCount;
@@ -518,21 +522,17 @@ void GameSelector::SyncProfile(bool theShowLoading)
 	mLevel = 1;
 	if (mApp->mPlayerInfo)
 		mLevel = mApp->mPlayerInfo->GetLevel();
-	mShowStartButton = true;
+	mShowStartButton = false;
 	mMinigamesLocked = true;
 	mPuzzleLocked = true;
 	mSurvivalLocked = true;
 	if (mApp->mPlayerInfo && !mApp->IsIceDemo())
 	{
-		if (mLevel >= 2)
-			mShowStartButton = false;
-
 		if (mApp->HasFinishedAdventure())
 		{
 			mMinigamesLocked = false;
 			mSurvivalLocked = false;
 			mPuzzleLocked = false;
-			mShowStartButton = false;
 		}
 
 		if (mApp->mPlayerInfo->mHasUnlockedMinigames)
@@ -600,21 +600,6 @@ void GameSelector::Draw(Graphics* g)
 		);
 	}
 
-	if (mApp->mPlayerInfo && mApp->mPlayerInfo->mName.size() &&
-		mSelectorState != SelectorAnimState::SELECTOR_OPEN && mSelectorState != SelectorAnimState::SELECTOR_NEW_USER)
-	{
-		std::string aWelcomeStr = mApp->mPlayerInfo->mName + '!';
-
-		int aSignIdx = aSelectorReanim->FindTrackIndex("woodsign1");
-		SexyTransform2D aOverlayMatrix;
-		aSelectorReanim->GetAttachmentOverlayMatrix(aSignIdx, aOverlayMatrix);
-		float aStringWidth = Sexy::FONT_BRIANNETOD16->StringWidth(aWelcomeStr);
-		SexyTransform2D aOffsetMatrix;
-		// @Patoke: add position so it moves when sliding to position
-		aOffsetMatrix.Translate(170.5f - static_cast<int>(aStringWidth * 0.5f) + mX, 102.5f + mY);
-		TodDrawStringMatrix(g, Sexy::FONT_BRIANNETOD16, aOverlayMatrix * aOffsetMatrix, aWelcomeStr, Color(255, 245, 200));
-
-	}
 }
 
 //0x44AB50
@@ -883,7 +868,7 @@ void GameSelector::Update()
 			mQuitButton->mMouseVisible = true;
 			mStoreButton->mMouseVisible = true;
 			mAlmanacButton->mMouseVisible = true;
-			mChangeUserButton->mMouseVisible = true;
+			mChangeUserButton->mMouseVisible = false;
 			mZombatarButton->mMouseVisible = true; // @Patoke: new widgets
 			mAchievementsButton->mMouseVisible = true;
 
@@ -1235,47 +1220,8 @@ void GameSelector::ButtonPress(int theId)
 // GOTY @Patoke: 0x44F270
 void GameSelector::ClickedAdventure()
 {
-	if (mApp->IsTrialStageLocked() && (mLevel >= 25 || mApp->HasFinishedAdventure()))
-	{
-		if (mApp->LawnMessageBox(
-			Dialogs::DIALOG_MESSAGE,
-			"[REPLAY_LEVEL_HEADER]",
-			"[REPLAY_LEVEL_BODY]",
-			"[DIALOG_BUTTON_YES]",
-			"[DIALOG_BUTTON_NO]",
-			Dialog::BUTTONS_YES_NO) == Dialog::ID_NO)
-			return;
-
-		mApp->mPlayerInfo->mLevel = 24;
-		mApp->mPlayerInfo->mFinishedAdventure = 0;
-		mApp->EraseFile(GetSavedGameName(GameMode::GAMEMODE_ADVENTURE, mApp->mPlayerInfo->mId));
-		mApp->EraseFile(GetLegacySavedGameName(GameMode::GAMEMODE_ADVENTURE, mApp->mPlayerInfo->mId));
-	}
-
-	mApp->mMusic->StopAllMusic();
-	mApp->PlaySample(Sexy::SOUND_LOSEMUSIC);
-	mStartingGame = true;
-	mAdventureButton->SetDisabled(true);
-	mMinigameButton->SetDisabled(true);
-	mPuzzleButton->SetDisabled(true);
-	mOptionsButton->SetDisabled(true);
-	mQuitButton->SetDisabled(true);
-	mHelpButton->SetDisabled(true);
-	mChangeUserButton->SetDisabled(true);
-	mStoreButton->SetDisabled(true);
-	mAlmanacButton->SetDisabled(true);
-	mSurvivalButton->SetDisabled(true);
-	mZenGardenButton->SetDisabled(true);
-	mZombatarButton->SetDisabled(true); // @Patoke: added new widgets
-	mAchievementsButton->SetDisabled(true);
-
-	Reanimation* aHandReanim = mApp->AddReanimation(-70.0f, 10.0f, 0, ReanimationType::REANIM_ZOMBIE_HAND);
-	aHandReanim->mLoopType = ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD;
-	mHandReanimID = mApp->ReanimationGetID(aHandReanim);
-	mApp->PlayFoley(FoleyType::FOLEY_DIRT_RISE);
-	for (int i = 0; i < aHandReanim->mDefinition->mTracks.count; i++)
-		if (!strncasecmp(aHandReanim->mDefinition->mTracks.tracks[i].mName, "rock", 4))
-			aHandReanim->mTrackInstances[i].mIgnoreClipRect = true;
+	mApp->KillGameSelector();
+	mApp->StartStoryModeWithOpponentSearch(false);
 }
 
 //0x44C890
@@ -1333,7 +1279,7 @@ void GameSelector::ButtonDepress(int theId)
 		mApp->DoNewOptions(true);
 		break;
 	case GameSelector::GameSelector_ChangeUser:
-		mApp->DoUserDialog();
+		return;
 		break;
 	case GameSelector::GameSelector_Store:
 	{

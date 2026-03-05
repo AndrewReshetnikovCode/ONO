@@ -57,6 +57,8 @@
 
 #ifdef __EMSCRIPTEN__
 extern void PvzInstallDebugConsoleBridge();
+extern bool PvzHasPendingAutoRuntimeStart();
+extern void PvzConsumeAutoRuntimeStart();
 #endif
 
 bool gIsPartnerBuild = false; // GOTY @Patoke: 0x729659
@@ -122,7 +124,7 @@ LawnApp::LawnApp()
 	mTrialType = TrialType::TRIALTYPE_NONE;
 	mDebugTrialLocked = false;
 	mMuteSoundsForCutscene = false;
-	mEnableAuthoritativeClientSession = false;
+	mEnableAuthoritativeClientSession = true;
 	mClientSessionRuntime = nullptr;
 	mAuthoritativeProgressionStore = nullptr;
 	mYandexSdkBridge = nullptr;
@@ -142,7 +144,7 @@ LawnApp::LawnApp()
 	mPlayerInfo = nullptr;
 	mLastLevelStats = new LevelStats();
 	mFirstTimeGameSelector = true;
-	mGameMode = GameMode::GAMEMODE_ADVENTURE;
+	mGameMode = GameMode::GAMEMODE_SURVIVAL_NORMAL_STAGE_1;
 	mEasyPlantingCheat = false;
 	mAutoEnable3D = true;
 	Tod_SWTri_AddAllDrawTriFuncs();
@@ -540,10 +542,10 @@ void LawnApp::NewGame()
 	MakeNewBoard();
 	mBoard->InitLevel();
 	mBoardResult = BoardResult::BOARDRESULT_NONE;
-	mGameScene = GameScenes::SCENE_LEVEL_INTRO;
-
-	ShowSeedChooserScreen();
-	mBoard->mCutScene->StartLevelIntro();
+	// Local matchmaking flow starts directly in active survival gameplay.
+	StartPlaying();
+	mBoard->mTutorialState = TutorialState::TUTORIAL_OFF;
+	mBoard->mTutorialTimer = 0;
 }
 
 //0x44F8E0
@@ -1351,14 +1353,22 @@ void LawnApp::Init()
 
 	mProfileMgr->Load();
 
-	std::string aCurUser;
-	if (mPlayerInfo == nullptr && RegistryReadString("CurUser", &aCurUser))
-	{
-		mPlayerInfo = mProfileMgr->GetProfile(aCurUser);
-	}
+	const std::string kDefaultPlayerName = "TestPlayer";
+	mPlayerInfo = mProfileMgr->GetProfile(kDefaultPlayerName);
 	if (mPlayerInfo == nullptr)
 	{
-		mPlayerInfo = mProfileMgr->GetAnyProfile();
+		mPlayerInfo = mProfileMgr->AddProfile(kDefaultPlayerName);
+		if (mPlayerInfo != nullptr)
+		{
+			mPlayerInfo->mHasUnlockedSurvivalMode = 1;
+		}
+	}
+	if (mPlayerInfo != nullptr)
+	{
+		mPlayerInfo->mName = kDefaultPlayerName;
+		mPlayerInfo->SaveDetails();
+		mProfileMgr->Save();
+		RegistryWriteString("CurUser", mPlayerInfo->mName);
 	}
 
 	if (mAuthoritativeProgressionStore == nullptr)
@@ -1779,6 +1789,12 @@ void LawnApp::UpdateFrames()
 		SexyApp::UpdateFrames();
 #ifdef __EMSCRIPTEN__
 		PvzInstallDebugConsoleBridge();
+		if (PvzHasPendingAutoRuntimeStart() && mGameSelector != nullptr)
+		{
+			PvzConsumeAutoRuntimeStart();
+			mEnableAuthoritativeClientSession = true;
+			StartStoryModeWithOpponentSearch(false);
+		}
 #endif
 		UpdateClientSessionRuntime();
 		ApplyAuthoritativeSnapshotToBoard();
@@ -1805,6 +1821,8 @@ void LawnApp::InitClientSessionRuntime()
 	aConfig.mEnableLoopbackServer = true;
 	aConfig.mServerTicksPerClientUpdate = 1;
 	aConfig.mMatchmakingMode = AuthoritativeMatchmakingMode::MATCHMAKING_RANDOM;
+	aConfig.mServerConfig.mPvpPhaseIntervalTicks = 30;
+	aConfig.mServerConfig.mPvpPhaseDurationTicks = 300;
 	if (aConfig.mServerConfig.mPlayersPerLobby > 0)
 	{
 		aConfig.mServerConfig.mStoryOpponentCount = aConfig.mServerConfig.mPlayersPerLobby - 1;
@@ -1833,6 +1851,8 @@ void LawnApp::InitClientSessionRuntime()
 
 void LawnApp::StartStoryModeWithOpponentSearch(bool theLookForSavedGame)
 {
+	(void)theLookForSavedGame;
+
 	if (mEnableAuthoritativeClientSession)
 	{
 		if (mClientSessionRuntime == nullptr)
@@ -1845,7 +1865,12 @@ void LawnApp::StartStoryModeWithOpponentSearch(bool theLookForSavedGame)
 		}
 	}
 
-	PreNewGame(GameMode::GAMEMODE_ADVENTURE, theLookForSavedGame);
+	if (mGameSelector != nullptr)
+	{
+		KillGameSelector();
+	}
+
+	PreNewGame(GameMode::GAMEMODE_SURVIVAL_NORMAL_STAGE_1, false);
 }
 
 void LawnApp::ShutdownClientSessionRuntime()
