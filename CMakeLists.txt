@@ -35,6 +35,7 @@ file(GLOB SOURCES
 list(REMOVE_ITEM SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Sexy.TodLib/TodDrawTriangle.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Sexy.TodLib/TodDrawTriangleInc.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/authoritative_server_main.cpp
 )
 
 # Web audio files only for Emscripten; SDL sound/music excluded for Emscripten
