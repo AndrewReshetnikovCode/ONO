@@ -39,10 +39,23 @@ fi
 BUILD_DIR="${BUILD_DIR:-${REPO_ROOT}/build-server}"
 CMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:-Release}"
 CMAKE_GENERATOR="${CMAKE_GENERATOR:-Ninja}"
+C_COMPILER="${C_COMPILER:-$(command -v gcc || command -v clang || true)}"
+CXX_COMPILER="${CXX_COMPILER:-$(command -v g++ || command -v clang++ || true)}"
+ASM_COMPILER="${ASM_COMPILER:-${C_COMPILER}}"
 
 echo "[launcher] profile=${PROFILE}"
 echo "[launcher] configuring ${BUILD_DIR}"
-cmake -S "${REPO_ROOT}" -B "${BUILD_DIR}" -G "${CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
+if [[ -z "${C_COMPILER}" || -z "${CXX_COMPILER}" ]]; then
+	echo "[launcher] error: no C/C++ compiler found in PATH"
+	echo "[launcher] set C_COMPILER and CXX_COMPILER env vars explicitly"
+	exit 1
+fi
+
+cmake -S "${REPO_ROOT}" -B "${BUILD_DIR}" -G "${CMAKE_GENERATOR}" \
+	-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}" \
+	-DCMAKE_C_COMPILER="${C_COMPILER}" \
+	-DCMAKE_CXX_COMPILER="${CXX_COMPILER}" \
+	-DCMAKE_ASM_COMPILER="${ASM_COMPILER}"
 
 echo "[launcher] building pvz-authoritative-server"
 cmake --build "${BUILD_DIR}" --target pvz-authoritative-server
