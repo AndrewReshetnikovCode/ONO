@@ -22,6 +22,9 @@ if(NOT EMSCRIPTEN)
 		${PROJECT_SOURCE_DIR}/src
 	)
 	target_compile_features(pvz-authoritative-server PRIVATE cxx_std_20)
+	if(MINGW)
+		target_link_options(pvz-authoritative-server PRIVATE -static-libgcc -static-libstdc++)
+	endif()
 endif()
 
 if(MSVC)

@@ -437,6 +437,10 @@ This artifact can be produced with the MinGW toolchain file:
 
 - `cmake/toolchains/mingw-w64-x86_64.cmake`
 
+Runtime note:
+
+- current Windows artifact is linked with static MinGW C++ runtime (`-static-libgcc -static-libstdc++`), so `libgcc_s_seh-1.dll` and `libstdc++-6.dll` are not required beside the executable.
+
 ---
 
 ## 14) Current scope boundaries (important)
