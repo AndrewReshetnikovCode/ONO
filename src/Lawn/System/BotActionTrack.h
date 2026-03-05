@@ -32,6 +32,7 @@ public:
 	static const std::vector<BotActionTrack>&	GetTracks();
 	static const BotActionTrack*				FindTrackById(int theTrackId);
 	static std::vector<int>						AssignTracksUniqueFirst(uint64_t theLobbyId, int theMmrHint, size_t theBotCount);
+	static std::vector<int>						AssignTracksStrictUnique(uint64_t theLobbyId, int theMmrHint, size_t theBotCount);
 };
 
 #endif

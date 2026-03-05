@@ -18,12 +18,13 @@ void ClientSessionRuntime::Initialize(const ClientSessionConfig& theConfig, uint
 	mBoundLobbyId = 0;
 	mLocalCommandId = 1;
 	mClientTick = 0;
+	mStoryMatchmakingRequested = false;
 	mLatestSnapshot = ClientAuthoritativeSnapshot();
 	mState = ClientSessionState::CONNECTING;
 
 	if (mConfig.mEnableLoopbackServer)
 	{
-		mLoopbackServer.reset(new AuthoritativeServerRuntime());
+		mLoopbackServer.reset(new AuthoritativeServerRuntime(mConfig.mServerConfig));
 	}
 }
 
@@ -32,6 +33,7 @@ void ClientSessionRuntime::Shutdown()
 	mLoopbackServer.reset();
 	mEventBuffer.clear();
 	mLatestSnapshot = ClientAuthoritativeSnapshot();
+	mStoryMatchmakingRequested = false;
 	mState = ClientSessionState::TERMINATED;
 	mBoundLobbyId = 0;
 }
@@ -116,17 +118,23 @@ void ClientSessionRuntime::Update()
 	switch (mState)
 	{
 	case ClientSessionState::CONNECTING:
+		if (!mStoryMatchmakingRequested)
+		{
+			return;
+		}
+
 		if (!mLoopbackServer)
 		{
 			mState = ClientSessionState::TERMINATED;
 			return;
 		}
 
-		if (!mLoopbackServer->EnqueueMatchmakingRequest(mLocalPlayerId, mLocalPlayerMmr, mConfig.mMatchmakingMode))
+		if (!mLoopbackServer->StartStoryMatchmaking(mLocalPlayerId, mLocalPlayerMmr, mConfig.mMatchmakingMode))
 		{
 			mState = ClientSessionState::TERMINATED;
 			return;
 		}
+		mStoryMatchmakingRequested = false;
 		mState = ClientSessionState::MATCHMAKING;
 		return;
 
@@ -163,6 +171,24 @@ void ClientSessionRuntime::Update()
 	default:
 		return;
 	}
+}
+
+bool ClientSessionRuntime::StartStoryMatchmaking()
+{
+	if (!mConfig.mEnableLoopbackServer)
+	{
+		return false;
+	}
+
+	mLoopbackServer.reset(new AuthoritativeServerRuntime(mConfig.mServerConfig));
+	mBoundLobbyId = 0;
+	mLocalCommandId = 1;
+	mClientTick = 0;
+	mLatestSnapshot = ClientAuthoritativeSnapshot();
+	mEventBuffer.clear();
+	mStoryMatchmakingRequested = true;
+	mState = ClientSessionState::CONNECTING;
+	return true;
 }
 
 NetCommandValidationResult ClientSessionRuntime::SubmitPlacePlantCommand(int theGridX, int theGridY, int theSeedType, int theImitaterSeedType)

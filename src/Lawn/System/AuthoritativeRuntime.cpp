@@ -57,6 +57,15 @@ void AuthoritativeMatchmaker::FillLobbyWithBots(AuthoritativeLobby& theLobby, in
 	}
 }
 
+void AuthoritativeMatchmaker::CollectStoryHumanOpponents(std::deque<AuthoritativeMatchmakingRequest>& theQueue, size_t theMaxCount, std::vector<AuthoritativeMatchmakingRequest>& theOutMembers)
+{
+	while (!theQueue.empty() && theOutMembers.size() < theMaxCount)
+	{
+		theOutMembers.push_back(theQueue.front());
+		theQueue.pop_front();
+	}
+}
+
 bool AuthoritativeMatchmaker::EnqueueRequest(const AuthoritativeMatchmakingRequest& theRequest)
 {
 	if (theRequest.mPlayerId == 0)
@@ -119,6 +128,102 @@ void AuthoritativeMatchmaker::RemovePlayer(uint64_t thePlayerId)
 size_t AuthoritativeMatchmaker::GetQueueSize(AuthoritativeMatchmakingMode theMode) const
 {
 	return theMode == AuthoritativeMatchmakingMode::MATCHMAKING_MMR ? mMmrQueue.size() : mRandomQueue.size();
+}
+
+AuthoritativeLobby AuthoritativeMatchmaker::BuildStoryLobby(const AuthoritativeMatchmakingRequest& theLocalRequest, const AuthoritativeServerConfig& theConfig, AuthoritativeStoryMatchResolution* theResolution)
+{
+	RemovePlayer(theLocalRequest.mPlayerId);
+
+	AuthoritativeStoryMatchResolution aResolution;
+	aResolution.mTargetOpponents = theConfig.mStoryOpponentCount;
+
+	AuthoritativeLobby aLobby;
+	aLobby.mLobbyId = mNextLobbyId++;
+	aLobby.mPvpEnabled = true;
+
+	AuthoritativeLobbyMember aLocalMember;
+	aLocalMember.mPlayerId = theLocalRequest.mPlayerId;
+	aLocalMember.mMmr = theLocalRequest.mMmr;
+	aLocalMember.mIsBot = false;
+	aLobby.mMembers.push_back(aLocalMember);
+
+	if (theConfig.mStoryOpponentCount == 0)
+	{
+		aLobby.mPvpEnabled = false;
+		aResolution.mPvpEnabled = false;
+		aResolution.mFallbackNoOpponents = true;
+		if (theResolution != nullptr)
+		{
+			*theResolution = aResolution;
+		}
+		return aLobby;
+	}
+
+	std::vector<AuthoritativeMatchmakingRequest> aHumanOpponents;
+	if (theLocalRequest.mMode == AuthoritativeMatchmakingMode::MATCHMAKING_MMR)
+	{
+		CollectStoryHumanOpponents(mMmrQueue, theConfig.mStoryOpponentCount, aHumanOpponents);
+	}
+	else
+	{
+		CollectStoryHumanOpponents(mRandomQueue, theConfig.mStoryOpponentCount, aHumanOpponents);
+	}
+
+	for (const AuthoritativeMatchmakingRequest& aHumanRequest : aHumanOpponents)
+	{
+		if (aHumanRequest.mPlayerId == theLocalRequest.mPlayerId)
+		{
+			continue;
+		}
+
+		AuthoritativeLobbyMember aHumanMember;
+		aHumanMember.mPlayerId = aHumanRequest.mPlayerId;
+		aHumanMember.mMmr = aHumanRequest.mMmr;
+		aHumanMember.mIsBot = false;
+		aLobby.mMembers.push_back(aHumanMember);
+		mQueuedPlayers.erase(aHumanRequest.mPlayerId);
+	}
+
+	size_t aHumanCount = aLobby.mMembers.size() > 0 ? aLobby.mMembers.size() - 1 : 0;
+	aResolution.mHumanOpponents = static_cast<uint32_t>(aHumanCount);
+	size_t aMissingOpponents = theConfig.mStoryOpponentCount > aHumanCount ? (theConfig.mStoryOpponentCount - aHumanCount) : 0;
+	if (aMissingOpponents > 0)
+	{
+		std::vector<int> aAssignedTracks = BotActionTrackPool::AssignTracksStrictUnique(aLobby.mLobbyId, theLocalRequest.mMmr, aMissingOpponents);
+		if (aAssignedTracks.size() == aMissingOpponents)
+		{
+			for (size_t i = 0; i < aAssignedTracks.size(); ++i)
+			{
+				AuthoritativeLobbyMember aBotMember;
+				aBotMember.mPlayerId = mNextBotPlayerId++;
+				aBotMember.mMmr = theLocalRequest.mMmr;
+				aBotMember.mIsBot = true;
+				aBotMember.mBotTrackId = aAssignedTracks[i];
+				aLobby.mMembers.push_back(aBotMember);
+			}
+			aResolution.mBotOpponents = static_cast<uint32_t>(aAssignedTracks.size());
+		}
+		else
+		{
+			aLobby.mMembers.resize(1);
+			aLobby.mPvpEnabled = false;
+			aResolution.mHumanOpponents = 0;
+			aResolution.mBotOpponents = 0;
+			aResolution.mFallbackNoOpponents = true;
+		}
+	}
+
+	if (aLobby.mMembers.size() <= 1)
+	{
+		aLobby.mPvpEnabled = false;
+	}
+	aResolution.mPvpEnabled = aLobby.mPvpEnabled;
+
+	if (theResolution != nullptr)
+	{
+		*theResolution = aResolution;
+	}
+	return aLobby;
 }
 
 std::vector<AuthoritativeLobby> AuthoritativeMatchmaker::BuildReadyLobbies(const AuthoritativeServerConfig& theConfig, uint64_t theServerTick)
@@ -217,7 +322,7 @@ void AuthoritativeMatchRuntime::EmitEvent(NetEventType theEventType, uint64_t th
 
 AuthoritativeMatchRuntime::AuthoritativeMatchRuntime(const AuthoritativeServerConfig& theConfig, const AuthoritativeLobby& theLobby, uint64_t theServerTick)
 	: mConfig(theConfig), mLobbyId(theLobby.mLobbyId), mMatchStartTick(theServerTick), mCurrentTick(theServerTick), mRunning(true),
-	mAntiCheat(BuildAntiCheatConfig(theConfig))
+	mPvpEnabled(theLobby.mPvpEnabled), mAntiCheat(BuildAntiCheatConfig(theConfig))
 {
 	mPlayerStates.reserve(theLobby.mMembers.size());
 	for (const AuthoritativeLobbyMember& aMember : theLobby.mMembers)
@@ -249,7 +354,9 @@ AuthoritativeMatchRuntime::AuthoritativeMatchRuntime(const AuthoritativeServerCo
 		}
 	}
 
-	EmitEvent(NetEventType::NET_EVENT_MATCH_START, 0, NetProtocolError::NET_PROTOCOL_OK, "match started");
+	std::ostringstream aMatchStartDetails;
+	aMatchStartDetails << "match started pvp=" << (mPvpEnabled ? 1 : 0) << " players=" << mPlayerStates.size();
+	EmitEvent(NetEventType::NET_EVENT_MATCH_START, 0, NetProtocolError::NET_PROTOCOL_OK, aMatchStartDetails.str());
 }
 
 bool AuthoritativeMatchRuntime::HasPlayer(uint64_t thePlayerId) const
@@ -393,6 +500,11 @@ void AuthoritativeMatchRuntime::ApplyPendingDamageTick()
 
 void AuthoritativeMatchRuntime::BeginPvpPhase()
 {
+	if (!mPvpEnabled)
+	{
+		return;
+	}
+
 	mPvpPhaseActive = false;
 	mPvpTargetByAttacker.clear();
 
@@ -495,6 +607,13 @@ NetCommandValidationResult AuthoritativeMatchRuntime::ApplyCommand(const NetClie
 
 	case NetCommandType::NET_COMMAND_SEND_PVP_ZOMBIES:
 	{
+		if (!mPvpEnabled)
+		{
+			NetCommandValidationResult aResult{NetProtocolError::NET_PROTOCOL_UNSUPPORTED_COMMAND, "pvp disabled for this match"};
+			EmitEvent(NetEventType::NET_EVENT_COMMAND_REJECTED, aPlayer.mPlayerId, aResult.mError, aResult.mReason);
+			return aResult;
+		}
+
 		if (!mPvpPhaseActive)
 		{
 			NetCommandValidationResult aResult{NetProtocolError::NET_PROTOCOL_INVALID_PAYLOAD, "pvp send only allowed during active pvp phase"};
@@ -676,6 +795,18 @@ void AuthoritativeMatchRuntime::CheckForMatchEnd()
 		}
 	}
 
+	if (!mPvpEnabled)
+	{
+		if (aAliveCount <= 0)
+		{
+			mRunning = false;
+			std::ostringstream aDetails;
+			aDetails << "match ended, winner=0";
+			EmitEvent(NetEventType::NET_EVENT_MATCH_END, 0, NetProtocolError::NET_PROTOCOL_OK, aDetails.str());
+		}
+		return;
+	}
+
 	if (aAliveCount <= 1)
 	{
 		mRunning = false;
@@ -702,7 +833,7 @@ void AuthoritativeMatchRuntime::AdvanceOneTick()
 		EndPvpPhase();
 	}
 
-	if (!mPvpPhaseActive && mConfig.mPvpPhaseIntervalTicks > 0 && aElapsed > 0 &&
+	if (mPvpEnabled && !mPvpPhaseActive && mConfig.mPvpPhaseIntervalTicks > 0 && aElapsed > 0 &&
 		(aElapsed % mConfig.mPvpPhaseIntervalTicks) == 0)
 	{
 		BeginPvpPhase();
@@ -756,6 +887,29 @@ bool AuthoritativeServerRuntime::EnqueueMatchmakingRequest(uint64_t thePlayerId,
 	aRequest.mMode = theMode;
 	aRequest.mEnqueueTick = mServerTick;
 	return mMatchmaker.EnqueueRequest(aRequest);
+}
+
+bool AuthoritativeServerRuntime::StartStoryMatchmaking(uint64_t thePlayerId, int theMmr, AuthoritativeMatchmakingMode theMode, AuthoritativeStoryMatchResolution* theResolution)
+{
+	if (thePlayerId == 0 || mPlayerToLobby.find(thePlayerId) != mPlayerToLobby.end())
+	{
+		return false;
+	}
+
+	AuthoritativeMatchmakingRequest aRequest;
+	aRequest.mPlayerId = thePlayerId;
+	aRequest.mMmr = theMmr;
+	aRequest.mMode = theMode;
+	aRequest.mEnqueueTick = mServerTick;
+
+	AuthoritativeLobby aLobby = mMatchmaker.BuildStoryLobby(aRequest, mConfig, theResolution);
+	if (aLobby.mMembers.empty())
+	{
+		return false;
+	}
+
+	AddLobbyToActiveMatches(aLobby);
+	return true;
 }
 
 NetCommandValidationResult AuthoritativeServerRuntime::SubmitCommand(const NetClientCommand& theCommand)

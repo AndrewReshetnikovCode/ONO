@@ -832,7 +832,7 @@ void GameSelector::Update()
 				StoreScreen* aStore = mApp->ShowStoreScreen();
 				aStore->SetupForIntro(601);
 				aStore->WaitForResult(true);
-				mApp->PreNewGame(GameMode::GAMEMODE_ADVENTURE, false);
+				mApp->StartStoryModeWithOpponentSearch(false);
 				return;
 			}
 			if (ShouldDoZenTuturialBeforeAdventure())
@@ -841,7 +841,7 @@ void GameSelector::Update()
 				mApp->mZenGarden->SetupForZenTutorial();
 				return;
 			}
-			mApp->PreNewGame(GameMode::GAMEMODE_ADVENTURE, true);
+			mApp->StartStoryModeWithOpponentSearch(true);
 			return;
 		}
 

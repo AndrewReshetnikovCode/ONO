@@ -1795,6 +1795,10 @@ void LawnApp::InitClientSessionRuntime()
 	aConfig.mEnableLoopbackServer = true;
 	aConfig.mServerTicksPerClientUpdate = 1;
 	aConfig.mMatchmakingMode = AuthoritativeMatchmakingMode::MATCHMAKING_RANDOM;
+	if (aConfig.mServerConfig.mPlayersPerLobby > 0)
+	{
+		aConfig.mServerConfig.mStoryOpponentCount = aConfig.mServerConfig.mPlayersPerLobby - 1;
+	}
 
 	uint64_t aPlayerId = 1;
 	if (mPlayerInfo != nullptr && mPlayerInfo->mId != 0)
@@ -1815,6 +1819,23 @@ void LawnApp::InitClientSessionRuntime()
 	mClientSessionRuntime = new ClientSessionRuntime();
 	mClientSessionRuntime->Initialize(aConfig, aPlayerId, aPlayerMmr);
 	mYandexLeaderboardSubmitted = false;
+}
+
+void LawnApp::StartStoryModeWithOpponentSearch(bool theLookForSavedGame)
+{
+	if (mEnableAuthoritativeClientSession)
+	{
+		if (mClientSessionRuntime == nullptr)
+		{
+			InitClientSessionRuntime();
+		}
+		if (mClientSessionRuntime != nullptr)
+		{
+			mClientSessionRuntime->StartStoryMatchmaking();
+		}
+	}
+
+	PreNewGame(GameMode::GAMEMODE_ADVENTURE, theLookForSavedGame);
 }
 
 void LawnApp::ShutdownClientSessionRuntime()

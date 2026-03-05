@@ -21,6 +21,7 @@ struct ClientSessionConfig
 	bool							mEnableLoopbackServer = true;
 	uint32_t						mServerTicksPerClientUpdate = 1;
 	AuthoritativeMatchmakingMode	mMatchmakingMode = AuthoritativeMatchmakingMode::MATCHMAKING_RANDOM;
+	AuthoritativeServerConfig		mServerConfig;
 };
 
 struct ClientAuthoritativeSnapshot
@@ -43,6 +44,7 @@ private:
 	uint64_t						mBoundLobbyId = 0;
 	uint64_t						mLocalCommandId = 1;
 	uint32_t						mClientTick = 0;
+	bool							mStoryMatchmakingRequested = false;
 	std::unique_ptr<AuthoritativeServerRuntime> mLoopbackServer;
 	ClientAuthoritativeSnapshot		mLatestSnapshot;
 	std::vector<AuthoritativeRuntimeEvent> mEventBuffer;
@@ -60,6 +62,7 @@ public:
 	void							Initialize(const ClientSessionConfig& theConfig, uint64_t theLocalPlayerId, int theLocalPlayerMmr);
 	void							Shutdown();
 	void							Update();
+	bool							StartStoryMatchmaking();
 
 	ClientSessionState				GetState() const { return mState; }
 	uint64_t						GetBoundLobbyId() const { return mBoundLobbyId; }
