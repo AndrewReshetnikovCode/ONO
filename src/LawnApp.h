@@ -304,6 +304,7 @@ public:
 	void							InitClientSessionRuntime();
 	void							ShutdownClientSessionRuntime();
 	void							UpdateClientSessionRuntime();
+	void							StartStoryModeWithOpponentSearch(bool theLookForSavedGame);
 	void							ApplyAuthoritativeSnapshotToBoard();
 	bool							SubmitAuthoritativePlantCommand(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterSeedType);
 	bool							SubmitAuthoritativeRemovePlantCommand(int theGridX, int theGridY);

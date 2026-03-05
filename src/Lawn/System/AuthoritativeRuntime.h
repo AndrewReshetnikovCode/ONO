@@ -21,6 +21,7 @@ enum class AuthoritativeMatchmakingMode
 struct AuthoritativeServerConfig
 {
 	uint32_t						mPlayersPerLobby = 10;
+	uint32_t						mStoryOpponentCount = 9;
 	uint32_t						mMinPlayersToStart = 2;
 	uint64_t						mBotFillAfterTicks = 600;
 	int								mMmrWindow = 200;
@@ -56,6 +57,16 @@ struct AuthoritativeLobby
 {
 	uint64_t						mLobbyId = 0;
 	std::vector<AuthoritativeLobbyMember> mMembers;
+	bool							mPvpEnabled = true;
+};
+
+struct AuthoritativeStoryMatchResolution
+{
+	uint32_t						mTargetOpponents = 0;
+	uint32_t						mHumanOpponents = 0;
+	uint32_t						mBotOpponents = 0;
+	bool							mPvpEnabled = true;
+	bool							mFallbackNoOpponents = false;
 };
 
 struct AuthoritativePlayerState
@@ -92,12 +103,14 @@ private:
 private:
 	AuthoritativeLobby				BuildLobbyFromRequests(const std::vector<AuthoritativeMatchmakingRequest>& theMembers, const AuthoritativeServerConfig& theConfig);
 	void							FillLobbyWithBots(AuthoritativeLobby& theLobby, int theMmrHint, const AuthoritativeServerConfig& theConfig);
+	void							CollectStoryHumanOpponents(std::deque<AuthoritativeMatchmakingRequest>& theQueue, size_t theMaxCount, std::vector<AuthoritativeMatchmakingRequest>& theOutMembers);
 
 public:
 	bool							EnqueueRequest(const AuthoritativeMatchmakingRequest& theRequest);
 	void							RemovePlayer(uint64_t thePlayerId);
 	size_t							GetQueueSize(AuthoritativeMatchmakingMode theMode) const;
 	std::vector<AuthoritativeLobby>	BuildReadyLobbies(const AuthoritativeServerConfig& theConfig, uint64_t theServerTick);
+	AuthoritativeLobby				BuildStoryLobby(const AuthoritativeMatchmakingRequest& theLocalRequest, const AuthoritativeServerConfig& theConfig, AuthoritativeStoryMatchResolution* theResolution = nullptr);
 };
 
 class AuthoritativeMatchRuntime
@@ -123,6 +136,7 @@ private:
 	uint64_t						mMatchStartTick = 0;
 	uint64_t						mCurrentTick = 0;
 	bool							mRunning = false;
+	bool							mPvpEnabled = true;
 	bool							mPvpPhaseActive = false;
 	uint64_t						mPvpPhaseEndTick = 0;
 	bool							mSwapRolesInNextPhase = false;
@@ -185,6 +199,7 @@ public:
 	explicit						AuthoritativeServerRuntime(const AuthoritativeServerConfig& theConfig = AuthoritativeServerConfig());
 
 	bool							EnqueueMatchmakingRequest(uint64_t thePlayerId, int theMmr, AuthoritativeMatchmakingMode theMode);
+	bool							StartStoryMatchmaking(uint64_t thePlayerId, int theMmr, AuthoritativeMatchmakingMode theMode, AuthoritativeStoryMatchResolution* theResolution = nullptr);
 	NetCommandValidationResult		SubmitCommand(const NetClientCommand& theCommand);
 	void							DisconnectPlayer(uint64_t thePlayerId);
 

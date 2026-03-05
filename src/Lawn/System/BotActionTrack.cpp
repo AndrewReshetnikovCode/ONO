@@ -129,3 +129,31 @@ std::vector<int> BotActionTrackPool::AssignTracksUniqueFirst(uint64_t theLobbyId
 
 	return aAssignments;
 }
+
+std::vector<int> BotActionTrackPool::AssignTracksStrictUnique(uint64_t theLobbyId, int theMmrHint, size_t theBotCount)
+{
+	(void)theMmrHint;
+
+	std::vector<int> aAssignments;
+	if (theBotCount == 0)
+	{
+		return aAssignments;
+	}
+
+	const std::vector<BotActionTrack>& aTracks = GetTracks();
+	if (aTracks.size() < theBotCount)
+	{
+		return aAssignments;
+	}
+
+	std::vector<int> aTrackIds;
+	aTrackIds.reserve(aTracks.size());
+	for (const BotActionTrack& aTrack : aTracks)
+	{
+		aTrackIds.push_back(aTrack.mTrackId);
+	}
+
+	BotTrackDeterministicShuffle(aTrackIds, theLobbyId);
+	aAssignments.insert(aAssignments.end(), aTrackIds.begin(), aTrackIds.begin() + static_cast<std::ptrdiff_t>(theBotCount));
+	return aAssignments;
+}
