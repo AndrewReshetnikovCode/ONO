@@ -55,6 +55,10 @@
 #include "widget/Dialog.h"
 #include "SexyAppFramework/resource.h"
 
+#ifdef __EMSCRIPTEN__
+extern void PvzInstallDebugConsoleBridge();
+#endif
+
 bool gIsPartnerBuild = false; // GOTY @Patoke: 0x729659
 bool gSlowMo = false;  //0x6A9EAA
 bool gFastMo = false;  //0x6A9EAB
@@ -1324,6 +1328,9 @@ void LawnApp::Init()
 	mSawYeti = false;
 
 	SexyApp::Init();
+#ifdef __EMSCRIPTEN__
+	PvzInstallDebugConsoleBridge();
+#endif
 	// @Patoke: horrible debug checks, breaks the whole exe in release mode
 //#ifdef _PVZ_DEBUG
 	TodAssertInitForApp();
@@ -1770,6 +1777,9 @@ void LawnApp::UpdateFrames()
 		}
 
 		SexyApp::UpdateFrames();
+#ifdef __EMSCRIPTEN__
+		PvzInstallDebugConsoleBridge();
+#endif
 		UpdateClientSessionRuntime();
 		ApplyAuthoritativeSnapshotToBoard();
 

@@ -1,10 +1,30 @@
 cmake_minimum_required(VERSION 3.5...4.0)
 
 project(pvz-portable LANGUAGES C CXX ASM)
+option(BUILD_PVZ_PORTABLE "Build full pvz-portable game target" ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 if (CMAKE_GENERATOR MATCHES "Ninja")
 	set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+endif()
+
+set(AUTH_SERVER_SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/src/authoritative_server_main.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/AuthoritativeRuntime.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/AuthoritativeAntiCheat.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/BotActionTrack.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Lawn/System/NetProtocol.cpp
+)
+
+if(NOT EMSCRIPTEN)
+	add_executable(pvz-authoritative-server ${AUTH_SERVER_SOURCES})
+	target_include_directories(pvz-authoritative-server PRIVATE
+		${PROJECT_SOURCE_DIR}/src
+	)
+	target_compile_features(pvz-authoritative-server PRIVATE cxx_std_20)
+	if(MINGW)
+		target_link_options(pvz-authoritative-server PRIVATE -static-libgcc -static-libstdc++)
+	endif()
 endif()
 
 if(MSVC)
@@ -35,6 +55,7 @@ file(GLOB SOURCES
 list(REMOVE_ITEM SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Sexy.TodLib/TodDrawTriangle.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Sexy.TodLib/TodDrawTriangleInc.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/authoritative_server_main.cpp
 )
 
 # Web audio files only for Emscripten; SDL sound/music excluded for Emscripten
@@ -52,6 +73,7 @@ else()
 	)
 endif()
 
+if(BUILD_PVZ_PORTABLE)
 set(LOW_MEMORY OFF CACHE BOOL "Enable low memory mode")
 set(DOWNSCALE_COUNT 1 CACHE STRING "Image downscale count")
 if(NINTENDO_SWITCH)
@@ -149,6 +171,7 @@ add_subdirectory(src/SexyAppFramework/sound/SDL-Mixer-X)
 endif()
 
 add_executable(pvz-portable ${SOURCES})
+
 set(MIXER_INCLUDE "")
 if(NOT EMSCRIPTEN)
 	list(APPEND MIXER_INCLUDE ${PROJECT_SOURCE_DIR}/src/SexyAppFramework/sound/SDL-Mixer-X/include)
@@ -187,11 +210,11 @@ if(EMSCRIPTEN)
 		"SHELL:-s USE_SDL=2"
 		"SHELL:-s EXIT_RUNTIME=0"
 		"SHELL:-s EXPORTED_RUNTIME_METHODS=ccall,cwrap"
+		"SHELL:-s MINIFY_HTML=0"
 		"SHELL:-s ALLOW_MEMORY_GROWTH=1"
 		"SHELL:-s INITIAL_MEMORY=134217728"
 		"SHELL:-s MAXIMUM_MEMORY=536870912"
 		"SHELL:-s ASYNCIFY"
-		"SHELL:-s STACK_SIZE=8388608"
 		"SHELL:-s ASYNCIFY_STACK_SIZE=5242880"
 	)
 else()
@@ -260,4 +283,5 @@ elseif (NINTENDO_3DS)
 	ctr_create_3dsx(pvz-portable
 		SMDH pvz-portable.smdh
 	)
+endif()
 endif()
