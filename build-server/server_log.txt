@@ -1,0 +1,48 @@
+[server] log started path=server_log.txt
+[core] matchmaking started syntheticPlayers=6
+[player] created playerId=1 mmr=1000 enqueueResult=ok
+[player] created playerId=2 mmr=1010 enqueueResult=ok
+[player] created playerId=3 mmr=1020 enqueueResult=ok
+[player] created playerId=4 mmr=1030 enqueueResult=ok
+[player] created playerId=5 mmr=1040 enqueueResult=ok
+[player] created playerId=6 mmr=1050 enqueueResult=ok
+[event] tick=90 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=3"
+[event] tick=90 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=0"
+[event] tick=90 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=7"
+[event] tick=90 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=12"
+[event] tick=90 match=1 player=0 type=NET_EVENT_MATCH_START error=NET_PROTOCOL_OK details="match started"
+[event] tick=110 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=110 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=113 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=113 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=119 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=119 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=131 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=131 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=150 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=300 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=330 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=330 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=333 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=333 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=339 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=339 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=351 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=351 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=450 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=550 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=550 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=553 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=553 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=559 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=559 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=571 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=571 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=600 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=750 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=770 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=770 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=773 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=773 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=779 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=779 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
