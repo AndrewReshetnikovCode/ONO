@@ -106,6 +106,22 @@ namespace
 	constexpr int kRotatingSeedBankSlotCount = 8;
 	constexpr int kRotatingSeedBankIntervalTicks = 1500; // 15 seconds at 100 ticks/sec.
 
+	int ClampSeedBankPacketCount(int thePacketCount)
+	{
+		return std::clamp(thePacketCount, 0, SEEDBANK_MAX);
+	}
+
+	int GetSafeSeedBankPacketCount(const SeedBank* theSeedBank)
+	{
+		return theSeedBank != nullptr ? ClampSeedBankPacketCount(theSeedBank->mNumPackets) : 0;
+	}
+
+	bool IsValidSeedBankPacketIndex(const SeedBank* theSeedBank, int thePacketIndex)
+	{
+		int aPacketCount = GetSafeSeedBankPacketCount(theSeedBank);
+		return thePacketIndex >= 0 && thePacketIndex < aPacketCount;
+	}
+
 	bool IsSeedEligibleForRotatingBank(SeedType theSeedType)
 	{
 		return theSeedType >= SeedType::SEED_PEASHOOTER && theSeedType < SeedType::SEED_IMITATER;
@@ -2280,12 +2296,18 @@ void Board::RefreshSeedPacketFromCursor()
 {
 	if (mCursorObject->mCursorType == CursorType::CURSOR_TYPE_PLANT_FROM_USABLE_COIN)
 	{
-		mCoins.DataArrayTryToGet(mCursorObject->mCoinID)->DroppedUsableSeed();
+		Coin* aCoin = mCoins.DataArrayTryToGet(mCursorObject->mCoinID);
+		if (aCoin != nullptr)
+		{
+			aCoin->DroppedUsableSeed();
+		}
 	}
 	else if (mCursorObject->mCursorType == CursorType::CURSOR_TYPE_PLANT_FROM_BANK)
 	{
-		TOD_ASSERT(mCursorObject->mSeedBankIndex >= 0 && mCursorObject->mSeedBankIndex < mSeedBank->mNumPackets);
-		mSeedBank->mSeedPackets[mCursorObject->mSeedBankIndex].Activate();
+		if (IsValidSeedBankPacketIndex(mSeedBank, mCursorObject->mSeedBankIndex))
+		{
+			mSeedBank->mSeedPackets[mCursorObject->mSeedBankIndex].Activate();
+		}
 	}
 	ClearCursor();
 }
@@ -3966,6 +3988,13 @@ void Board::MouseDownWithPlant(int x, int y, int theClickCount)
 		return;
 	}
 
+	if (mCursorObject->mCursorType == CursorType::CURSOR_TYPE_PLANT_FROM_BANK &&
+		!IsValidSeedBankPacketIndex(mSeedBank, mCursorObject->mSeedBankIndex))
+	{
+		ClearCursor();
+		return;
+	}
+
 	SeedType aPlantingSeedType = GetSeedTypeInCursor();
 	int aGridX = PlantingPixelToGridX(x, y, aPlantingSeedType);
 	int aGridY = PlantingPixelToGridY(x, y, aPlantingSeedType);
@@ -4219,7 +4248,10 @@ void Board::MouseDownWithPlant(int x, int y, int theClickCount)
 		mApp->SubmitAuthoritativePlantCommand(aGridX, aGridY, mCursorObject->mType, mCursorObject->mImitaterType);
 		Coin* aCoin = mCoins.DataArrayTryToGet(mCursorObject->mCoinID);
 		mCursorObject->mCoinID = CoinID::COINID_NULL;
-		aCoin->Die();
+		if (aCoin != nullptr)
+		{
+			aCoin->Die();
+		}
 	}
 	else if (mCursorObject->mCursorType == CursorType::CURSOR_TYPE_PLANT_FROM_BANK)
 	{
@@ -4237,7 +4269,10 @@ void Board::MouseDownWithPlant(int x, int y, int theClickCount)
 			aPlant->mWakeUpCounter = aWakeUpCounter;
 		}
 
-		mSeedBank->mSeedPackets[mCursorObject->mSeedBankIndex].WasPlanted();
+		if (IsValidSeedBankPacketIndex(mSeedBank, mCursorObject->mSeedBankIndex))
+		{
+			mSeedBank->mSeedPackets[mCursorObject->mSeedBankIndex].WasPlanted();
+		}
 	}
 	else
 	{
@@ -5368,6 +5403,14 @@ void Board::RotateRandomSeedBankPackets(bool theForceRefresh)
 	// If the player is currently holding a packet from the bank, return it before swapping all packets.
 	RefreshSeedPacketFromCursor();
 
+	// Keep rotating mode packet count deterministic to prevent stale index mismatches.
+	if (mSeedBank->mNumPackets != kRotatingSeedBankSlotCount)
+	{
+		mSeedBank->mNumPackets = kRotatingSeedBankSlotCount;
+		mSeedBank->UpdateWidth();
+	}
+	const int aPacketCount = kRotatingSeedBankSlotCount;
+
 	std::vector<SeedType> aAllSeeds;
 	std::vector<SeedType> aPreferredSeeds;
 	aAllSeeds.reserve(NUM_SEEDS_IN_CHOOSER);
@@ -5384,7 +5427,7 @@ void Board::RotateRandomSeedBankPackets(bool theForceRefresh)
 		aAllSeeds.push_back(aSeedType);
 
 		bool aAlreadyVisible = false;
-		for (int j = 0; j < mSeedBank->mNumPackets; j++)
+		for (int j = 0; j < aPacketCount; j++)
 		{
 			if (mSeedBank->mSeedPackets[j].mPacketType == aSeedType)
 			{
@@ -5424,7 +5467,7 @@ void Board::RotateRandomSeedBankPackets(bool theForceRefresh)
 		}
 	}
 
-	for (int i = 0; i < mSeedBank->mNumPackets; i++)
+	for (int i = 0; i < aPacketCount; i++)
 	{
 		SeedPacket* aPacket = &mSeedBank->mSeedPackets[i];
 		if (i < (int)aChosenSeeds.size())
@@ -5500,7 +5543,7 @@ void Board::UpdateGameObjects()
 	mCursorPreview->Update();
 	mCursorObject->Update();
 
-	for (int i = 0; i < mSeedBank->mNumPackets; i++)
+	for (int i = 0; i < GetSafeSeedBankPacketCount(mSeedBank); i++)
 	{
 		mSeedBank->mSeedPackets[i].Update();
 	}
