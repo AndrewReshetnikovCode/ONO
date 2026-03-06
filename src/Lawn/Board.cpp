@@ -1,5 +1,7 @@
 #include <time.h>
 #include <algorithm>
+#include <sstream>
+#include <vector>
 #include <SDL.h>
 #include "ZenGarden.h"
 #include "BoardInclude.h"
@@ -96,6 +98,91 @@ static uint64_t BuildDeterministicBoardStateHash(Board* theBoard)
 	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mCoinsCollected));
 	aHash = DeterministicHashCombine(aHash, static_cast<uint64_t>(theBoard->mDiamondsCollected));
 	return DeterministicHashFinalize(aHash);
+}
+
+namespace
+{
+	constexpr int kRotatingSeedBankSlotCount = 8;
+	constexpr int kRotatingSeedBankIntervalTicks = 1500; // 15 seconds at 100 ticks/sec.
+
+	bool IsSeedEligibleForRotatingBank(SeedType theSeedType)
+	{
+		return theSeedType >= SeedType::SEED_PEASHOOTER && theSeedType < SeedType::SEED_IMITATER;
+	}
+
+	const char* ProjectileTypeToDebugString(ProjectileType theProjectileType)
+	{
+		switch (theProjectileType)
+		{
+		case ProjectileType::PROJECTILE_PEA: return "pea";
+		case ProjectileType::PROJECTILE_SNOWPEA: return "snowpea";
+		case ProjectileType::PROJECTILE_CABBAGE: return "cabbage";
+		case ProjectileType::PROJECTILE_MELON: return "melon";
+		case ProjectileType::PROJECTILE_PUFF: return "puff";
+		case ProjectileType::PROJECTILE_WINTERMELON: return "wintermelon";
+		case ProjectileType::PROJECTILE_FIREBALL: return "fireball";
+		case ProjectileType::PROJECTILE_STAR: return "star";
+		case ProjectileType::PROJECTILE_SPIKE: return "spike";
+		case ProjectileType::PROJECTILE_BASKETBALL: return "basketball";
+		case ProjectileType::PROJECTILE_KERNEL: return "kernel";
+		case ProjectileType::PROJECTILE_COBBIG: return "cob";
+		case ProjectileType::PROJECTILE_BUTTER: return "butter";
+		case ProjectileType::PROJECTILE_ZOMBIE_PEA: return "zombie_pea";
+		default: return "unknown";
+		}
+	}
+
+	bool TryGetPrimaryProjectileTypeForPlant(const Plant* thePlant, ProjectileType& theProjectileType)
+	{
+		if (thePlant == nullptr)
+		{
+			return false;
+		}
+
+		switch (thePlant->mSeedType)
+		{
+		case SeedType::SEED_PEASHOOTER:
+		case SeedType::SEED_REPEATER:
+		case SeedType::SEED_THREEPEATER:
+		case SeedType::SEED_SPLITPEA:
+		case SeedType::SEED_GATLINGPEA:
+		case SeedType::SEED_LEFTPEATER:
+			theProjectileType = ProjectileType::PROJECTILE_PEA;
+			return true;
+		case SeedType::SEED_SNOWPEA:
+			theProjectileType = ProjectileType::PROJECTILE_SNOWPEA;
+			return true;
+		case SeedType::SEED_PUFFSHROOM:
+		case SeedType::SEED_SCAREDYSHROOM:
+		case SeedType::SEED_SEASHROOM:
+			theProjectileType = ProjectileType::PROJECTILE_PUFF;
+			return true;
+		case SeedType::SEED_CACTUS:
+		case SeedType::SEED_CATTAIL:
+			theProjectileType = ProjectileType::PROJECTILE_SPIKE;
+			return true;
+		case SeedType::SEED_CABBAGEPULT:
+			theProjectileType = ProjectileType::PROJECTILE_CABBAGE;
+			return true;
+		case SeedType::SEED_KERNELPULT:
+			theProjectileType = ProjectileType::PROJECTILE_KERNEL;
+			return true;
+		case SeedType::SEED_MELONPULT:
+			theProjectileType = ProjectileType::PROJECTILE_MELON;
+			return true;
+		case SeedType::SEED_WINTERMELON:
+			theProjectileType = ProjectileType::PROJECTILE_WINTERMELON;
+			return true;
+		case SeedType::SEED_COBCANNON:
+			theProjectileType = ProjectileType::PROJECTILE_COBBIG;
+			return true;
+		case SeedType::SEED_STARFRUIT:
+			theProjectileType = ProjectileType::PROJECTILE_STAR;
+			return true;
+		default:
+			return false;
+		}
+	}
 }
 
 //0x407B50
@@ -195,6 +282,9 @@ Board::Board(LawnApp* theApp)
 	mDiamondsCollected = 0;
 	mPottedPlantsCollected = 0;
 	mChocolateCollected = 0;
+	mUseRotatingRandomSeedBank = false;
+	mRandomSeedBankRotationCounter = 0;
+	mRandomSeedBankRotationInterval = kRotatingSeedBankIntervalTicks;
 	for (int y = 0; y < MAX_GRID_SIZE_Y; y++)
 	{
 		for (int x = 0; x < 12; x++)
@@ -1660,6 +1750,34 @@ void Board::InitLevel()
 		{
 			mSeedBank->mSeedPackets[i].SetPacketType((SeedType)i);
 		}
+	}
+
+	mUseRotatingRandomSeedBank = mApp->IsSurvivalMode() && !HasConveyorBeltSeedBank() && !mApp->IsChallengeWithoutSeedBank();
+	if (mUseRotatingRandomSeedBank)
+	{
+		mSeedBank->mNumPackets = kRotatingSeedBankSlotCount;
+		mSeedBank->UpdateWidth();
+		for (int i = 0; i < SEEDBANK_MAX; i++)
+		{
+			SeedPacket* aPacket = &mSeedBank->mSeedPackets[i];
+			aPacket->mIndex = i;
+			aPacket->mX = GetSeedPacketPositionX(i);
+			aPacket->mY = 8;
+			aPacket->mPacketType = SeedType::SEED_NONE;
+			aPacket->mImitaterType = SeedType::SEED_NONE;
+			aPacket->mRefreshCounter = 0;
+			aPacket->mRefreshTime = 0;
+			aPacket->mRefreshing = false;
+			aPacket->mActive = false;
+		}
+
+		mRandomSeedBankRotationInterval = kRotatingSeedBankIntervalTicks;
+		mRandomSeedBankRotationCounter = mRandomSeedBankRotationInterval;
+		RotateRandomSeedBankPackets(true);
+	}
+	else
+	{
+		mRandomSeedBankRotationCounter = 0;
 	}
 	// 将所有子控件标记为已变动
 	MarkAllDirty();
@@ -5235,6 +5353,117 @@ void Board::SpawnZombieWave()
 }
 
 //0x4130D0
+void Board::RotateRandomSeedBankPackets(bool theForceRefresh)
+{
+	if (!mUseRotatingRandomSeedBank || mSeedBank == nullptr)
+	{
+		return;
+	}
+	if (!theForceRefresh && mApp->mGameScene != GameScenes::SCENE_PLAYING)
+	{
+		return;
+	}
+
+	// If the player is currently holding a packet from the bank, return it before swapping all packets.
+	RefreshSeedPacketFromCursor();
+
+	std::vector<SeedType> aAllSeeds;
+	std::vector<SeedType> aPreferredSeeds;
+	aAllSeeds.reserve(NUM_SEEDS_IN_CHOOSER);
+	aPreferredSeeds.reserve(NUM_SEEDS_IN_CHOOSER);
+
+	for (int i = SeedType::SEED_PEASHOOTER; i < SeedType::NUM_SEEDS_IN_CHOOSER; i++)
+	{
+		SeedType aSeedType = static_cast<SeedType>(i);
+		if (!IsSeedEligibleForRotatingBank(aSeedType))
+		{
+			continue;
+		}
+
+		aAllSeeds.push_back(aSeedType);
+
+		bool aAlreadyVisible = false;
+		for (int j = 0; j < mSeedBank->mNumPackets; j++)
+		{
+			if (mSeedBank->mSeedPackets[j].mPacketType == aSeedType)
+			{
+				aAlreadyVisible = true;
+				break;
+			}
+		}
+		if (!aAlreadyVisible)
+		{
+			aPreferredSeeds.push_back(aSeedType);
+		}
+	}
+
+	auto aPickUniqueSeed = [&](std::vector<SeedType>& thePool) -> SeedType
+	{
+		TOD_ASSERT(!thePool.empty());
+		const int aPickIdx = Rand(static_cast<int>(thePool.size()));
+		const SeedType aPicked = thePool[aPickIdx];
+		thePool[aPickIdx] = thePool.back();
+		thePool.pop_back();
+		return aPicked;
+	};
+
+	std::vector<SeedType> aChosenSeeds;
+	aChosenSeeds.reserve(kRotatingSeedBankSlotCount);
+
+	while ((int)aChosenSeeds.size() < kRotatingSeedBankSlotCount && !aPreferredSeeds.empty())
+	{
+		aChosenSeeds.push_back(aPickUniqueSeed(aPreferredSeeds));
+	}
+	while ((int)aChosenSeeds.size() < kRotatingSeedBankSlotCount && !aAllSeeds.empty())
+	{
+		const SeedType aCandidate = aPickUniqueSeed(aAllSeeds);
+		if (std::find(aChosenSeeds.begin(), aChosenSeeds.end(), aCandidate) == aChosenSeeds.end())
+		{
+			aChosenSeeds.push_back(aCandidate);
+		}
+	}
+
+	for (int i = 0; i < mSeedBank->mNumPackets; i++)
+	{
+		SeedPacket* aPacket = &mSeedBank->mSeedPackets[i];
+		if (i < (int)aChosenSeeds.size())
+		{
+			aPacket->SetPacketType(aChosenSeeds[i], SeedType::SEED_NONE);
+		}
+		else
+		{
+			aPacket->mPacketType = SeedType::SEED_NONE;
+		}
+		aPacket->mImitaterType = SeedType::SEED_NONE;
+		aPacket->mRefreshCounter = 0;
+		aPacket->mRefreshTime = 0;
+		aPacket->mRefreshing = false;
+		aPacket->mActive = aPacket->mPacketType != SeedType::SEED_NONE;
+		aPacket->mTimesUsed = 0;
+	}
+
+	UpdateToolTip();
+}
+
+void Board::UpdateRandomSeedBankRotation()
+{
+	if (!mUseRotatingRandomSeedBank || mApp->mGameScene != GameScenes::SCENE_PLAYING)
+	{
+		return;
+	}
+	if (mRandomSeedBankRotationInterval <= 0)
+	{
+		return;
+	}
+
+	mRandomSeedBankRotationCounter--;
+	if (mRandomSeedBankRotationCounter <= 0)
+	{
+		RotateRandomSeedBankPackets(false);
+		mRandomSeedBankRotationCounter = mRandomSeedBankRotationInterval;
+	}
+}
+
 void Board::UpdateGameObjects()
 {
 	Plant* aPlant = nullptr;
@@ -5274,6 +5503,8 @@ void Board::UpdateGameObjects()
 	{
 		mSeedBank->mSeedPackets[i].Update();
 	}
+
+	UpdateRandomSeedBankRotation();
 }
 
 //0x413220
@@ -7393,6 +7624,105 @@ void Board::DrawDebugText(Graphics* g)
 	g->DrawStringWordWrapped(aText, 11, 90);
 	g->SetColor(Color(255, 255, 255));
 	g->DrawStringWordWrapped(aText, 10, 90);
+
+#ifdef _PVZ_DEBUG
+	std::string aPlayerName = "TestPlayer";
+	if (mApp->mPlayerInfo != nullptr && !mApp->mPlayerInfo->mName.empty())
+	{
+		aPlayerName = mApp->mPlayerInfo->mName;
+	}
+
+	bool aEnemyBoardDisplayed = false;
+	std::string aFocusedEnemyName = "N/A";
+	uint64_t aMatchId = 0;
+	std::string aLastActionEvent = "none";
+	std::string aHoveredPlantCoords = "N/A";
+	std::string aHoveredPlantFireRate = "N/A";
+	std::string aHoveredPlantProjectile = "none";
+
+	if (mApp->mClientSessionRuntime != nullptr)
+	{
+		const ClientAuthoritativeSnapshot& aSnapshot = mApp->mClientSessionRuntime->GetLatestSnapshot();
+		aEnemyBoardDisplayed = aSnapshot.mPvpEnemyBoardDisplayed;
+		aFocusedEnemyName = aSnapshot.mFocusedEnemyName.empty() ? "N/A" : aSnapshot.mFocusedEnemyName;
+		aMatchId = aSnapshot.mMatchId;
+
+		const uint64_t aLocalPlayerId = mApp->mClientSessionRuntime->GetLocalPlayerId();
+		const std::vector<AuthoritativeRuntimeEvent>& aEvents = mApp->mClientSessionRuntime->GetEvents();
+		for (auto aIt = aEvents.rbegin(); aIt != aEvents.rend(); ++aIt)
+		{
+			if (aIt->mPlayerId == aLocalPlayerId)
+			{
+				aLastActionEvent = StrFormat("tick=%llu %s", static_cast<unsigned long long>(aIt->mTick), aIt->mDetails.c_str());
+				break;
+			}
+		}
+		if (aLastActionEvent.size() > 96)
+		{
+			aLastActionEvent = aLastActionEvent.substr(0, 96) + "...";
+		}
+	}
+
+	int aMouseX = mApp->mWidgetManager->mLastMouseX - mX;
+	int aMouseY = mApp->mWidgetManager->mLastMouseY - mY;
+	Plant* aHoveredPlant = nullptr;
+	Plant* aPlant = nullptr;
+	while (IteratePlants(aPlant))
+	{
+		if (aPlant->mDead || aPlant->NotOnGround())
+		{
+			continue;
+		}
+		if (aPlant->GetPlantRect().Contains(aMouseX, aMouseY))
+		{
+			if (aHoveredPlant == nullptr || aPlant->mRenderOrder > aHoveredPlant->mRenderOrder)
+			{
+				aHoveredPlant = aPlant;
+			}
+		}
+	}
+	if (aHoveredPlant != nullptr)
+	{
+		aHoveredPlantCoords = StrFormat("(%d,%d)", aHoveredPlant->mPlantCol, aHoveredPlant->mRow);
+		aHoveredPlantFireRate = StrFormat("%d", aHoveredPlant->mLaunchRate);
+
+		ProjectileType aProjectileType = ProjectileType::PROJECTILE_PEA;
+		if (TryGetPrimaryProjectileTypeForPlant(aHoveredPlant, aProjectileType))
+		{
+			aHoveredPlantProjectile = ProjectileTypeToDebugString(aProjectileType);
+		}
+		else if (aHoveredPlant->mSeedType == SeedType::SEED_FUMESHROOM || aHoveredPlant->mSeedType == SeedType::SEED_GLOOMSHROOM)
+		{
+			aHoveredPlantProjectile = "area";
+		}
+	}
+
+	std::vector<std::string> aOverlayLines;
+	aOverlayLines.push_back(StrFormat("player: %s", aPlayerName.c_str()));
+	aOverlayLines.push_back(StrFormat("pvp enemy board displayed: %s", aEnemyBoardDisplayed ? "true" : "false"));
+	aOverlayLines.push_back(StrFormat("focused enemy: %s", aFocusedEnemyName.c_str()));
+	aOverlayLines.push_back(StrFormat("match id: %llu", static_cast<unsigned long long>(aMatchId)));
+	aOverlayLines.push_back(StrFormat("last action event: %s", aLastActionEvent.c_str()));
+	aOverlayLines.push_back(StrFormat("hover plant: coords=%s fire_rate=%s projectile=%s",
+		aHoveredPlantCoords.c_str(), aHoveredPlantFireRate.c_str(), aHoveredPlantProjectile.c_str()));
+
+	const int aCenterX = mApp->mWidth / 2;
+	int aStartY = mApp->mHeight / 2 - 50;
+	g->SetColor(Color::Black);
+	for (const std::string& aLine : aOverlayLines)
+	{
+		TodDrawString(g, aLine, aCenterX + 1, aStartY + 1, Sexy::FONT_PICO129, Color::Black, DrawStringJustification::DS_ALIGN_CENTER);
+		aStartY += 16;
+	}
+
+	aStartY = mApp->mHeight / 2 - 50;
+	g->SetColor(Color(255, 255, 255));
+	for (const std::string& aLine : aOverlayLines)
+	{
+		TodDrawString(g, aLine, aCenterX, aStartY, Sexy::FONT_PICO129, Color(255, 255, 255), DrawStringJustification::DS_ALIGN_CENTER);
+		aStartY += 16;
+	}
+#endif
 }
 
 //0x419AE0

@@ -224,6 +224,9 @@ public:
 	int								mDiamondsCollected;										//+0x57A4 GOTY @Patoke: 0x57CC
 	int								mPottedPlantsCollected;									//+0x57A8
 	int								mChocolateCollected;									//+0x57AC
+	bool							mUseRotatingRandomSeedBank;
+	int								mRandomSeedBankRotationCounter;
+	int								mRandomSeedBankRotationInterval;
 
 public:
 	Board(LawnApp* theApp);
@@ -296,6 +299,8 @@ public:
 	/*inline*/ int					PixelToGridXKeepOnBoard(int theX, int theY);
 	/*inline*/ int					PixelToGridYKeepOnBoard(int theX, int theY);
 	void							UpdateGameObjects();
+	void							UpdateRandomSeedBankRotation();
+	void							RotateRandomSeedBankPackets(bool theForceRefresh);
 	bool							MouseHitTest(int x, int y, HitResult* theHitResult);
 	void							MouseDownWithPlant(int x, int y, int theClickCount);
 	void							MouseDownWithTool(int x, int y, int theClickCount, CursorType theCursorType);

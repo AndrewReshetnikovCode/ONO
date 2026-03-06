@@ -860,6 +860,14 @@ void SeedPacket::WasPlanted()
 {
 	TOD_ASSERT(mPacketType != SeedType::SEED_NONE);
 
+	if (mBoard->mUseRotatingRandomSeedBank && !mBoard->HasConveyorBeltSeedBank())
+	{
+		mPacketType = SeedType::SEED_NONE;
+		mImitaterType = SeedType::SEED_NONE;
+		Deactivate();
+		return;
+	}
+
 	if (mBoard->HasConveyorBeltSeedBank())
 	{
 		mBoard->mSeedBank->RemoveSeed(mIndex);
@@ -1162,7 +1170,14 @@ void SeedBank::UpdateConveyorBelt()
 //0x489CD0
 void SeedBank::UpdateWidth()
 {
-	mNumPackets = mBoard->GetNumSeedsInBank();
+	if (mBoard->mUseRotatingRandomSeedBank)
+	{
+		mNumPackets = 8;
+	}
+	else
+	{
+		mNumPackets = mBoard->GetNumSeedsInBank();
+	}
 	mWidth = IMAGE_SEEDBANK->GetWidth() + mBoard->GetSeedBankExtraWidth();
 	for (int i = 0; i < mNumPackets; i++)
 	{
