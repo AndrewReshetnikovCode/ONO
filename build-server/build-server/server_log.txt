@@ -1,0 +1,141 @@
+[server] log started path=build-server\server_log.txt
+[core] matchmaking started syntheticPlayers=6
+[player] created playerId=1 mmr=1000 enqueueResult=ok
+[player] created playerId=2 mmr=1010 enqueueResult=ok
+[player] created playerId=3 mmr=1020 enqueueResult=ok
+[player] created playerId=4 mmr=1030 enqueueResult=ok
+[player] created playerId=5 mmr=1040 enqueueResult=ok
+[player] created playerId=6 mmr=1050 enqueueResult=ok
+[event] tick=90 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=3"
+[event] tick=90 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=0"
+[event] tick=90 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=7"
+[event] tick=90 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] assigned trackId=12"
+[event] tick=90 match=1 player=0 type=NET_EVENT_MATCH_START error=NET_PROTOCOL_OK details="match started"
+[event] tick=110 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=110 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=113 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=113 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=119 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=119 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=131 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=0 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=131 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=150 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=300 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=330 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=330 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=333 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=333 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=339 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=339 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=351 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=1 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=351 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=450 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=550 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=550 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=553 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=553 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=559 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=559 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=571 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=2 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=571 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=600 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=750 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=770 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=770 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=773 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=773 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=779 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=779 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=791 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=3 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=791 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=900 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=990 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=4 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=990 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=993 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=4 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=993 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=999 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=4 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=999 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1011 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=4 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1011 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=1050 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=1200 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=1210 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=5 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1210 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1213 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=5 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1213 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1219 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=5 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1219 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1231 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=5 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1231 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1290 match=1 player=0 type=NET_EVENT_PVP_PHASE_START error=NET_PROTOCOL_OK details="pvp phase started"
+[stats] tick=1350 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=1430 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=6 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1430 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1433 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=6 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1433 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1439 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=6 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1439 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1451 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=6 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1451 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=1500 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=1590 match=1 player=0 type=NET_EVENT_PVP_PHASE_END error=NET_PROTOCOL_OK details="pvp phase ended"
+[event] tick=1650 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=0 actionIndex=7 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1650 match=1 player=1000000000001 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay completed trackId=0"
+[event] tick=1650 match=1 player=1000000000001 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=1650 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=1653 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=12 actionIndex=7 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1653 match=1 player=1000000000003 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay completed trackId=12"
+[event] tick=1653 match=1 player=1000000000003 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1659 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=3 actionIndex=7 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1659 match=1 player=1000000000000 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay completed trackId=3"
+[event] tick=1659 match=1 player=1000000000000 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[event] tick=1671 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay trackId=7 actionIndex=7 command=NET_COMMAND_PLACE_PLANT result=NET_PROTOCOL_OK reason="
+[event] tick=1671 match=1 player=1000000000002 type=NET_EVENT_SNAPSHOT_APPLY error=NET_PROTOCOL_OK details="[BOT] replay completed trackId=7"
+[event] tick=1671 match=1 player=1000000000002 type=NET_EVENT_COMMAND_ACCEPTED error=NET_PROTOCOL_OK details="plant placement accepted"
+[stats] tick=1800 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=1950 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=2100 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=2250 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=2400 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=2490 match=1 player=0 type=NET_EVENT_PVP_PHASE_START error=NET_PROTOCOL_OK details="pvp phase started"
+[stats] tick=2550 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=2700 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=2790 match=1 player=0 type=NET_EVENT_PVP_PHASE_END error=NET_PROTOCOL_OK details="pvp phase ended"
+[stats] tick=2850 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=3000 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=3150 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=3300 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=3450 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=3600 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=3690 match=1 player=0 type=NET_EVENT_PVP_PHASE_START error=NET_PROTOCOL_OK details="pvp phase started"
+[stats] tick=3750 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=3900 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=3990 match=1 player=0 type=NET_EVENT_PVP_PHASE_END error=NET_PROTOCOL_OK details="pvp phase ended"
+[stats] tick=4050 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=4200 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=4350 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=4500 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=4650 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=4800 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=4890 match=1 player=0 type=NET_EVENT_PVP_PHASE_START error=NET_PROTOCOL_OK details="pvp phase started"
+[stats] tick=4950 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=5100 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=5190 match=1 player=0 type=NET_EVENT_PVP_PHASE_END error=NET_PROTOCOL_OK details="pvp phase ended"
+[stats] tick=5250 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=5400 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=5550 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=5700 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=5850 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=6000 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=6090 match=1 player=0 type=NET_EVENT_PVP_PHASE_START error=NET_PROTOCOL_OK details="pvp phase started"
+[stats] tick=6150 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=6300 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=6390 match=1 player=0 type=NET_EVENT_PVP_PHASE_END error=NET_PROTOCOL_OK details="pvp phase ended"
+[stats] tick=6450 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=6600 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=6750 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=6900 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=7050 queuedRandom=0 queuedMmr=0 activeMatches=1
+[stats] tick=7200 queuedRandom=0 queuedMmr=0 activeMatches=1
+[event] tick=7290 match=1 player=0 type=NET_EVENT_PVP_PHASE_START error=NET_PROTOCOL_OK details="pvp phase started"
+[stats] tick=7350 queuedRandom=0 queuedMmr=0 activeMatches=1
