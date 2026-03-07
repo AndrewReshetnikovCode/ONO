@@ -208,6 +208,7 @@ if(EMSCRIPTEN)
 		"SHELL:-s USE_LIBJPEG=1"
 		"SHELL:-s USE_LIBPNG=1"
 		"SHELL:-s USE_SDL=2"
+		"SHELL:--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/src/web_minimal_shell.html"
 		"SHELL:-s EXIT_RUNTIME=0"
 		"SHELL:-s EXPORTED_RUNTIME_METHODS=ccall,cwrap"
 		"SHELL:-s MINIFY_HTML=0"
@@ -216,6 +217,17 @@ if(EMSCRIPTEN)
 		"SHELL:-s MAXIMUM_MEMORY=536870912"
 		"SHELL:-s ASYNCIFY"
 		"SHELL:-s ASYNCIFY_STACK_SIZE=5242880"
+	)
+	# Local/browser runs require runtime assets next to index.*.
+	add_custom_command(TARGET pvz-portable POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${CMAKE_CURRENT_SOURCE_DIR}/GOTY_Res/main.pak
+			$<TARGET_FILE_DIR:pvz-portable>/main.pak
+		COMMAND ${CMAKE_COMMAND} -E make_directory
+			$<TARGET_FILE_DIR:pvz-portable>/properties
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${CMAKE_CURRENT_SOURCE_DIR}/GOTY_Res/properties
+			$<TARGET_FILE_DIR:pvz-portable>/properties
 	)
 else()
 	target_link_libraries(pvz-portable PRIVATE

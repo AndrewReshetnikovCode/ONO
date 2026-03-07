@@ -190,27 +190,33 @@ AuthoritativeLobby AuthoritativeMatchmaker::BuildStoryLobby(const AuthoritativeM
 	if (aMissingOpponents > 0)
 	{
 		std::vector<int> aAssignedTracks = BotActionTrackPool::AssignTracksStrictUnique(aLobby.mLobbyId, theLocalRequest.mMmr, aMissingOpponents);
-		if (aAssignedTracks.size() == aMissingOpponents)
+		if (aAssignedTracks.size() < aMissingOpponents)
 		{
-			for (size_t i = 0; i < aAssignedTracks.size(); ++i)
+			std::vector<int> aFallbackTracks = BotActionTrackPool::AssignTracksUniqueFirst(aLobby.mLobbyId, theLocalRequest.mMmr, aMissingOpponents);
+			for (int aTrackId : aFallbackTracks)
 			{
-				AuthoritativeLobbyMember aBotMember;
-				aBotMember.mPlayerId = mNextBotPlayerId++;
-				aBotMember.mMmr = theLocalRequest.mMmr;
-				aBotMember.mIsBot = true;
-				aBotMember.mBotTrackId = aAssignedTracks[i];
-				aLobby.mMembers.push_back(aBotMember);
+				if (aAssignedTracks.size() >= aMissingOpponents)
+				{
+					break;
+				}
+				aAssignedTracks.push_back(aTrackId);
 			}
-			aResolution.mBotOpponents = static_cast<uint32_t>(aAssignedTracks.size());
 		}
-		else
+		while (aAssignedTracks.size() < aMissingOpponents)
 		{
-			aLobby.mMembers.resize(1);
-			aLobby.mPvpEnabled = false;
-			aResolution.mHumanOpponents = 0;
-			aResolution.mBotOpponents = 0;
-			aResolution.mFallbackNoOpponents = true;
+			// Keep PvP active even if no action tracks are available.
+			aAssignedTracks.push_back(-1);
 		}
+		for (size_t i = 0; i < aAssignedTracks.size(); ++i)
+		{
+			AuthoritativeLobbyMember aBotMember;
+			aBotMember.mPlayerId = mNextBotPlayerId++;
+			aBotMember.mMmr = theLocalRequest.mMmr;
+			aBotMember.mIsBot = true;
+			aBotMember.mBotTrackId = aAssignedTracks[i];
+			aLobby.mMembers.push_back(aBotMember);
+		}
+		aResolution.mBotOpponents = static_cast<uint32_t>(aAssignedTracks.size());
 	}
 
 	if (aLobby.mMembers.size() <= 1)

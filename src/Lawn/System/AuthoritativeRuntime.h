@@ -177,6 +177,17 @@ public:
 	void							AdvanceOneTick();
 
 	const std::unordered_map<uint64_t, AuthoritativePlayerState>& GetPlayerStates() const { return mPlayerStates; }
+	bool							IsPvpPhaseActive() const { return mPvpPhaseActive; }
+	bool							TryGetPvpTarget(uint64_t theAttackerPlayerId, uint64_t& theTargetPlayerId) const
+	{
+		auto aIt = mPvpTargetByAttacker.find(theAttackerPlayerId);
+		if (aIt == mPvpTargetByAttacker.end())
+		{
+			return false;
+		}
+		theTargetPlayerId = aIt->second;
+		return true;
+	}
 	const std::vector<AuthoritativeRuntimeEvent>& GetEvents() const { return mEvents; }
 	void							ClearEvents() { mEvents.clear(); }
 };
