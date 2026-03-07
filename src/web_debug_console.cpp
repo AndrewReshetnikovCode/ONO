@@ -535,12 +535,12 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 		const backingWidth = canvas.width || 0;
 		const backingHeight = canvas.height || 0;
 		const aspect43 = 4 / 3;
+		const strictTargetWidth = 800;
+		const strictTargetHeight = 600;
 		const cssAspect = cssHeight > 0 ? (cssWidth / cssHeight) : 0;
 		const backingAspect = backingHeight > 0 ? (backingWidth / backingHeight) : 0;
 		const cssError = Math.abs(cssAspect - aspect43);
 		const backingError = Math.abs(backingAspect - aspect43);
-		const expectedWidthFromViewport = Math.min(viewportWidth, Math.floor((viewportHeight * 4) / 3));
-		const expectedHeightFromViewport = Math.min(viewportHeight, Math.floor((viewportWidth * 3) / 4));
 
 		return {
 			hasCanvas: true,
@@ -562,8 +562,10 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 			canvasBackingAspect: backingAspect,
 			canvasBackingAspectErrorTo43: backingError,
 			canvasBackingAspectIs43: backingHeight > 0 && backingError <= 0.0025,
-			expectedFitWidthFor43: expectedWidthFromViewport,
-			expectedFitHeightFor43: expectedHeightFromViewport
+			strictTargetWidth,
+			strictTargetHeight,
+			canvasCssMatchesStrict800x600: cssWidth === strictTargetWidth && cssHeight === strictTargetHeight,
+			canvasBackingMatchesStrict800x600: backingWidth === strictTargetWidth && backingHeight === strictTargetHeight
 		};
 	}
 
@@ -621,10 +623,10 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 		const backingSize = `${canvas.canvasBackingWidth || 0}x${canvas.canvasBackingHeight || 0}`;
 
 		hud.textContent =
-			`aspect debug (4:3 target)\n` +
+			`aspect debug (strict 800x600)\n` +
 			`render: ${renderSize}  aspect=${(render.appAspect || 0).toFixed(6)}  is43=${!!render.appAspectIs43}\n` +
-			`canvas css: ${cssSize}  aspect=${(canvas.canvasCssAspect || 0).toFixed(6)}  is43=${!!canvas.canvasCssAspectIs43}\n` +
-			`canvas backing: ${backingSize}  aspect=${(canvas.canvasBackingAspect || 0).toFixed(6)}  is43=${!!canvas.canvasBackingAspectIs43}\n` +
+			`canvas css: ${cssSize}  is800x600=${!!canvas.canvasCssMatchesStrict800x600}  is43=${!!canvas.canvasCssAspectIs43}\n` +
+			`canvas backing: ${backingSize}  is800x600=${!!canvas.canvasBackingMatchesStrict800x600}  is43=${!!canvas.canvasBackingAspectIs43}\n` +
 			`viewport: ${(canvas.viewportWidth || 0)}x${(canvas.viewportHeight || 0)} fullscreen=${!!canvas.isFullscreenActive}`;
 	}
 
@@ -683,20 +685,12 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 		}
 
 		const canvas = Module['canvas'];
-		const maxW = Math.max(320, window.innerWidth || document.documentElement.clientWidth || 0);
-		const maxH = Math.max(240, window.innerHeight || document.documentElement.clientHeight || 0);
-		let w = maxW;
-		let h = Math.floor((w * 3) / 4);
-		if (h > maxH) {
-			h = maxH;
-			w = Math.floor((h * 4) / 3);
-		}
-
-		const left = Math.max(0, Math.floor((maxW - w) / 2));
-		const top = Math.max(0, Math.floor((maxH - h) / 2));
-		const dpr = Math.max(1, window.devicePixelRatio || 1);
-		const pixelW = Math.max(1, Math.floor(w * dpr));
-		const pixelH = Math.max(1, Math.floor(h * dpr));
+		const targetW = 800;
+		const targetH = 600;
+		const viewW = Math.max(1, window.innerWidth || document.documentElement.clientWidth || targetW);
+		const viewH = Math.max(1, window.innerHeight || document.documentElement.clientHeight || targetH);
+		const left = Math.floor((viewW - targetW) / 2);
+		const top = Math.floor((viewH - targetH) / 2);
 
 		if (document.documentElement) {
 			document.documentElement.style.margin = '0';
@@ -711,21 +705,22 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 			document.body.style.overflow = 'hidden';
 		}
 
-		// Enforce 4:3 presentation in all modes (windowed/fullscreen).
+		// Enforce strict fixed 800x600 presentation in all modes (windowed/fullscreen).
 		canvas.style.setProperty('position', 'fixed', 'important');
 		canvas.style.setProperty('left', left + 'px', 'important');
 		canvas.style.setProperty('top', top + 'px', 'important');
-		canvas.style.setProperty('width', w + 'px', 'important');
-		canvas.style.setProperty('height', h + 'px', 'important');
+		canvas.style.setProperty('width', targetW + 'px', 'important');
+		canvas.style.setProperty('height', targetH + 'px', 'important');
 		canvas.style.setProperty('max-width', 'none', 'important');
 		canvas.style.setProperty('max-height', 'none', 'important');
 		canvas.style.setProperty('display', 'block', 'important');
 		canvas.style.setProperty('margin', '0', 'important');
+		canvas.style.setProperty('transform', 'none', 'important');
 
-		// Prefer dynamic backing-store resize when supported.
+		// Force fixed render resolution.
 		if (typeof Module.setCanvasSize === 'function') {
-			if (canvas.width !== pixelW || canvas.height !== pixelH) {
-				Module.setCanvasSize(pixelW, pixelH, false);
+			if (canvas.width !== targetW || canvas.height !== targetH) {
+				Module.setCanvasSize(targetW, targetH, false);
 			}
 		}
 		return true;

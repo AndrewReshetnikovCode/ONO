@@ -14,6 +14,14 @@ using namespace Sexy;
 
 void SexyAppBase::MakeWindow()
 {
+#ifdef __EMSCRIPTEN__
+	const int aWindowWidth = 800;
+	const int aWindowHeight = 600;
+#else
+	const int aWindowWidth = mWidth * IMG_DOWNSCALE;
+	const int aWindowHeight = mHeight * IMG_DOWNSCALE;
+#endif
+
 	if (mWindow)
 	{
 		SDL_SetWindowFullscreen((SDL_Window*)mWindow, (!mIsWindowed ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0));
@@ -36,7 +44,7 @@ void SexyAppBase::MakeWindow()
 		mWindow = (void*)SDL_CreateWindow(
 			mTitle.c_str(),
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			mWidth * IMG_DOWNSCALE, mHeight * IMG_DOWNSCALE, winFlags);
+			aWindowWidth, aWindowHeight, winFlags);
 
 		if (mWindow)
 			mContext = (void*)SDL_GL_CreateContext((SDL_Window*)mWindow);
@@ -53,7 +61,7 @@ void SexyAppBase::MakeWindow()
 			mWindow = (void*)SDL_CreateWindow(
 				mTitle.c_str(),
 				SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-				mWidth * IMG_DOWNSCALE, mHeight * IMG_DOWNSCALE, winFlags);
+				aWindowWidth, aWindowHeight, winFlags);
 
 			if (mWindow)
 				mContext = (void*)SDL_GL_CreateContext((SDL_Window*)mWindow);
