@@ -208,6 +208,7 @@ if(EMSCRIPTEN)
 		"SHELL:-s USE_LIBJPEG=1"
 		"SHELL:-s USE_LIBPNG=1"
 		"SHELL:-s USE_SDL=2"
+		"SHELL:--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/src/web_minimal_shell.html"
 		"SHELL:-s EXIT_RUNTIME=0"
 		"SHELL:-s EXPORTED_RUNTIME_METHODS=ccall,cwrap"
 		"SHELL:-s MINIFY_HTML=0"
