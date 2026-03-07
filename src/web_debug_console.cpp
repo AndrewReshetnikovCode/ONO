@@ -532,27 +532,85 @@ EM_JS(int, PvzInstallDebugConsoleBridgeJs, (), {
 
 	function applyCanvasAspect43() {
 		if (typeof Module === 'undefined' || !Module['canvas']) {
-			return;
+			return false;
 		}
+
 		const canvas = Module['canvas'];
-		const maxW = Math.max(320, window.innerWidth || 0);
-		const maxH = Math.max(240, window.innerHeight || 0);
+		const maxW = Math.max(320, window.innerWidth || document.documentElement.clientWidth || 0);
+		const maxH = Math.max(240, window.innerHeight || document.documentElement.clientHeight || 0);
 		let w = maxW;
 		let h = Math.floor((w * 3) / 4);
 		if (h > maxH) {
 			h = maxH;
 			w = Math.floor((h * 4) / 3);
 		}
-		canvas.style.width = w + 'px';
-		canvas.style.height = h + 'px';
-		canvas.style.display = 'block';
-		canvas.style.margin = '0 auto';
+
+		const left = Math.max(0, Math.floor((maxW - w) / 2));
+		const top = Math.max(0, Math.floor((maxH - h) / 2));
+		const dpr = Math.max(1, window.devicePixelRatio || 1);
+		const pixelW = Math.max(1, Math.floor(w * dpr));
+		const pixelH = Math.max(1, Math.floor(h * dpr));
+
+		if (document.documentElement) {
+			document.documentElement.style.margin = '0';
+			document.documentElement.style.padding = '0';
+			document.documentElement.style.background = '#000';
+			document.documentElement.style.overflow = 'hidden';
+		}
+		if (document.body) {
+			document.body.style.margin = '0';
+			document.body.style.padding = '0';
+			document.body.style.background = '#000';
+			document.body.style.overflow = 'hidden';
+		}
+
+		// Enforce 4:3 presentation in all modes (windowed/fullscreen).
+		canvas.style.setProperty('position', 'fixed', 'important');
+		canvas.style.setProperty('left', left + 'px', 'important');
+		canvas.style.setProperty('top', top + 'px', 'important');
+		canvas.style.setProperty('width', w + 'px', 'important');
+		canvas.style.setProperty('height', h + 'px', 'important');
+		canvas.style.setProperty('max-width', 'none', 'important');
+		canvas.style.setProperty('max-height', 'none', 'important');
+		canvas.style.setProperty('display', 'block', 'important');
+		canvas.style.setProperty('margin', '0', 'important');
+
+		// Prefer dynamic backing-store resize when supported.
+		if (typeof Module.setCanvasSize === 'function') {
+			if (canvas.width !== pixelW || canvas.height !== pixelH) {
+				Module.setCanvasSize(pixelW, pixelH, false);
+			}
+		}
+		return true;
 	}
 
-	applyCanvasAspect43();
+	function scheduleAspect43Apply() {
+		applyCanvasAspect43();
+		// Fullscreen transitions can re-apply browser styles; enforce again on next frames.
+		window.requestAnimationFrame(applyCanvasAspect43);
+		window.setTimeout(applyCanvasAspect43, 60);
+		window.setTimeout(applyCanvasAspect43, 250);
+	}
+
+	scheduleAspect43Apply();
 	if (!window.__pvzAspect43Bound) {
 		window.__pvzAspect43Bound = true;
-		window.addEventListener('resize', applyCanvasAspect43);
+		window.addEventListener('resize', scheduleAspect43Apply);
+		window.addEventListener('orientationchange', scheduleAspect43Apply);
+		document.addEventListener('fullscreenchange', scheduleAspect43Apply);
+		document.addEventListener('webkitfullscreenchange', scheduleAspect43Apply);
+		document.addEventListener('mozfullscreenchange', scheduleAspect43Apply);
+		document.addEventListener('MSFullscreenChange', scheduleAspect43Apply);
+		document.addEventListener('visibilitychange', () => {
+			if (!document.hidden) {
+				scheduleAspect43Apply();
+			}
+		});
+
+		// Keep aspect locked even if external scripts mutate canvas style.
+		window.__pvzAspect43Timer = window.setInterval(() => {
+			applyCanvasAspect43();
+		}, 500);
 	}
 
 	try {
